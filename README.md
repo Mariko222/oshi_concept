@@ -42,3 +42,6 @@ README〜ER図作成：6/2 〆切
 メイン機能実装：6/2 - 7/15
 β版をRUNTEQ内リリース（MVP）：7/15〆切
 本番リリース：7/31
+
+## 画面遷移図
+https://www.figma.com/file/KHw0qZ9Wad6BvZIRUyAjBc/oshi-concept?node-id=0%3A1
