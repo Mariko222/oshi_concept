@@ -45,3 +45,6 @@ README〜ER図作成：6/2 〆切
 
 ## 画面遷移図
 https://www.figma.com/file/KHw0qZ9Wad6BvZIRUyAjBc/oshi-concept?node-id=0%3A1
+
+## ER図
+https://drive.google.com/file/d/12xVbIFFxI2ZAHeXm9iArFJl1q2ExpkDT/view?usp=sharing
