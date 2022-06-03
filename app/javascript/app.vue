@@ -1,22 +1,20 @@
 <template>
-  <div id="app">
-    <p>{{ message }}</p>
+  <div>
+    <body class="flex flex-col min-h-screen">
+      <TheHeader class="mb-auto" />
+        <router-view />
+      <TheFooter class="mt-auto" />
+    </body>
   </div>
 </template>
 
 <script>
+import TheHeader from "components/TheHeader"
+import TheFooter from "components/TheFooter"
 export default {
-  data: function () {
-    return {
-      message: "Hello Vue!"
-    }
+  components: {
+    TheHeader,
+    TheFooter
   }
 }
 </script>
-
-<style scoped>
-p {
-  font-size: 2em;
-  text-align: center;
-}
-</style>
