@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-neutral text-neutral-content">
+  <div class="navbar bg-neutral text-neutral-content sticky top-0">
     <div class="navbar-start">
       <p>推し概念集めてみた</p>
     </div>
