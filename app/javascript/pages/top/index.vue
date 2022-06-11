@@ -32,7 +32,7 @@
         <div class="mb-4 sm:mb-10">
           <div class="w-full flex flex-col sm:flex-row sm:justify-center gap-2.5">
             <button class="btn btn-outline mr-5">ログイン</button>
-            <button class="btn btn-outline mr-5">新規作成</button>
+            <router-link :to="{ name: 'RegisterIndex' }" button class="btn btn-outline mr-5">新規作成</router-link>
             <button class="btn btn-outline">ゲストログイン</button>
           </div>
         </div>
