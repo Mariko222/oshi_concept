@@ -5,7 +5,7 @@ import store from "../store";
 import TopIndex from "../pages/top/index";
 import RegisterIndex from "../pages/register/index";
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
 const router = new VueRouter({
   mode: "history",
@@ -23,16 +23,5 @@ const router = new VueRouter({
     },
   ]
 })
-
-router.beforeEach((to, from, next) => {
-  store.dispatch('users/fetchAuthUser')
-    .then((authUser) => {
-      if (to.matched.some(record => record.meta.requiredAuth) && !authUser) {
-        next({ name: 'LoginIndex' });
-      } else {
-        next();
-      }
-    })
-});
 
 export default router

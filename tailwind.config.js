@@ -7,7 +7,11 @@ module.exports = {
     './app/javascript/**/*.js'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'twitter': '#1DA1F2',
+      }
+    },
   },
   variants: {
     extend: {},

@@ -33,7 +33,7 @@ const actions = {
       commit('setUser', null)
       return null
     }
-  },
+  }
 }
 
 export default {

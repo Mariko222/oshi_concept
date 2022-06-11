@@ -15,6 +15,7 @@
 #  index_users_on_email  (email) UNIQUE
 #
 class User < ApplicationRecord
+  include JwtToken
   authenticates_with_sorcery!
 
   validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }
