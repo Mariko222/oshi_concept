@@ -12,7 +12,7 @@
             </svg>
           </button>
           <ul tabindex="0" class="dropdown-content menu p-2 drop-shadow-md bg-base-200 box w-52 text-neutral">
-            <li><a>ログイン</a></li>
+            <li><router-link :to="{ name: 'LoginIndex' }">ログイン</router-link></li>
             <li><router-link :to="{ name: 'RegisterIndex' }">新規登録</router-link></li>
             <li><a>ゲストログイン</a></li>
           </ul>
