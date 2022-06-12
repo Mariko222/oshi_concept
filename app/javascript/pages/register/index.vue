@@ -25,14 +25,20 @@
             <input id="password_confirmation" type="password" v-model="user.password_confirmation" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
           </div>
 
-          <button type="submit" @click="register" class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">登録</button>
-
+          <button
+            type="button"
+            class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+            @click="register"
+          >
+            登録
+          </button>
           <div class="flex justify-center items-center relative">
             <span class="h-px bg-gray-300 absolute inset-x-0"></span>
             <span class="bg-white text-gray-400 text-sm relative px-4">or</span>
           </div>
-
-          <button class="flex justify-center items-center bg-twitter hover:bg-sky-400 active:bg-sky-500 focus-visible:ring ring-blue-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3">
+          <button
+            class="flex justify-center items-center bg-twitter hover:bg-sky-400 active:bg-sky-500 focus-visible:ring ring-blue-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3"
+          >
             <svg class="w-5 h-5 shrink-0" width="24" height="24" viewBox="328 355 335 276" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="
                 M 630, 425
@@ -54,12 +60,6 @@
             </svg>
             Twitterでログイン
           </button>
-
-
-        </div>
-
-        <div class="flex justify-center items-center bg-gray-100 p-4">
-          <p class="text-gray-500 text-sm text-center">Don't have an account? <a href="#" class="text-indigo-500 hover:text-indigo-600 active:text-indigo-700 transition duration-100">Register</a></p>
         </div>
       </form>
     </div>
@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import axios from "../../plugins/axios";
 export default {
   name: "RegisterIndex",
   data() {
@@ -81,14 +82,14 @@ export default {
   },
   methods: {
     register() {
-     this.$axios.post('users', { user: this.user })
-      .then(res => {
-        debugger;
-        this.$router.push({ name: 'TopIndex' })
-      })
-      .catch(err => {
-        console.log(err)
-      })
+      axios
+        .post('users', { user: this.user })
+        .then(res => {
+          this.$router.push({ name: 'TopIndex' });
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
   }
 }
