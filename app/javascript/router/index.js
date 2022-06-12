@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 
 import TopIndex from "../pages/top/index";
 import RegisterIndex from "../pages/register/index";
+import LoginIndex from "../pages/login/index";
 
 Vue.use(VueRouter)
 
@@ -19,6 +20,11 @@ const router = new VueRouter({
       path: '/register',
       component: RegisterIndex,
       name: "RegisterIndex"
+    },
+    {
+      path: '/login',
+      component: LoginIndex,
+      name: "LoginIndex"
     },
   ]
 })
