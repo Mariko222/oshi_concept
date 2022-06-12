@@ -1,11 +1,12 @@
 import Vue from "vue";
-import Router from "vue-router";
+import VueRouter from "vue-router";
 
 import TopIndex from "../pages/top/index";
+import RegisterIndex from "../pages/register/index";
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-const router = new Router({
+const router = new VueRouter({
   mode: "history",
   routes: [
     {
@@ -13,7 +14,12 @@ const router = new Router({
       component: TopIndex,
       name: "TopIndex",
 
-    }
+    },
+    {
+      path: '/register',
+      component: RegisterIndex,
+      name: "RegisterIndex"
+    },
   ]
 })
 
