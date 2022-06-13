@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'static_pages#top'
 
   namespace :api do
+    resources :sessions
     resources :users do
       collection do
         get 'me'
