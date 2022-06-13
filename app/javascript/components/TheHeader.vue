@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-neutral mx-auto flex justify-between items-center text-neutral-content sticky top-0">
+  <div class="navbar bg-neutral mx-auto flex justify-between items-center text-neutral-content sticky top-0 z-20">
     <div class="navbar-start">
       <p>推し概念集めてみた</p>
     </div>
@@ -11,7 +11,7 @@
               <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
             </svg>
           </button>
-          <ul tabindex="0" class="dropdown-content menu p-2 drop-shadow-md bg-base-200 box w-52 text-neutral">
+          <ul tabindex="0" class="dropdown-content menu p-2 drop-shadow-md bg-base-200 box w-52 text-neutral z-30">
             <template v-if="!authUser">
               <li><router-link :to="{ name: 'LoginIndex' }">ログイン</router-link></li>
               <li><router-link :to="{ name: 'RegisterIndex' }">新規登録</router-link></li>
