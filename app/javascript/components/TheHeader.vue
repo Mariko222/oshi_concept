@@ -20,7 +20,9 @@
             <template v-else>
               <li><a>マイページ編集</a></li>
               <li><a>概念を追加</a></li>
-              <li><a>ログアウト</a></li>
+              <li>
+                <router-link to="#" class="nav-link" @click.native="handleLogout">ログアウト</router-link>
+              </li>
             </template>
           </ul>
         </div>
@@ -36,6 +38,17 @@ export default {
   name: "TheHeader",
   computed: {
     ...mapGetters("users", ["authUser"])
+  },
+  methods: {
+    ...mapActions("users", ["logoutUser"]),
+    async handleLogout() {
+      try {
+        await this.logoutUser()
+        this.$router.push({name: 'TopIndex'})
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 }
 </script>
