@@ -85,7 +85,7 @@ export default {
       axios
         .post('users', { user: this.user })
         .then(res => {
-          this.$router.push({ name: 'TopIndex' });
+          this.$router.push({ name: 'LoginIndex' });
         })
         .catch((err) => {
           console.log(err)
