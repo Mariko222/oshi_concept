@@ -71,7 +71,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["loginUser", "fetchUser"]),
+    ...mapActions("users",["loginUser", "fetchUser"]),
     async login() {
       try {
         await this.loginUser(this.user);
