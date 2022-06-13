@@ -31,7 +31,8 @@ const router = new VueRouter({
     {
       path: '/mypage',
       component: MypageIndex,
-      name: "MypageIndex"
+      name: "MypageIndex",
+      meta: { requiredAuth: true },
     },
   ]
 })
