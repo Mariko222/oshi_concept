@@ -15,6 +15,18 @@ const mutations = {
 }
 
 const actions = {
+  async loginUser({ commit }, user) {
+    const sessionsResponse = await axios.post("sessions", user)
+    localStorage.auth_token = sessionsResponse.data.token
+    axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.auth_token}`
+    const userResponse = await axios.get("users/me")
+    commit("setUser", userResponse.data)
+  },
+  logoutUser({ commit }) {
+    localStorage.removeItem('auth_token')
+    axios.defaults.headers.common['Authorization'] = ''
+    commit('setUser', null)
+  },
   async fetchAuthUser({ commit, state }) {
     if (!localStorage.auth_token) return null
     if (state.authUser) return state.authUser
