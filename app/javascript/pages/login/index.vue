@@ -75,7 +75,7 @@ export default {
     async login() {
       try {
         await this.loginUser(this.user);
-        this.$router.push({ name: "TopIndex" });
+        this.$router.push({ name: "MypageIndex" });
       } catch (error) {
         console.log(error)
       }
