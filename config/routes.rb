@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get '*path', to: 'static_pages#top'
+  get '*path', to: 'static_pages#top', constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
 end
