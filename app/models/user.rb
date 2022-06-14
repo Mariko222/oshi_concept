@@ -19,6 +19,9 @@ class User < ApplicationRecord
   include JwtToken
   authenticates_with_sorcery!
 
+  has_one_attached :icon
+  has_one_attached :background_image
+
   validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
@@ -27,4 +30,11 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 50 }
   validates :mypage_name, length: { maximum: 50 }
 
+  def icon_url
+    icon.attached? ? Rails.application.routes.url_helpers.rails_blob_path(icon, only_path: true) : nil
+  end
+
+  def background_image_url
+    background_image.attached? ? Rails.application.routes.url_helpers.rails_blob_path(background_image, only_path: true) : nil
+  end
 end
