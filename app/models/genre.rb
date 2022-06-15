@@ -12,5 +12,7 @@
 #  index_genres_on_name  (name) UNIQUE
 #
 class Genre < ApplicationRecord
+  has_many :characters
+
   validates :name, presence: true, uniqueness: true
 end
