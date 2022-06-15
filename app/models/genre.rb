@@ -14,5 +14,6 @@
 class Genre < ApplicationRecord
   has_many :characters, dependent: :destroy
   has_many :mygenres
+  
   validates :name, presence: true, uniqueness: true
 end
