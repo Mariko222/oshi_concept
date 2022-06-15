@@ -19,6 +19,7 @@
 #
 class Character < ApplicationRecord
   belongs_to :genre
+  has_many :mygenre_favorite_characters
 
   validates :name, presence: true
 end

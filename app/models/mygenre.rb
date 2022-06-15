@@ -22,6 +22,7 @@
 class Mygenre < ApplicationRecord
   belongs_to :user
   belongs_to :genre
+  has_many :mygenre_favorite_characters, dependent: :destroy
 
   validates :user_id, uniqueness: { scope: :genre_id }
 end

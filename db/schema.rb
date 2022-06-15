@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_15_010813) do
+ActiveRecord::Schema.define(version: 2022_06_15_022305) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2022_06_15_010813) do
     t.index ["name"], name: "index_genres_on_name", unique: true
   end
 
+  create_table "mygenre_favorite_characters", force: :cascade do |t|
+    t.bigint "mygenre_id", null: false
+    t.bigint "character_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["character_id"], name: "index_mygenre_favorite_characters_on_character_id"
+    t.index ["mygenre_id", "character_id"], name: "mygenre_favorite_characters_index", unique: true
+    t.index ["mygenre_id"], name: "index_mygenre_favorite_characters_on_mygenre_id"
+  end
+
   create_table "mygenres", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "genre_id", null: false
@@ -83,6 +93,8 @@ ActiveRecord::Schema.define(version: 2022_06_15_010813) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "characters", "genres"
+  add_foreign_key "mygenre_favorite_characters", "characters"
+  add_foreign_key "mygenre_favorite_characters", "mygenres"
   add_foreign_key "mygenres", "genres"
   add_foreign_key "mygenres", "users"
 end
