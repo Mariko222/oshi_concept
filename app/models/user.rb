@@ -20,6 +20,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :mygenres, dependent: :destroy
+  has_many :mygenre_lists, through: :mygenres, source: :genre
 
   has_one_attached :icon
   has_one_attached :background_image
