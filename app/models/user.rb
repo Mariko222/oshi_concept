@@ -19,6 +19,8 @@ class User < ApplicationRecord
   include JwtToken
   authenticates_with_sorcery!
 
+  has_many :mygenres, dependent: :destroy
+
   has_one_attached :icon
   has_one_attached :background_image
 
