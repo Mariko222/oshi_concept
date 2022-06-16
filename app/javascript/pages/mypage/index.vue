@@ -1,9 +1,9 @@
 <template>
   <div class="container mx-auto">
+    <MypageHeader v-if="authUser" class="mb-auto" />
     <div class="bg-white py-6 sm:py-8 lg:py-12">
       <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
         <div class="grid grid-cols-2 rounded-lg gap-8">
-
           <div class="h-16 sm:h-32 flex justify-center items-center bg-gray-100 text-gray-400 rounded-lg p-4">
             <p>ファッション</p>
           </div>
@@ -57,4 +57,15 @@
 </template>
 
 <script>
+import MypageHeader from "../../components/MypageHeader"
+import { mapGetters } from "vuex"
+import axios from "../../plugins/axios";
+export default {
+  components: {
+    MypageHeader
+  },
+  computed: {
+    ...mapGetters("users", ["authUser"])
+  }
+}
 </script>
