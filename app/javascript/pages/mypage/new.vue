@@ -5,16 +5,13 @@
 
       <form class="max-w-lg border rounded-lg mx-auto">
         <div class="flex flex-col gap-4 p-4 md:p-8">
-
           <div>
             <label for="genre_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
-            <select id="genre_name" v-model="genre.name" class="input-form-basic-block">
+            <select id="genre_id" name="genre" v-model="genre.name" class="input-form-basic-block" >
               <option disabled value="">ジャンルを選択</option>
-              <option>A</option>
-              <option>B</option>
-              <option>C</option>
+              <option v-for="genre in genres" :key="genre.id">{{ genre.name }}</option>
             </select>
-            <span>{{ genre.name }}</span>
+            <p>{{ genre.name }}</p>
           </div>
 
           <div>
@@ -51,22 +48,24 @@
 
 <script>
 import ChoiceCharactersModal from './components/ChoiceCharactersModal'
+import axios from "../../plugins/axios";
 export default {
-  name: "GenreNew",
+  name: "MypageNew",
   components: {
     ChoiceCharactersModal
   },
   data() {
     return {
       isVisibleChoiceCharactersModal: false,
+      genres: [],
       genre: {
-        genre_name: ""
-      },
-      character: {
-        name: ""
       },
       selectedPokeLists: ""
     };
+  },
+  created() {
+    this.fetchGenres();
+    console.log(this.genres)
   },
   methods: {
     handleOpenChoiceCharactersModal() {
@@ -78,6 +77,19 @@ export default {
     displayCharacters(selectedPokes){
       this.selectedPokeLists = selectedPokes
       this.handleCloseChoiceCharactersModal();
+    },
+    fetchGenres() {
+      this.$axios.get("genres",
+        {
+          params: {
+            id: 1
+          }
+        })
+        .then(res => {
+          console.log(res.data)
+          this.genres = res.data
+        })
+        .catch(err => console.log(err.status));
     }
   }
 }
