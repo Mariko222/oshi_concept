@@ -64,8 +64,27 @@ export default {
   components: {
     MypageHeader
   },
+  data() {
+    return {
+      genres: []
+    }
+  },
+  created() {
+    this.fetchGenres();
+    console.log(this.genres)
+  },
   computed: {
     ...mapGetters("users", ["authUser"])
+  },
+  methods: {
+    fetchGenres() {
+      this.$axios.get("genres")
+        .then(res => {
+          console.log(res.data)
+          this.genres = res.data
+        })
+        .catch(err => console.log(err.status));
+    }
   }
 }
 </script>
