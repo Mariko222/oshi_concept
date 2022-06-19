@@ -8,13 +8,11 @@
         class="border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current"
       >
         <div
-          class="modal-header flex flex-shrink-0 items-center p-2 justify-between border-b border-gray-200 rounded-t-md bg-indigo-400"
+          class="modal-header flex flex-shrink-0 items-center p-2 justify-between border-b border-gray-200 rounded-t-md bg-gray-700"
         >
-          <h5
-            class="md:text-3xl text-xl font-medium leading-normal text-gray-800"
-          >
+          <p class="text-white">
             推しを選択
-          </h5>
+          </p>
           <button
             type="button"
             class="btn-close box-content my-auto p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline md:text-4xl text-lg"
@@ -26,31 +24,32 @@
         <div class="modal-body relative p-4">
           <hr class="my-2" />
           <section>
-            <div v-for="(poke, i) in pokes" :key="i">
+            <div v-for="(character, i) in characters" :key="i">
               <input
-                :id="'poke' + i"
+                :id="'character' + i"
                 type="checkbox"
-                :value="poke"
-                v-model="selectedPokes"
+                :value="character.name"
+                v-model="selectedCharacters"
               >
-              <label :for="'poke' + i">{{poke}}</label>
+              <label :for="'character' + i">{{character.name}}</label>
             </div>
           </section>
-          <span>{{ selectedPokes }}</span>
+          <hr class="my-2" />
+          <span class="text-xl">推し（複数選択可）：{{ selectedCharactersLists }}</span>
         </div>
         <div
-          class="modal-footer flex justify-between border-gray-200 bg-indigo-400"
+          class="modal-footer flex justify-end border-gray-200 bg-gray-700"
         >
           <button
             type="button"
-            class="bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-center rounded-lg outline-none transition duration-100 px-4 py-2"
+            class="bg-red-500 hover:bg-red-600 active:bg-red-400 focus-visible:ring ring-red-300 text-black-600 text-center rounded-lg outline-none transition duration-100 px-4 py-2 mx-3"
             @click="handleChoiceCharacters"
           >
             追加
           </button>
           <button
             type="button"
-            class="bg-indigo-800 hover:bg-indigo-700 active:bg-indigo-600 focus-visible:ring ring-indigo-300 text-white text-center rounded-lg outline-none transition duration-100 px-4 py-2"
+            class="bg-indigo-800 hover:bg-indigo-700 active:bg-indigo-600 focus-visible:ring ring-indigo-300 text-white text-center rounded-lg outline-none transition duration-100 px-4 py-2 mx-3"
             @click="handleCloseModal"
           >
             閉じる
@@ -66,10 +65,20 @@ export default {
   name: 'ChoiceCharactersModal',
   data() {
     return {
-      pokes: [
-        'AAA', 'BBB', 'CCC', 'DDD', 'EEE', 'FFF', 'GGG'
-      ],
-      selectedPokes: []
+      character: {
+      },
+      selectedCharacters: []
+    }
+  },
+  props: {
+    characters: {
+      type: Array,
+      required: true
+    }
+  },
+  computed: {
+    selectedCharactersLists: function () {
+      return this.selectedCharacters.join();
     }
   },
   methods: {
@@ -77,7 +86,7 @@ export default {
       this.$emit('close-modal')
     },
     handleChoiceCharacters() {
-      this.$emit('choice-characters', this.selectedPokes)
+      this.$emit('choice-characters', this.selectedCharactersLists)
     }
   }
 }

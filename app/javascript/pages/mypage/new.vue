@@ -14,16 +14,8 @@
             <p>{{ genre.name }}</p>
           </div>
           <div>
-            <label for="character_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">推し：</label>
-            <select id="character_id" name="character" v-model="character.name" class="input-form-basic-block">
-              <option disabled value="">推しを選択</option>
-              <option v-for="character in characters" :key="character.id">{{ character.name }}</option>
-            </select>
-            <p>{{ character.name }}</p>
-          </div>
-
-          <div>
             <label for="character.name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
+            <span>{{ selectedCharacters }}</span>
             <button
             type="button"
             @click="handleOpenChoiceCharactersModal"
@@ -31,7 +23,6 @@
             >
               推しを選択
             </button>
-            <span>{{ selectedPokeLists }}</span>
           </div>
 
           <button
@@ -50,6 +41,9 @@
       v-if="isVisibleChoiceCharactersModal"
       @close-modal="handleCloseChoiceCharactersModal"
       @choice-characters="displayCharacters"
+      :characters="characters"
+      :character="character"
+      :key="character.id"
     />
   </div>
 </template>
@@ -72,7 +66,7 @@ export default {
       characters: [],
       character: {
       },
-      selectedPokeLists: ""
+      selectedCharacters: ""
     };
   },
   created() {
@@ -85,8 +79,8 @@ export default {
     handleCloseChoiceCharactersModal() {
       this.isVisibleChoiceCharactersModal = false;
     },
-    displayCharacters(selectedPokes){
-      this.selectedPokeLists = selectedPokes
+    displayCharacters(selectedCharacters){
+      this.selectedCharacters = selectedCharacters
       this.handleCloseChoiceCharactersModal();
     },
     fetchGenres() {
