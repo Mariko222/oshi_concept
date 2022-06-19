@@ -7,11 +7,19 @@
         <div class="flex flex-col gap-4 p-4 md:p-8">
           <div>
             <label for="genre_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
-            <select id="genre_id" name="genre" v-model="genre.name" class="input-form-basic-block" >
+            <select id="genre_id" name="genre" v-model="selectedGenre" class="input-form-basic-block" @change="fetchCharacters(selectedGenre)" >
               <option disabled value="">ジャンルを選択</option>
-              <option v-for="genre in genres" :key="genre.id">{{ genre.name }}</option>
+              <option v-for="genre in genres" :key="genre.id" :value="genre.id">{{ genre.name }}</option>
             </select>
             <p>{{ genre.name }}</p>
+          </div>
+          <div>
+            <label for="character_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">推し：</label>
+            <select id="character_id" name="character" v-model="character.name" class="input-form-basic-block">
+              <option disabled value="">推しを選択</option>
+              <option v-for="character in characters" :key="character.id">{{ character.name }}</option>
+            </select>
+            <p>{{ character.name }}</p>
           </div>
 
           <div>
@@ -60,12 +68,15 @@ export default {
       genres: [],
       genre: {
       },
+      selectedGenre: [],
+      characters: [],
+      character: {
+      },
       selectedPokeLists: ""
     };
   },
   created() {
     this.fetchGenres();
-    console.log(this.genres)
   },
   methods: {
     handleOpenChoiceCharactersModal() {
@@ -79,15 +90,19 @@ export default {
       this.handleCloseChoiceCharactersModal();
     },
     fetchGenres() {
-      this.$axios.get("genres",
-        {
-          params: {
-            id: 1
-          }
-        })
+      this.$axios.get("genres")
         .then(res => {
-          console.log(res.data)
           this.genres = res.data
+        })
+        .catch(err => console.log(err.status));
+    },
+    fetchCharacters(selectedGenre) {
+      console.log(selectedGenre)
+      this.$axios.get("characters", {
+        params:{ id:selectedGenre }
+      })
+        .then(res => {
+          this.characters = res.data
         })
         .catch(err => console.log(err.status));
     }
