@@ -17,7 +17,7 @@
       <div class="max-w-full gap-4 p-4 mx-auto">
         <div class="justify-between grid grid-cols-2 gap-8">
           <div class="flex-row justify-start gap-2.5 ml-8">
-            <a href="#" class="inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-6 py-3 mb-4">ジャンルを追加</a>
+            <router-link :to="{ name: 'MypageNew' }" button class="btn bg-indigo-800 text-white btn-outline mr-5">ジャンルを追加</router-link>
           </div>
         </div>
       </div>
