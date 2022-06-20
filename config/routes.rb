@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     resources :genres
     resources :characters
+    resources :mygenres
     resources :sessions
     resources :users do
       collection do

@@ -28,6 +28,7 @@
           <button
             type="button"
             class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+            @click="register"
           >
             登録
           </button>
@@ -91,7 +92,6 @@ export default {
         .catch(err => console.log(err.status));
     },
     fetchCharacters(selectedGenre) {
-      console.log(selectedGenre)
       this.$axios.get("characters", {
         params:{ id:selectedGenre }
       })
@@ -99,7 +99,18 @@ export default {
           this.characters = res.data
         })
         .catch(err => console.log(err.status));
-    }
+    },
+    async register() {
+      try {
+        await this.fetchGenres()
+        this.$axios.post("mygenres", {
+          id:this.selectedGenre 
+        })
+        this.$router.push({ name: 'MypageIndex' });
+      } catch (err) {
+        console.log(err);
+      }
+    },
   }
 }
 </script>
