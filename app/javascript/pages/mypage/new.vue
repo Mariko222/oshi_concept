@@ -15,11 +15,11 @@
           </div>
           <div>
             <label for="character.name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
-            <span>{{ selectedCharacters }}</span>
+            <span>{{ selectedCharacterNames }}</span>
             <button
             type="button"
             @click="handleOpenChoiceCharactersModal"
-            class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+            class="block bg-indigo-800 hover:bg-indigo-700 active:bg-indigo-600 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base  text-center rounded-lg outline-none transition duration-100 px-1 py-1"
             >
               推しを選択
             </button>
@@ -67,8 +67,9 @@ export default {
       characters: [],
       character: {
       },
-      selectedCharacters: ""
-    };
+      selectedCharacters: [],
+      selectedCharacterNames:[]
+    }
   },
   created() {
     this.fetchGenres();
@@ -81,6 +82,14 @@ export default {
       this.isVisibleChoiceCharactersModal = false;
     },
     displayCharacters(selectedCharacters){
+      console.log(this.characters)
+      this.characters.forEach(c => {
+        selectedCharacters.forEach(s => {
+          if (c['id'] === s){
+            this.selectedCharacterNames += `  ${c['name']}`
+          }
+        })
+      })
       this.selectedCharacters = selectedCharacters
       this.handleCloseChoiceCharactersModal();
     },
@@ -104,7 +113,8 @@ export default {
       try {
         await this.fetchGenres()
         this.$axios.post("mygenres", {
-          id:this.selectedGenre 
+          id:this.selectedGenre,
+          character_id:this.selectedCharacters
         })
         this.$router.push({ name: 'MypageIndex' });
       } catch (err) {

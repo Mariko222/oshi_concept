@@ -28,14 +28,13 @@
               <input
                 :id="'character' + i"
                 type="checkbox"
-                :value="character.name"
+                :value="character.id"
                 v-model="selectedCharacters"
               >
               <label :for="'character' + i">{{character.name}}</label>
             </div>
           </section>
           <hr class="my-2" />
-          <span class="text-xl">推し（複数選択可）：{{ selectedCharactersLists }}</span>
         </div>
         <div
           class="modal-footer flex justify-end border-gray-200 bg-gray-700"
@@ -78,7 +77,7 @@ export default {
   },
   computed: {
     selectedCharactersLists: function () {
-      return this.selectedCharacters.join();
+      return this.selectedCharacters;
     }
   },
   methods: {
