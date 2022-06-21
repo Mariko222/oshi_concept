@@ -24,5 +24,7 @@ class Mygenre < ApplicationRecord
   belongs_to :genre
   has_many :mygenre_favorite_characters, dependent: :destroy
 
+  accepts_nested_attributes_for :mygenre_favorite_characters
+
   validates :user_id, uniqueness: { scope: :genre_id }
 end
