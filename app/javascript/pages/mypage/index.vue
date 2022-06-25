@@ -64,19 +64,8 @@ export default {
   components: {
     MypageHeader
   },
-  data() {
-    return {
-      genres: []
-    }
-  },
-  created() {
-    this.fetchGenres();
-    console.log(this.genres)
-  },
   computed: {
     ...mapGetters("users", ["authUser"])
-  },
-  methods: {
   }
 }
 </script>
