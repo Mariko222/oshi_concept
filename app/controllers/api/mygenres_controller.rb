@@ -3,11 +3,17 @@ class Api::MygenresController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
-    @mygenre = current_user.mygenres.build(genre_id: params[:id], params[:mygenre_favorite_characters_attributes] [:character_id])
-    if @mygenre.save
-      render json: @mygenre
+    @myfavorite_character = MyfavoriteCharacter.new(set_params)
+    if @myfavorite_character.save
+      render json: @myfavorite_character.attributes
     else
-      render json: @mygenre.errors, status: :bad_request
+      render json: @myfavorite_character.errors, status: :bad_request
     end
+  end
+
+  private
+
+  def set_params
+    params.permit(:current_user, :genre_id, character_ids:[]).merge(user_id: User.find(current_user.id).id)
   end
 end

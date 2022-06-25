@@ -9,7 +9,7 @@
             <label for="genre_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
             <select id="genre_id" name="genre" v-model="selectedGenre" class="input-form-basic-block" @change="fetchCharacters(selectedGenre)" >
               <option disabled value="">ジャンルを選択</option>
-              <option v-for="genre in genres" :key="genre.id" :value="genre.id">{{ genre.name }}</option>
+              <option v-for="genre in genres" :value="genre.id">{{ genre.name }}</option>
             </select>
             <p>{{ genre.name }}</p>
           </div>
@@ -63,7 +63,7 @@ export default {
       genres: [],
       genre: {
       },
-      selectedGenre: [],
+      selectedGenre: '',
       characters: [],
       character: {
       },
@@ -82,7 +82,6 @@ export default {
       this.isVisibleChoiceCharactersModal = false;
     },
     displayCharacters(selectedCharacters){
-      console.log(this.characters)
       this.characters.forEach(c => {
         selectedCharacters.forEach(s => {
           if (c['id'] === s){
@@ -112,10 +111,11 @@ export default {
     async register() {
       try {
         await this.fetchGenres()
-        this.$axios.post("mygenres", {
-          id:this.selectedGenre,
-          character_id:this.selectedCharacters
-        })
+        const params = {
+          genre_id: this.selectedGenre,
+          character_ids: this.selectedCharacters,
+        }
+        this.$axios.post("mygenres", params)
         this.$router.push({ name: 'MypageIndex' });
       } catch (err) {
         console.log(err);

@@ -29,6 +29,7 @@
                 :id="'character' + i"
                 type="checkbox"
                 :value="character.id"
+                name="mygenre[character_id]"
                 v-model="selectedCharacters"
               >
               <label :for="'character' + i">{{character.name}}</label>
