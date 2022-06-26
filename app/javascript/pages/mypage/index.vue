@@ -66,6 +66,10 @@ export default {
   },
   computed: {
     ...mapGetters("users", ["authUser"])
-  }
+  },
+  data() {
+    return {
+    }
+  },
 }
 </script>
