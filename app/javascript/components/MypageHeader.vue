@@ -10,6 +10,9 @@
         <ul class="flex flex-col bg-gray-100 rounded-lg gap-4 p-4 md:p-8">
           <li class="font-semibold mb-1">ユーザーネーム</li>
           <li class="font-semibold mb-1">推しの名前：複数可</li>
+          <div v-for="  mygenreFavoriteCharacter in  mygenreFavoriteCharacters" :key=" mygenreFavoriteCharacter.id" :value=" mygenreFavoriteCharacter.name" class="bg-white border shadow-sm rounded my-2 p-4">
+            <span>{{  mygenreFavoriteCharacter.character.name }}</span>
+          </div>
         </ul>
       </div>
     </div>
@@ -24,3 +27,29 @@
 
   </div>
 </template>
+
+<script>
+import { mapGetters } from "vuex"
+import axios from "../plugins/axios";
+export default {
+  name: "MypageHeader",
+  data() {
+    return {
+      mygenres: [],
+      mygenreFavoriteCharacters: []
+    }
+  },
+  created() {
+    this.fetchFavoriteCharacters();
+  },
+  methods: {
+    fetchFavoriteCharacters() {
+      this.$axios.get("mygenres")
+        .then(res => {
+          this.mygenreFavoriteCharacters = res.data
+          })
+        .catch(err => console.log(err.status));
+    },
+  }
+}
+</script>

@@ -2,6 +2,14 @@ class Api::MygenresController < ApplicationController
   before_action :authenticate!, only: %i[me]
   skip_before_action :verify_authenticity_token
 
+  def index
+    @mygenres = Mygenre.where(user_id: current_user.id)
+    @mygenre_favorite_characters = MygenreFavoriteCharacter.where(mygenre_id: @mygenres.first.id)
+    respond_to do |f|
+      f.json { render json: @mygenre_favorite_characters.to_json(:include => [:character]) }
+    end
+  end
+
   def create
     @myfavorite_character = MyfavoriteCharacter.new(set_params)
     if @myfavorite_character.save
