@@ -8,7 +8,7 @@
           </div>
         </div>
         <ul class="flex flex-col bg-gray-100 rounded-lg gap-4 p-4 md:p-8">
-          <li class="font-semibold mb-1">ユーザーネーム</li>
+          <li class="font-semibold mb-4 text-2xl">{{ user.name }}</li>
           <li class="font-semibold mb-1">推し：</li>
           <div v-for="mygenreFavoriteCharacter in mygenreFavoriteCharacters" class="bg-white border shadow-sm rounded p-2">
             <p>{{ mygenreFavoriteCharacter.character.name }}</p>
@@ -40,12 +40,16 @@ export default {
     return {
       myGenres: [],
       mygenreFavoriteCharacters: [],
-      mygenreLists:[]
+      mygenreLists:[],
+      user: ""
     }
+  },
+  computed: {
+    ...mapGetters("users", ["authUser"])
   },
   created() {
     this.fetchFavoriteCharacters();
-    this.duplicate();
+    this.fetchUser();
   },
   methods: {
     fetchFavoriteCharacters() {
@@ -58,6 +62,13 @@ export default {
             ) === index
           })
           })
+        .catch(err => console.log(err.status));
+    },
+    fetchUser() {
+      this.$axios.get("sessions")
+        .then(res => {
+          this.user = res.data
+        })
         .catch(err => console.log(err.status));
     },
   }
