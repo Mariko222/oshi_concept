@@ -9,9 +9,9 @@
         </div>
         <ul class="flex flex-col bg-gray-100 rounded-lg gap-4 p-4 md:p-8">
           <li class="font-semibold mb-1">ユーザーネーム</li>
-          <li class="font-semibold mb-1">推しの名前：複数可</li>
-          <div v-for="  mygenreFavoriteCharacter in  mygenreFavoriteCharacters" :key=" mygenreFavoriteCharacter.id" :value=" mygenreFavoriteCharacter.name" class="bg-white border shadow-sm rounded my-2 p-4">
-            <span>{{  mygenreFavoriteCharacter.character.name }}</span>
+          <li class="font-semibold mb-1">推し：</li>
+          <div v-for="mygenreFavoriteCharacter in mygenreFavoriteCharacters" class="bg-white border shadow-sm rounded p-2">
+            <p>{{ mygenreFavoriteCharacter.character.name }}</p>
           </div>
         </ul>
       </div>
@@ -21,6 +21,9 @@
         <div class="justify-between grid grid-cols-2 gap-8">
           <div class="flex-row justify-start gap-2.5 ml-8">
             <router-link :to="{ name: 'MypageNew' }" button class="btn bg-indigo-800 text-white btn-outline mr-5">ジャンルを追加</router-link>
+            <div v-for="mygenreList in mygenreLists" :key=" mygenreList.id" class="bg-white border shadow-sm rounded p-2">
+              <p>{{ mygenreList.mygenre.genre.name }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -35,18 +38,25 @@ export default {
   name: "MypageHeader",
   data() {
     return {
-      mygenres: [],
-      mygenreFavoriteCharacters: []
+      myGenres: [],
+      mygenreFavoriteCharacters: [],
+      mygenreLists:[]
     }
   },
   created() {
     this.fetchFavoriteCharacters();
+    this.duplicate();
   },
   methods: {
     fetchFavoriteCharacters() {
       this.$axios.get("mygenres")
         .then(res => {
           this.mygenreFavoriteCharacters = res.data
+          this.mygenreLists = this.mygenreFavoriteCharacters.filter((item, index, self) => {
+            return self.findIndex(i =>
+              i['mygenre_id'] === item['mygenre_id']
+            ) === index
+          })
           })
         .catch(err => console.log(err.status));
     },
