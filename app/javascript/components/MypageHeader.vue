@@ -8,8 +8,11 @@
           </div>
         </div>
         <ul class="flex flex-col bg-gray-100 rounded-lg gap-4 p-4 md:p-8">
-          <li class="font-semibold mb-1">ユーザーネーム</li>
-          <li class="font-semibold mb-1">推しの名前：複数可</li>
+          <li class="font-semibold mb-4 text-2xl">{{ user.name }}</li>
+          <li class="font-semibold mb-1">推し：</li>
+          <div v-for="mygenreFavoriteCharacter in mygenreFavoriteCharacters" class="bg-white border shadow-sm rounded p-2">
+            <p>{{ mygenreFavoriteCharacter.character.name }}</p>
+          </div>
         </ul>
       </div>
     </div>
@@ -17,10 +20,57 @@
       <div class="max-w-full gap-4 p-4 mx-auto">
         <div class="justify-between grid grid-cols-2 gap-8">
           <div class="flex-row justify-start gap-2.5 ml-8">
-            <a href="#" class="inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-6 py-3 mb-4">ジャンルを追加</a>
+            <router-link :to="{ name: 'MypageNew' }" button class="btn bg-indigo-800 text-white btn-outline mr-5">ジャンルを追加</router-link>
+            <div v-for="mygenreList in mygenreLists" :key=" mygenreList.id" class="bg-white border shadow-sm rounded p-2">
+              <p>{{ mygenreList.mygenre.genre.name }}</p>
+            </div>
           </div>
         </div>
       </div>
 
   </div>
 </template>
+
+<script>
+import { mapGetters } from "vuex"
+import axios from "../plugins/axios";
+export default {
+  name: "MypageHeader",
+  data() {
+    return {
+      myGenres: [],
+      mygenreFavoriteCharacters: [],
+      mygenreLists:[],
+      user: ""
+    }
+  },
+  computed: {
+    ...mapGetters("users", ["authUser"])
+  },
+  created() {
+    this.fetchFavoriteCharacters();
+    this.fetchUser();
+  },
+  methods: {
+    fetchFavoriteCharacters() {
+      this.$axios.get("mygenres")
+        .then(res => {
+          this.mygenreFavoriteCharacters = res.data
+          this.mygenreLists = this.mygenreFavoriteCharacters.filter((item, index, self) => {
+            return self.findIndex(i =>
+              i['mygenre_id'] === item['mygenre_id']
+            ) === index
+          })
+          })
+        .catch(err => console.log(err.status));
+    },
+    fetchUser() {
+      this.$axios.get("sessions")
+        .then(res => {
+          this.user = res.data
+        })
+        .catch(err => console.log(err.status));
+    },
+  }
+}
+</script>
