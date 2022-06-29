@@ -77,6 +77,7 @@ export default {
   methods: {
     handleOpenChoiceCharactersModal() {
       this.isVisibleChoiceCharactersModal = true;
+      this.selectedCharacterNames = []
     },
     handleCloseChoiceCharactersModal() {
       this.isVisibleChoiceCharactersModal = false;
