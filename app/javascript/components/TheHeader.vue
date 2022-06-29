@@ -18,7 +18,9 @@
               <li><a>ゲストログイン</a></li>
             </template>
             <template v-else>
-              <li><a>マイページ編集</a></li>
+              <li>
+                <router-link :to="{ name: 'MypageEdit' }" class="nav-link">マイページ編集</router-link>
+              </li>
               <li><a>概念を追加</a></li>
               <li>
                 <router-link to="#" class="nav-link" @click.native="handleLogout">ログアウト</router-link>
