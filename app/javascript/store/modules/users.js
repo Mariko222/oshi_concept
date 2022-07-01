@@ -45,6 +45,12 @@ const actions = {
       commit('setUser', null)
       return null
     }
+  },
+  updateUser({ commit, state }, user) {
+    return axios.patch(`mypage/${state.authUser.id}`, user)
+      .then(res => {
+        commit('setUser', res.data)
+      })
   }
 }
 
