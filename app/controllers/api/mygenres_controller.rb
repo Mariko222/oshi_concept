@@ -4,7 +4,7 @@ class Api::MygenresController < ApplicationController
 
   def index
     @mygenres = Mygenre.where(user_id: current_user.id)
-    @genre = current_user.mygenre_lists.first
+    @genres = current_user.mygenre_lists
     @mygenre_favorite_characters = MygenreFavoriteCharacter.where(mygenre_id: @mygenres.ids)
     respond_to do |f|
       f.json { render json: @mygenre_favorite_characters.to_json(include: [:character, { mygenre: {include: :genre}}]) }
