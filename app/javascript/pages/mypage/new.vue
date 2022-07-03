@@ -11,7 +11,6 @@
               <option disabled value="">ジャンルを選択</option>
               <option v-for="genre in genres" :value="genre.id">{{ genre.name }}</option>
             </select>
-            <p>{{ genre.name }}</p>
           </div>
           <div>
             <label for="character.name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
