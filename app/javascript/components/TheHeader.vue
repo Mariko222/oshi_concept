@@ -3,6 +3,11 @@
     <div class="navbar-start">
       <p>推し概念集めてみた</p>
     </div>
+    <template v-if="authUser">
+      <div class="navbar-center">
+        <p class="font-semibold text-2xl">{{ authUser.mypage_name }}</p>
+      </div>
+    </template>
     <div class="navbar-end">
       <div class="flex-none">
         <div class="dropdown dropdown-end">
