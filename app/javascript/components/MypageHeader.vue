@@ -2,10 +2,8 @@
   <div class="w-full lg:block bg-gray-50 border rounded-lg shadow-sm sticky top-20 z-10">
     <div class="max-w-auto gap-8 p-8">
       <div class="grid grid-cols-2">
-        <div class="avatar pl-8">
-          <div class="rounded-full bg-gray-500">
-            <img src="" />
-          </div>
+        <div class="icon mr-5">
+            <img :src="authUser.icon_url" class="rounded-full icon-image" />
         </div>
         <ul class="flex flex-col bg-gray-100 rounded-lg gap-4 p-4 md:p-8">
           <li class="font-semibold mb-4 text-2xl">{{ user.name }}</li>

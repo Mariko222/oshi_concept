@@ -5,7 +5,7 @@
 #  id               :bigint           not null, primary key
 #  crypted_password :string
 #  email            :string           not null
-#  mypage_name      :integer
+#  mypage_name      :string
 #  name             :string           not null
 #  salt             :string
 #  created_at       :datetime         not null
@@ -23,7 +23,6 @@ class User < ApplicationRecord
   has_many :mygenre_lists, through: :mygenres, source: :genre
 
   has_one_attached :icon
-  has_one_attached :background_image
 
   validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -37,7 +36,4 @@ class User < ApplicationRecord
     icon.attached? ? Rails.application.routes.url_helpers.rails_blob_path(icon, only_path: true) : nil
   end
 
-  def background_image_url
-    background_image.attached? ? Rails.application.routes.url_helpers.rails_blob_path(background_image, only_path: true) : nil
-  end
 end
