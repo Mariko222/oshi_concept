@@ -3,6 +3,11 @@
     <div class="navbar-start">
       <p>推し概念集めてみた</p>
     </div>
+    <template v-if="authUser">
+      <div class="navbar-center">
+        <p class="font-semibold text-2xl">{{ authUser.mypage_name }}</p>
+      </div>
+    </template>
     <div class="navbar-end">
       <div class="flex-none">
         <div class="dropdown dropdown-end">
@@ -18,7 +23,9 @@
               <li><a>ゲストログイン</a></li>
             </template>
             <template v-else>
-              <li><a>マイページ編集</a></li>
+              <li>
+                <router-link :to="{ name: 'MypageEdit' }" class="nav-link">マイページ編集</router-link>
+              </li>
               <li><a>概念を追加</a></li>
               <li>
                 <router-link to="#" class="nav-link" @click.native="handleLogout">ログアウト</router-link>
