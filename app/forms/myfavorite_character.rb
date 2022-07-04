@@ -1,4 +1,4 @@
-class MyfavoriteCharacter
+class MygenreCharacter
   include ActiveModel::Model
   include ActiveModel::Attributes
   include ActiveModel::Validations
