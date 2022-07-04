@@ -52,12 +52,6 @@ const actions = {
         commit('setUser', res.data)
       })
   },
-  updateCharacter({ commit, state }, user) {
-    return axios.patch(`mygenres/${state.authUser.id}`, user)
-      .then(res => {
-        commit('setUser', res.data)
-      })
-  }
 }
 
 export default {

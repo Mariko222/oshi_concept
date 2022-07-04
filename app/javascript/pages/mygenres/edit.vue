@@ -99,7 +99,6 @@ export default {
     ...mapGetters("users", ["authUser"])
   },
   methods: {
-    ...mapActions("users", ["updateCharacter"]),
     handleOpenChoiceCharactersModal() {
       this.isVisibleChoiceCharactersModal = true;
       this.selectedCharacterNames = []
