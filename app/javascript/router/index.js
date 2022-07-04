@@ -8,6 +8,7 @@ import LoginIndex from "../pages/login/index";
 import MypageIndex from "../pages/mypage/index";
 import MypageNew from "../pages/mypage/new";
 import MypageEdit from "../pages/mypage/edit";
+import MygenresEdit from "../pages/mygenres/edit";
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,12 @@ const router = new VueRouter({
       path: '/mypage/edit',
       component: MypageEdit,
       name: "MypageEdit",
+      meta: { requiredAuth: true },
+    },
+    {
+      path: '/mygenres/edit',
+      component: MygenresEdit,
+      name: "MygenresEdit",
       meta: { requiredAuth: true },
     },
   ]

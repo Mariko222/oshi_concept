@@ -20,8 +20,8 @@
           <div class="flex-row justify-start gap-2.5 ml-8  flex justify-center items-center">
             <router-link :to="{ name: 'MypageNew' }" button class="btn bg-indigo-800 text-white btn-outline mr-5">ジャンルを追加</router-link>
             <div class="flex flex-col gap-2">
-              <div v-for="mygenreList in mygenreLists" :key=" mygenreList.id" class="bg-white border shadow-sm rounded p-2">
-                <p>{{ mygenreList.mygenre.genre.name }}</p>
+              <div v-for="mygenre in mygenres" :key=" mygenre.id" class="bg-white border shadow-sm rounded p-2">
+                <p>{{ mygenre.name }}</p>
               </div>
             </div>
           </div>
@@ -38,7 +38,7 @@ export default {
   name: "MypageHeader",
   data() {
     return {
-      myGenres: [],
+      mygenres: [],
       mygenreFavoriteCharacters: [],
       mygenreLists:[],
       user: ""
@@ -50,10 +50,16 @@ export default {
   created() {
     this.fetchFavoriteCharacters();
     this.fetchUser();
+    this.fetchMygenres();
+  },
+  mounted() {
+    this.fetchFavoriteCharacters();
+    this.fetchUser();
+    this.fetchMygenres();
   },
   methods: {
     fetchFavoriteCharacters() {
-      this.$axios.get("mygenres")
+      this.$axios.get("mypage")
         .then(res => {
           this.mygenreFavoriteCharacters = res.data
           this.mygenreLists = this.mygenreFavoriteCharacters.filter((item, index, self) => {
@@ -62,6 +68,13 @@ export default {
             ) === index
           })
           })
+        .catch(err => console.log(err.status));
+    },
+    fetchMygenres() {
+      this.$axios.get("mygenres")
+        .then(res => {
+          this.mygenres = res.data
+        })
         .catch(err => console.log(err.status));
     },
     fetchUser() {

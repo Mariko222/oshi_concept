@@ -1,28 +1,32 @@
 class Api::MygenresController < ApplicationController
+  before_action :set_character, only: %i[destroy]
   before_action :authenticate!, only: %i[me]
   skip_before_action :verify_authenticity_token
 
   def index
-    @mygenres = Mygenre.where(user_id: current_user.id)
     @genres = current_user.mygenre_lists
-    @mygenre_favorite_characters = MygenreFavoriteCharacter.where(mygenre_id: @mygenres.ids)
-    respond_to do |f|
-      f.json { render json: @mygenre_favorite_characters.to_json(include: [:character, { mygenre: {include: :genre}}]) }
-    end
+    render json: @genres
   end
 
   def create
-    @myfavorite_character = MyfavoriteCharacter.new(set_params)
-    if @myfavorite_character.save
-      render json: @myfavorite_character.attributes
-    else
-      render json: @myfavorite_character.errors, status: :bad_request
+    mygenre = Mygenre.find_by(user_id: current_user.id, genre_id: params[:genre_id])
+    params[:character_ids].each do |character_id|
+      mygenre_favorite_character = MygenreFavoriteCharacter.new(mygenre_id: mygenre.id, character_id: character_id)
+      render json: mygenre_favorite_character.errors, status: :bad_request unless mygenre_favorite_character.valid?
+      if mygenre_favorite_character.save
+        render json: mygenre_favorite_character
+      end
     end
+  end
+
+  def destroy
+    @mygenre_favorite_character.destroy!
+    render json: @mygenre_favorite_character
   end
 
   private
 
-  def set_params
-    params.permit(:current_user, :genre_id, character_ids:[]).merge(user_id: User.find(current_user.id).id)
+  def set_character
+    @mygenre_favorite_character = MygenreFavoriteCharacter.find(params[:id])
   end
 end
