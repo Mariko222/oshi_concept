@@ -5,7 +5,7 @@
     </div>
     <template v-if="authUser">
       <div class="navbar-center">
-        <p class="font-semibold text-2xl">{{ authUser.mypage_name }}</p>
+        <p class="font-semibold text-2xl"><router-link :to="{ name: 'MypageIndex' }">{{ authUser.mypage_name }}</router-link></p>
       </div>
     </template>
     <div class="navbar-end">
@@ -25,6 +25,9 @@
             <template v-else>
               <li>
                 <router-link :to="{ name: 'MypageEdit' }" class="nav-link">マイページ編集</router-link>
+              </li>
+              <li>
+                <router-link :to="{ name: 'MygenresEdit' }" class="nav-link">推しを変更</router-link>
               </li>
               <li><a>概念を追加</a></li>
               <li>

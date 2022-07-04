@@ -51,7 +51,7 @@ const actions = {
       .then(res => {
         commit('setUser', res.data)
       })
-  }
+  },
 }
 
 export default {
