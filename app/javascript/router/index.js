@@ -9,6 +9,7 @@ import MypageIndex from "../pages/mypage/index";
 import MypageNew from "../pages/mypage/new";
 import MypageEdit from "../pages/mypage/edit";
 import MygenresEdit from "../pages/mygenres/edit";
+import PostIndex from "../pages/post/index";
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,12 @@ const router = new VueRouter({
       path: '/mygenres/edit',
       component: MygenresEdit,
       name: "MygenresEdit",
+      meta: { requiredAuth: true },
+    },
+    {
+      path: '/post',
+      component: PostIndex,
+      name: "PostIndex",
       meta: { requiredAuth: true },
     },
   ]
