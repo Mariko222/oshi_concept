@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       end
     end
     resources :mypage
+    resources :posts
   end
 
   get '*path', to: 'static_pages#top', constraints: lambda { |req|
