@@ -10,6 +10,7 @@ import MypageNew from "../pages/mypage/new";
 import MypageEdit from "../pages/mypage/edit";
 import MygenresEdit from "../pages/mygenres/edit";
 import PostIndex from "../pages/post/index";
+import PostNew from "../pages/post/new";
 
 Vue.use(VueRouter)
 
@@ -60,6 +61,12 @@ const router = new VueRouter({
       path: '/post',
       component: PostIndex,
       name: "PostIndex",
+      meta: { requiredAuth: true },
+    },
+    {
+      path: '/post/new',
+      component: PostNew,
+      name: "PostNew",
       meta: { requiredAuth: true },
     },
   ]

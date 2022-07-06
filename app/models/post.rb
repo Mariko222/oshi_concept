@@ -20,6 +20,7 @@
 #
 class Post < ApplicationRecord
   belongs_to :mygenre
+  self.inheritance_column = :_type_disabled
 
   enum category: { fashion: 0, item: 1, place: 2}
   enum type: { twitter: 0, webpage: 1}
