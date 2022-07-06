@@ -12,7 +12,9 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
+    binding.pry
+    mygenre = Mygenre.find(params[:mygenre_id])
+    @post = mygenre.posts.build(post_params)
 
     if @post.save
       render json: @post

@@ -18,10 +18,7 @@
 
           <div class="h-16 sm:h-32 flex-auto flex justify-center items-center mt-3">
             <div class="lg:flex flex-col sm:flex-row items-center gap-2.5 ml-8">
-              <button
-                class="flex justify-center bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
-              >概念を追加
-              </button>
+              <router-link :to="{ name: 'PostNew' }" button class="btn bg-indigo-800 text-white btn-outline mr-5">概念を追加</router-link>
             </div>
             <div class="lg:flex flex-col sm:flex-row items-center gap-2.5 ml-8">
               <button
