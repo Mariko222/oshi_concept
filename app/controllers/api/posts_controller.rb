@@ -12,7 +12,6 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    binding.pry
     mygenre = Mygenre.find(params[:mygenre_id])
     @post = mygenre.posts.build(post_params)
 
