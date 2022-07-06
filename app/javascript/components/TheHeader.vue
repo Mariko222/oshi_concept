@@ -29,7 +29,9 @@
               <li>
                 <router-link :to="{ name: 'MygenresEdit' }" class="nav-link">推しを変更</router-link>
               </li>
-              <li><a>概念を追加</a></li>
+              <li>
+                <router-link :to="{ name: 'PostNew' }" class="nav-link">概念を追加</router-link>
+              </li>
               <li>
                 <router-link to="#" class="nav-link" @click.native="handleLogout">ログアウト</router-link>
               </li>
