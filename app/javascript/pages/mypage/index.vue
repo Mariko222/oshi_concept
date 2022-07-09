@@ -6,18 +6,9 @@
         <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
           <div class="grid grid-cols-2 rounded-lg gap-8">
             <div class="h-16 sm:h-32 flex justify-center items-center bg-gray-100 text-gray-400 rounded-lg p-4">
-              <router-link :to="{ name: 'PostIndex' }">ファッション</router-link>
+              <router-link :to="{ name: 'PostIndex' }">概念リストをみる</router-link>
             </div>
-
-            <div class="h-16 sm:h-32 flex justify-center items-center bg-gray-100 text-gray-400 rounded-lg p-4">
-              <router-link :to="{ name: 'PostIndex' }">雑貨</router-link>
-            </div>
-
-            <div class="h-16 sm:h-32 flex justify-center items-center bg-gray-100 text-gray-400 rounded-lg p-4">
-              <router-link :to="{ name: 'PostIndex' }">場所（お店や建物</router-link>
-            </div>
-
-            <div class="h-16 sm:h-32 flex-auto flex justify-center items-center mt-3">
+            <div class="flex-auto flex justify-center items-center">
               <div class="lg:flex flex-col sm:flex-row items-center gap-2.5 ml-8">
                 <router-link :to="{ name: 'PostNew' }" button class="btn bg-indigo-800 text-white btn-outline mr-5">概念を追加</router-link>
               </div>
