@@ -1,0 +1,59 @@
+<template>
+  <div>
+    <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold mt-5 mb-5">雑貨</h2>
+    <div class="w-full">
+      <div class="flex flex-wrap justify-between gap-4 mb-6">
+        <div class="columns-2 md:columns-3 lg:columns-4">
+          <div v-for="itemTweetUrl in itemTweetUrls">
+            <Tweet :id="itemTweetUrl" class="mb-4"></Tweet>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import axios from "../../../plugins/axios";
+import { Tweet } from 'vue-tweet-embed'
+
+export default {
+  components: {
+    Tweet
+  },
+  data() {
+    return {
+      itemTweets: [],
+      itemWebpages: [],
+      itemTweetUrls: [],
+      itemTweetUrl: ''
+    }
+  },
+  created() {
+    this.fetchItemPosts()
+  },
+  methods: {
+    fetchItemPosts() {
+      this.$axios.get("posts")
+        .then(res => {
+          this.posts = res.data
+          this.itemPosts = this.posts.filter(p =>{
+            return p.category === "item"
+          })
+          this.itemWebpages = this.itemPosts.filter(p =>{
+            return p.type === "webpage"
+          })
+          this.itemTweets = this.itemPosts.filter(p =>{
+            return p.type === "twitter"
+          })
+          this.itemTweetUrls = this.itemTweets.map(t =>{
+            this.u = t.url.split('/')
+            this.i = this.u[this.u.length - 1]
+            return this.i.substr(0, this.i.indexOf('?'))
+          })
+        })
+        .catch(err => console.log(err.status));
+    },
+  },
+}
+</script>

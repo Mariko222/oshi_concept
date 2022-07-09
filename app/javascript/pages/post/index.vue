@@ -3,15 +3,17 @@
     <MypageHeader v-if="authUser" class="mb-auto" />
     <div class="container mx-auto">
       <div class="bg-white py-6 sm:py-8 lg:py-12">
-        <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold mb-5">概念</h2>
-        <div class="w-full">
-          <div class="flex flex-wrap justify-between gap-4 mb-6">
-            <div class="columns-2 md:columns-3 lg:columns-4">
-              <div v-for="tweetUrl in tweetUrls">
-                <Tweet :id="tweetUrl" class="mb-4"></Tweet>
-              </div>
-            </div>
-          </div>
+        <button class="btn btn-primary" @click="fashion">ファッション</button>
+        <button class="btn btn-secondary" @click="item">雑貨</button>
+        <button class="btn btn-accent" @click="place">場所（お店や建物</button>
+        <div v-if="isFashion">
+          <FashionPosts></FashionPosts>
+        </div>
+        <div v-if="isItem">
+          <ItemPosts></ItemPosts>
+        </div>
+        <div v-if="isPlace">
+          <PlacePosts></PlacePosts>
         </div>
       </div>
       </div>
@@ -24,44 +26,44 @@ import MypageHeader from "../../components/MypageHeader"
 import { mapGetters } from "vuex"
 import axios from "../../plugins/axios";
 import { Tweet } from 'vue-tweet-embed'
+import FashionPosts from "./components/FashionPosts"
+import ItemPosts from "./components/ItemPosts"
+import PlacePosts from "./components/PlacePosts"
 
 export default {
   components: {
     MypageHeader,
-    Tweet
+    Tweet,
+    FashionPosts,
+    ItemPosts,
+    PlacePosts
   },
   data() {
     return {
-      tweets: [],
-      webpages: [],
-      tweetUrls: [],
-      tweetUrl: ''
+      isFashion: false,
+      isItem: false,
+      isPlace: false
     }
   },
   computed: {
     ...mapGetters("users", ["authUser"])
   },
-  created() {
-    this.fetchPosts()
-  },
   methods: {
-    fetchPosts() {
-      this.$axios.get("posts")
-        .then(res => {
-          this.posts = res.data
-          this.webpages = this.posts.filter(p =>{
-            return p.type === "webpage"
-          })
-          this.tweets = this.posts.filter(p =>{
-            return p.type === "twitter"
-          })
-          this.tweetUrls = this.tweets.map(t =>{
-            this.u = t.url.split('/')
-            this.i = this.u[this.u.length - 1]
-            return this.i.substr(0, this.i.indexOf('?'))
-          })
-        })
-        .catch(err => console.log(err.status));}
+    fashion() {
+      this.isFashion = true
+      this.isItem = false
+      this.isPlace = false
+    },
+    item() {
+      this.isFashion = false
+      this.isItem = true
+      this.isPlace = false
+    },
+    place() {
+      this.isFashion = false
+      this.isItem = false
+      this.isPlace = true
+    }
   },
 }
 </script>
