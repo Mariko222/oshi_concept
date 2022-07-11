@@ -39,9 +39,9 @@ Twitterで検索したときにいいなと思うツイートがあっても、�
 ## スケジュール
 企画〜技術調査：5/25〆切
 README〜ER図作成：6/2 〆切
-メイン機能実装：6/2 - 7/15
-β版をRUNTEQ内リリース（MVP）：7/15〆切
-本番リリース：7/31
+メイン機能実装：6/2 - 7/31
+β版をRUNTEQ内リリース（MVP）：7/31〆切
+本番リリース：8/10
 
 ## 画面遷移図
 https://www.figma.com/file/KHw0qZ9Wad6BvZIRUyAjBc/oshi-concept?node-id=0%3A1

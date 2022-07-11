@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_02_073529) do
+ActiveRecord::Schema.define(version: 2022_07_11_050046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,18 @@ ActiveRecord::Schema.define(version: 2022_07_02_073529) do
     t.index ["user_id"], name: "index_mygenres_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.integer "category", default: 0, null: false
+    t.integer "type", default: 0, null: false
+    t.string "url"
+    t.bigint "mygenre_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "title"
+    t.string "image"
+    t.index ["mygenre_id"], name: "index_posts_on_mygenre_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -97,4 +109,5 @@ ActiveRecord::Schema.define(version: 2022_07_02_073529) do
   add_foreign_key "mygenre_favorite_characters", "mygenres"
   add_foreign_key "mygenres", "genres"
   add_foreign_key "mygenres", "users"
+  add_foreign_key "posts", "mygenres"
 end
