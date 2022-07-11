@@ -8,10 +8,11 @@
             <Tweet :id="fashionTweetUrl" class="mb-4"></Tweet>
           </div>
         </div>
-
-        <div v-for="fashionWebpage in fashionWebpages">
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 xl:gap-8">
-            <div class="flex flex-col bg-white border rounded-lg overflow-hidden">
+      </div>
+      <div class="flex flex-wrap justify-between gap-4 mb-6">
+        <div class="grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 xl:gap-8">
+          <div v-for="fashionWebpage in fashionWebpages">
+            <div class="bg-white border rounded-lg overflow-hidden">
               <a :href="fashionWebpage.url" class="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">
                 <img :src="fashionWebpage.image" loading="lazy" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
               </a>
@@ -19,8 +20,6 @@
                 <h2 class="text-gray-800 text-lg font-semibold mb-2">
                   <a :href="fashionWebpage.url" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">{{fashionWebpage.title}}</a>
                 </h2>
-                <p class="text-gray-500 mb-8">{{fashionWebpage.text}}</p>
-                </div>
               </div>
             </div>
           </div>
@@ -40,7 +39,7 @@ export default {
   },
   data() {
     return {
-      fasionWebpages: [],
+      fashionWebpages: [],
       fashionTweetUrls: [],
       fashionTweetUrl: ''
     }

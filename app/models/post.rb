@@ -5,7 +5,6 @@
 #  id         :bigint           not null, primary key
 #  category   :integer          default("fashion"), not null
 #  image      :string
-#  text       :text
 #  title      :string
 #  type       :integer          default("twitter"), not null
 #  url        :string
@@ -28,5 +27,5 @@ class Post < ApplicationRecord
   enum category: { fashion: 0, item: 1, place: 2}
   enum type: { twitter: 0, webpage: 1}
 
-  validates :url, length: { maximum: 200}
+  validates :url, length: { maximum: 300}
 end

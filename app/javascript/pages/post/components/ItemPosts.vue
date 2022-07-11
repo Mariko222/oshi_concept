@@ -9,6 +9,23 @@
           </div>
         </div>
       </div>
+
+      <div class="flex flex-wrap justify-between gap-4 mb-6">
+        <div class="grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 xl:gap-8">
+          <div v-for="itemWebpage in itemWebpages">
+            <div class="bg-white border rounded-lg overflow-hidden">
+              <a :href="itemWebpage.url" class="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">
+                <img :src="itemWebpage.image" loading="lazy" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
+              </a>
+              <div class="flex flex-col flex-1 p-4 sm:p-6">
+                <h2 class="text-gray-800 text-lg font-semibold mb-2">
+                  <a :href="itemWebpage.url" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">{{itemWebpage.title}}</a>
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -23,7 +40,6 @@ export default {
   },
   data() {
     return {
-      itemTweets: [],
       itemWebpages: [],
       itemTweetUrls: [],
       itemTweetUrl: ''
