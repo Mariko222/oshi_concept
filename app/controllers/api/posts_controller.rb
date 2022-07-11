@@ -28,7 +28,6 @@ class Api::PostsController < ApplicationController
   def webpage_params
     agent = Mechanize.new
     page = agent.get(params[:post][:url])
-    binding.pry
     ogp = page.at("meta[property='og:image']").try(:[], :content)
     params.require(:post).permit(:category, :type, :url, :mygenre_id).merge(title: page.title, image: ogp)
   end

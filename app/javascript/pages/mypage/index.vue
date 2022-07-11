@@ -4,9 +4,9 @@
     <div class="container mx-auto">
       <div class="bg-white py-6 sm:py-8 lg:py-12">
         <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
-          <div class="grid grid-cols-2 rounded-lg gap-8">
-            <div class="h-16 sm:h-32 flex justify-center items-center bg-gray-100 text-gray-400 rounded-lg p-4">
-              <router-link :to="{ name: 'PostIndex' }">概念リストをみる</router-link>
+          <div class="grid grid-cols-3 rounded-lg">
+            <div class="h-25 flex justify-center items-center bg-gray-700 text-white rounded-lg">
+              <router-link :to="{ name: 'PostIndex' }">概念リスト</router-link>
             </div>
             <div class="flex-auto flex justify-center items-center">
               <div class="lg:flex flex-col sm:flex-row items-center gap-2.5 ml-8">
