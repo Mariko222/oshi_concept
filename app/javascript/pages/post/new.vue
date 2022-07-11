@@ -11,7 +11,7 @@
                 <label for="genre_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
                 <select id="genre_id" name="genre" v-model="post.mygenre_id" class="input-form-basic-block" >
                   <option disabled value="">ジャンルを選択</option>
-                  <option v-for="genre in genres" :value="genre.id">{{ genre.name }}</option>
+                  <option v-for="mygenre in mygenres" :value="mygenre.id">{{ mygenre.name }}</option>
                 </select>
               </div>
               <div>
@@ -81,35 +81,21 @@ export default {
         url: '',
         mygenre_id: ''
       },
-      genres: [],
+      mygenres: [],
     }
   },
   created() {
-    this.fetchFavoriteCharacters();
-    this.fetchGenres();
+    this.fetchMygenres();
   },
   computed: {
     ...mapGetters("users", ["authUser"])
   },
   methods: {
-    fetchGenres() {
-      this.$axios.get("genres")
+    fetchMygenres() {
+      this.$axios.get("mygenres")
         .then(res => {
-          this.genres = res.data
+          this.mygenres = res.data
         })
-        .catch(err => console.log(err.status));
-    },
-    fetchFavoriteCharacters() {
-      this.$axios.get("mypage")
-        .then(res => {
-          this.mygenreFavoriteCharacters = res.data
-          this.mygenreLists = this.mygenreFavoriteCharacters.filter((item, index, self) => {
-            return self.findIndex(i =>
-              i['mygenre_id'] === item['mygenre_id']
-            ) === index
-          })
-          this.mygenre = this.mygenreLists[0].mygenre_id
-          })
         .catch(err => console.log(err.status));
     },
     async handleCreatePost() {
