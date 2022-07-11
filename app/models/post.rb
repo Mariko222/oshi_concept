@@ -4,6 +4,9 @@
 #
 #  id         :bigint           not null, primary key
 #  category   :integer          default("fashion"), not null
+#  image      :string
+#  text       :text
+#  title      :string
 #  type       :integer          default("twitter"), not null
 #  url        :string
 #  created_at :datetime         not null
