@@ -7,7 +7,7 @@
 #  image      :string
 #  title      :string
 #  type       :integer          default("twitter"), not null
-#  url        :string
+#  url        :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  mygenre_id :bigint           not null
@@ -27,5 +27,8 @@ class Post < ApplicationRecord
   enum category: { fashion: 0, item: 1, place: 2}
   enum type: { twitter: 0, webpage: 1}
 
-  validates :url, length: { maximum: 300}
+  validates :mygenre_id, presence: true
+  validates :type, presence: true
+  validates :category, presence: true
+  validates :url, presence: true, length: { maximum: 300}
 end
