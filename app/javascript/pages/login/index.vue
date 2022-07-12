@@ -16,7 +16,7 @@
               </div>
             </ValidationProvider>
 
-            <ValidationProvider name="パスワード" rules="required|min:3">
+            <ValidationProvider name="パスワード" rules="required|min:5">
               <div slot-scope="ProviderProps">
                   <label for="password" class="inline-block text-gray-800 text-sm sm:text-base mb-2">パスワード</label>
                   <input id="password" type="password" v-model="user.password" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
