@@ -30,5 +30,5 @@ class Post < ApplicationRecord
   validates :mygenre_id, presence: true
   validates :type, presence: true
   validates :category, presence: true
-  validates :url, presence: true, length: { maximum: 300}
+  validates :url, presence: true, length: { maximum: 300}, format: /\A#{URI::regexp(%w(http https))}\z/
 end
