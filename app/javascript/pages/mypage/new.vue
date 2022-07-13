@@ -2,40 +2,49 @@
   <div class="bg-white py-6 sm:py-8 lg:py-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
       <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">ジャンルを追加</h2>
+      <ValidationObserver v-slot="ObserverProps">
+        <form class="max-w-lg border rounded-lg mx-auto">
+          <div class="flex flex-col gap-4 p-4 md:p-8">
+            <ValidationProvider name="ジャンル" rules="required" :skip-if-empty="false">
+              <div slot-scope="ProviderProps">
+                <label for="genre_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
+                <select id="genre_id" name="genre" v-model="selectedGenre" class="input-form-basic-block" @change="fetchCharacters(selectedGenre)" >
+                  <option disabled value="">ジャンルを選択</option>
+                  <option v-for="genre in genres" :value="genre.id">{{ genre.name }}</option>
+                </select>
+                <p class="text-red-500">{{
+                  ProviderProps.errors[0]
+                }}</p>
+              </div>
+            </ValidationProvider>
+            <div>
+              <label for="character.name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
+              <span>{{ selectedCharacterNames }}</span>
+              <button
+              type="button"
+              @click="handleOpenChoiceCharactersModal"
+              :disabled="ObserverProps.invalid || !ObserverProps.validated"
+              class="block bg-indigo-800 hover:bg-indigo-700 disabled:bg-indigo-400 active:bg-indigo-600 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base  text-center rounded-lg outline-none transition duration-100 px-1 py-1"
+              >
+                推しを選択
+              </button>
+            </div>
 
-      <form class="max-w-lg border rounded-lg mx-auto">
-        <div class="flex flex-col gap-4 p-4 md:p-8">
-          <div>
-            <label for="genre_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
-            <select id="genre_id" name="genre" v-model="selectedGenre" class="input-form-basic-block" @change="fetchCharacters(selectedGenre)" >
-              <option disabled value="">ジャンルを選択</option>
-              <option v-for="genre in genres" :value="genre.id">{{ genre.name }}</option>
-            </select>
-          </div>
-          <div>
-            <label for="character.name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
-            <span>{{ selectedCharacterNames }}</span>
             <button
-            type="button"
-            @click="handleOpenChoiceCharactersModal"
-            class="block bg-indigo-800 hover:bg-indigo-700 active:bg-indigo-600 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base  text-center rounded-lg outline-none transition duration-100 px-1 py-1"
+              type="button"
+              class="block bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+              :disabled="ObserverProps.invalid || !ObserverProps.validated || !isSelected"
+              @click="register"
             >
-              推しを選択
+              登録
             </button>
+            <span class="text-red-500 text-center">{{ errorMessage }}</span>
+            <div class="flex justify-center items-center relative">
+              <span class="h-px bg-gray-300 absolute inset-x-0"></span>
+            </div>
           </div>
-
-          <button
-            type="button"
-            class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
-            @click="register"
-          >
-            登録
-          </button>
-          <div class="flex justify-center items-center relative">
-            <span class="h-px bg-gray-300 absolute inset-x-0"></span>
-          </div>
-        </div>
-      </form>
+        </form>
+      </ValidationObserver>
     </div>
     <ChoiceCharactersModal
       v-if="isVisibleChoiceCharactersModal"
@@ -59,6 +68,7 @@ export default {
   data() {
     return {
       isVisibleChoiceCharactersModal: false,
+      isSelected: false,
       genres: [],
       genre: {
       },
@@ -67,7 +77,8 @@ export default {
       character: {
       },
       selectedCharacters: [],
-      selectedCharacterNames:[]
+      selectedCharacterNames:[],
+      errorMessage: "",
     }
   },
   created() {
@@ -90,6 +101,7 @@ export default {
         })
       })
       this.selectedCharacters = selectedCharacters
+      this.isSelected = true
       this.handleCloseChoiceCharactersModal();
     },
     fetchGenres() {
@@ -119,6 +131,7 @@ export default {
         this.$router.push({ name: 'MypageIndex' });
       } catch (err) {
         console.log(err);
+        this.errorMessage = error.response.data.errors.detail;
       }
     },
   }

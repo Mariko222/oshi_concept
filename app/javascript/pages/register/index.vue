@@ -25,7 +25,7 @@
               </div>
             </ValidationProvider>
 
-            <ValidationProvider name="パスワード" rules="required|min:5">
+            <ValidationProvider name="パスワード" rules="required|min:5" vid="user.password">
               <div slot-scope="ProviderProps">
                 <label for="password" class="inline-block text-gray-800 text-sm sm:text-base mb-2">パスワード</label>
                 <input id="password" type="password" v-model="user.password" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
@@ -35,7 +35,7 @@
               </div>
             </ValidationProvider>
 
-            <ValidationProvider name="パスワード（確認用）" rules="required|min:5|confirmed">
+            <ValidationProvider name="パスワード" rules="required|min:5|confirmed:user.password">
               <div slot-scope="ProviderProps">
                 <label for="password_confirmation" class="inline-block text-gray-800 text-sm sm:text-base mb-2">パスワード（確認用）</label>
                 <input id="password_confirmation" type="password" v-model="user.password_confirmation" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
@@ -47,7 +47,7 @@
 
             <button
               type="button"
-              class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+              class="block bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
               :disabled="ObserverProps.invalid || !ObserverProps.validated"
               @click="register"
             >

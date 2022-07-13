@@ -42,8 +42,9 @@
         >
           <button
             type="button"
-            class="bg-red-500 hover:bg-red-600 active:bg-red-400 focus-visible:ring ring-red-300 text-black-600 text-center rounded-lg outline-none transition duration-100 px-4 py-2 mx-3"
+            class="bg-red-500 hover:bg-red-600 disabled:bg-red-400 active:bg-red-400 focus-visible:ring ring-red-300 text-black-600 text-center rounded-lg outline-none transition duration-100 px-4 py-2 mx-3"
             @click="handleChoiceCharacters"
+            :disabled="!selectedCharacters"
           >
             追加
           </button>

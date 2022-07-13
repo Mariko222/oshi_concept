@@ -72,11 +72,13 @@
 
                 <button
                   type="button"
-                  class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+                  class="block bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+                  :disabled="ObserverProps.invalid || !ObserverProps.validated"
                   @click="handleCreatePost"
                 >
                   登録
                 </button>
+                <span class="text-red-500 text-center">{{ errorMessage }}</span>
                 <div class="flex justify-center items-center relative">
                   <span class="h-px bg-gray-300 absolute inset-x-0"></span>
                 </div>
@@ -107,6 +109,7 @@ export default {
         mygenre_id: ''
       },
       mygenres: [],
+      errorMessage: ""
     }
   },
   created() {
@@ -129,6 +132,7 @@ export default {
         this.$router.push({ name: 'MypageIndex' });
       } catch (err) {
         console.log(err);
+        this.errorMessage = error.response.data.errors.detail;
       }
     },
   }
