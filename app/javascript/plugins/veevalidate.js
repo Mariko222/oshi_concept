@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { ValidationProvider, ValidationObserver, extend } from "vee-validate";
-import { required, email, min, max, confirmed, image, url } from "vee-validate/dist/rules";
+import { required, email, min, max, confirmed, image} from "vee-validate/dist/rules";
+import isURL from "validator/lib/isURL"
 
 Vue.component('ValidationObserver', ValidationObserver)
 Vue.component('ValidationProvider', ValidationProvider)
