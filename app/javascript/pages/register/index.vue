@@ -35,7 +35,7 @@
               </div>
             </ValidationProvider>
 
-            <ValidationProvider name="パスワード" rules="required|min:5|confirmed:user.password">
+            <ValidationProvider name="パスワード（確認用）" rules="required|min:5|confirmed:user.password">
               <div slot-scope="ProviderProps">
                 <label for="password_confirmation" class="inline-block text-gray-800 text-sm sm:text-base mb-2">パスワード（確認用）</label>
                 <input id="password_confirmation" type="password" v-model="user.password_confirmation" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
@@ -109,11 +109,19 @@ export default {
       axios
         .post('users', { user: this.user })
         .then(res => {
+          this.$store.dispatch("setFlash", {
+            type: "success",
+            message: "登録しました。",
+          });
           this.$router.push({ name: 'LoginIndex' });
         })
-        .catch((err) => {
-          console.log(err)
+        .catch((error) => {
+          console.log(error.response);
           this.errorMessage = error.response.data.errors.detail;
+          this.$store.dispatch("setFlash", {
+            type: "error",
+            message: "登録できませんでした。",
+          })
         })
     },
   }
