@@ -128,10 +128,18 @@ export default {
           character_ids: this.selectedCharacters,
         }
         this.$axios.post("mypages", params)
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "ジャンルと推しを登録しました。",
+        });
         this.$router.push({ name: 'MypageIndex' });
       } catch (err) {
         console.log(err);
         this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "ジャンルと推しを登録できませんでした。",
+        })
       }
     },
   }

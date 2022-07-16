@@ -100,10 +100,18 @@ export default {
 
       try {
         this.updateUser(formData)
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "マイページ編集しました。",
+        });
         this.$router.push({ name: "MypageIndex" })
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "マイページ編集できませんでした。",
+        })
       }
     },
   }

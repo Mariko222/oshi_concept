@@ -89,10 +89,18 @@ export default {
     async login() {
       try {
         await this.loginUser(this.user);
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "ログインしました。",
+        });
         this.$router.push({ name: "MypageIndex" });
       } catch (error) {
         console.log(error)
         this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "ログインできませんでした。",
+        })
       }
     },
   }

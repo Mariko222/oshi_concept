@@ -126,15 +126,24 @@ export default {
         })
         .catch(err => console.log(err.status));
     },
-    async handleCreatePost() {
-      try {
-        this.$axios.post("posts", this.post)
+    handleCreatePost() {
+      this.$axios.post("posts", this.post)
+      .then(res => {
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "概念投稿しました。",
+        })
         this.$router.push({ name: 'MypageIndex' });
-      } catch (err) {
-        console.log(err);
+      })
+      .catch((error) => {
+        console.log(error);
         this.errorMessage = error.response.data.errors.detail;
-      }
-    },
-  }
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "概念投稿できませんでした。",
+        })
+      })
+    }
+  },
 }
 </script>
