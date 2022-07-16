@@ -15,6 +15,7 @@
           <div v-for="placeWebpage in placeWebpages">
             <div class="bg-white border rounded-lg overflow-hidden">
               <a :href="placeWebpage.url" class="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">
+                <img src="../../../../../public/img/webpage.jpg" v-if="!webpage.image" loading="lazy" alt="NO_IMAGE" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
                 <img :src="placeWebpage.image" loading="lazy" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
               </a>
               <div class="flex flex-col flex-1 p-4 sm:p-6">
