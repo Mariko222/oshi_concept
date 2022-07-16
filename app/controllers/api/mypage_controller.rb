@@ -15,6 +15,7 @@ class Api::MypageController < ApplicationController
     if @myfavorite_character.save
       render json: @myfavorite_character.attributes
     else
+      raise ActiveRecord::RecordNotFound, @myfavorite_character.errors.full_messages
       render json: @myfavorite_character.errors, status: :bad_request
     end
   end
@@ -24,6 +25,7 @@ class Api::MypageController < ApplicationController
     if user.update(user_params)
       render json: user, methods: [:icon_url]
     else
+      raise ActiveRecord::RecordNotFound user.errors.full_messages
       render json: user.errors, status: :bad_request
     end
   end

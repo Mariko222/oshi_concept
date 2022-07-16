@@ -91,7 +91,8 @@ export default {
       selectedCharacters: [],
       selectedCharacterNames:[],
       mygenreFavoriteCharacters: [],
-      mygenreLists: []
+      mygenreLists: [],
+      errorMessage: ""
     }
   },
   created() {
@@ -171,9 +172,18 @@ export default {
           character_ids: this.selectedCharacters,
         }
         this.$axios.post("mygenres", params)
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "推しを変更しました。",
+        });
         this.$router.push({ name: 'MypageIndex' });
       } catch (err) {
-        console.log(err);
+        console.log(error);
+        this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "推しを変更できませんでした。",
+        })
       }
     },
   }
