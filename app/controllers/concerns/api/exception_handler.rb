@@ -28,7 +28,7 @@ module Api::ExceptionHandler
   end
 
   def render_404(error)
-    if error.message.slice(/Email has already been taken/) == 'Email has already been taken'
+    if error.message == "[\"Emailはすでに存在します\"]"
       render json: {
         errors: {
           title: 'Record Not Found',
@@ -46,18 +46,27 @@ module Api::ExceptionHandler
       render json: {
         errors: {
           title: 'Record Not Found',
-          detail: 'メールアドレスもしくはパスワードが不正です。'
+          detail: 'メールアドレスもしくはパスワードが正しくありません。'
         }
       }, status: :not_found
     end
   end
 
   def render_500
-    render json: {
-      errors: {
-        title: 'Internal Server Error',
-        detail: '予期せぬエラーが発生しました。'
-      }
-    }, status: :internal_server_error
+    if ActiveRecord::RecordInvalid
+      render json: {
+        errors: {
+          title: 'Internal Server Error',
+          detail: 'そのジャンルは既に登録されています。'
+        }
+      }, status: :internal_server_error
+    else
+      render json: {
+        errors: {
+          title: 'Internal Server Error',
+          detail: '予期せぬエラーが発生しました。'
+        }
+      }, status: :internal_server_error
+    end
   end
 end
