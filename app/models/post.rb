@@ -31,4 +31,14 @@ class Post < ApplicationRecord
   validates :type, presence: true
   validates :category, presence: true
   validates :url, presence: true, length: { maximum: 300}, format: /\A#{URI::regexp(%w(http https))}\z/
+  validates :url, format: { with: /(https|http):\/\/(twitter.com)\/([A-Za-z0-9_]*)\/(status|statues)\/(\d+)/ }, if: :type_twitter?
+  validates :url, format: { without: /(https|http):\/\/(twitter.com)\/([A-Za-z0-9_]*)\/(status|statues)\/(\d+)/ }, if: :type_webpage?
+
+  def type_twitter?
+    type == "twitter"
+  end
+
+  def type_webpage?
+    type == "webpage"
+  end
 end

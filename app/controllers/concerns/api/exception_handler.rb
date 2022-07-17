@@ -3,6 +3,7 @@ module Api::ExceptionHandler
 
   included do
     rescue_from StandardError, with: :render_500
+    rescue_from Mechanize::ResponseCodeError, with: :render_403
     rescue_from ActiveRecord::RecordNotFound, with: :render_404
   end
 
@@ -17,12 +18,28 @@ module Api::ExceptionHandler
     }, status: :bad_request
   end
 
+  def render_403
+    render json: {
+      errors: {
+        title: 'Net Forbidden Error',
+        detail: 'URL情報を取得できません。'
+      }
+    }, status: :not_found
+  end
+
   def render_404(error)
     if error.message.slice(/Email has already been taken/) == 'Email has already been taken'
       render json: {
         errors: {
           title: 'Record Not Found',
           detail: 'このメールアドレスは既に登録されています。'
+        }
+      }, status: :not_found
+    elsif error.message == "[\"Urlは不正な値です\"]"
+      render json: {
+        errors: {
+          title: 'Url Is Invalid',
+          detail: 'URL形式が正しくありません。'
         }
       }, status: :not_found
     else
