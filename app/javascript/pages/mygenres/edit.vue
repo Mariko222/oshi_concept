@@ -2,51 +2,59 @@
   <div class="bg-white py-6 sm:py-8 lg:py-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
       <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">推しを変更</h2>
-
-      <form class="max-w-lg border rounded-lg mx-auto">
-        <div class="flex flex-col gap-4 p-4 md:p-8">
-          <div>
-            <label for="genre_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
-            <select id="genre_id" name="genre" v-model="selectedGenre" class="input-form-basic-block" @change="fetchCharacters(selectedGenre)" >
-              <option disabled value="">ジャンルを選択</option>
-              <option v-for="mygenre in mygenres" :value="mygenre.id">{{ mygenre.name }}</option>
-            </select>
-          </div>
-          <div>
-            <div v-if="isSelected">
-              <p class="font-semibold mb-1">推し：</p>
-              <ul v-for="mygenreFavoriteCharacter in mygenreFavoriteCharacters" :value="mygenreFavoriteCharacter.id" class="mx-auto flex justify-between bg-white border shadow-sm rounded p-2">
-                <li>{{ mygenreFavoriteCharacter.character.name }}
-                </li>
-                <button type="button" @click="handleDeleteCharacter(mygenreFavoriteCharacter)">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-right" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </button>
-              </ul>
+      <ValidationObserver v-slot="ObserverProps">
+        <form class="max-w-lg border rounded-lg mx-auto">
+          <div class="flex flex-col gap-4 p-4 md:p-8">
+            <ValidationProvider name="ジャンル" rules="required" :skip-if-empty="false">
+              <div slot-scope="ProviderProps">
+              <label for="genre_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
+              <select id="genre_id" name="genre" v-model="selectedGenre" class="input-form-basic-block" @change="fetchCharacters(selectedGenre)" >
+                <option disabled value="">ジャンルを選択</option>
+                <option v-for="mygenre in mygenres" :value="mygenre.id">{{ mygenre.name }}</option>
+              </select>
+              <p class="text-red-500">{{
+                  ProviderProps.errors[0]
+                }}</p>
+              </div>
+            </ValidationProvider>
+            <div>
+              <div v-if="isSelected">
+                <p class="font-semibold mb-1">推し：</p>
+                <ul v-for="mygenreFavoriteCharacter in mygenreFavoriteCharacters" :value="mygenreFavoriteCharacter.id" class="mx-auto flex justify-between bg-white border shadow-sm rounded p-2">
+                  <li>{{ mygenreFavoriteCharacter.character.name }}
+                  </li>
+                  <button type="button" @click="handleDeleteCharacter(mygenreFavoriteCharacter)">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-right" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </button>
+                </ul>
+              </div>
+              <label for="character.name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
+              <span v-if="!selectedCharacterNames.length == 0">{{ selectedCharacterNames }}</span>
+              <button
+              type="button"
+              @click="handleOpenChoiceCharactersModal"
+              :disabled="ObserverProps.invalid || !ObserverProps.validated"
+              class="block bg-indigo-800 hover:bg-indigo-700 disabled:bg-indigo-400 active:bg-indigo-600 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base  text-center rounded-lg outline-none transition duration-100 px-1 py-1"
+              >
+                推しを追加
+              </button>
             </div>
-            <label for="character.name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
-            <span>{{ selectedCharacterNames }}</span>
             <button
-            type="button"
-            @click="handleOpenChoiceCharactersModal"
-            class="block bg-indigo-800 hover:bg-indigo-700 active:bg-indigo-600 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base  text-center rounded-lg outline-none transition duration-100 px-1 py-1"
+              type="button"
+              class="block bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+              :disabled="ObserverProps.invalid || !ObserverProps.validated"
+              @click="register"
             >
-              推しを追加
+              登録
             </button>
+            <div class="flex justify-center items-center relative">
+              <span class="h-px bg-gray-300 absolute inset-x-0"></span>
+            </div>
           </div>
-          <button
-            type="button"
-            class="block bg-gray-800 hover:bg-gray-700 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
-            @click="register"
-          >
-            登録
-          </button>
-          <div class="flex justify-center items-center relative">
-            <span class="h-px bg-gray-300 absolute inset-x-0"></span>
-          </div>
-        </div>
-      </form>
+        </form>
+      </ValidationObserver>
     </div>
     <ChoiceCharactersModal
       v-if="isVisibleChoiceCharactersModal"
@@ -83,7 +91,8 @@ export default {
       selectedCharacters: [],
       selectedCharacterNames:[],
       mygenreFavoriteCharacters: [],
-      mygenreLists: []
+      mygenreLists: [],
+      errorMessage: ""
     }
   },
   created() {
@@ -163,9 +172,18 @@ export default {
           character_ids: this.selectedCharacters,
         }
         this.$axios.post("mygenres", params)
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "推しを変更しました。",
+        });
         this.$router.push({ name: 'MypageIndex' });
       } catch (err) {
-        console.log(err);
+        console.log(error);
+        this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "推しを変更できませんでした。",
+        })
       }
     },
   }
