@@ -12,6 +12,7 @@ class Api::SessionsController < ApplicationController
 
       render json: { token: token }
     else
+      raise ActiveRecord::RecordNotFound unless user
       head :unauthorized
     end
   end

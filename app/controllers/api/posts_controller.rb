@@ -2,20 +2,19 @@ class Api::PostsController < ApplicationController
   before_action :authenticate!
 
   def index
-    @posts = Post.all
-    render json: @posts
+    posts = Post.all
+    render json: posts
   end
 
   def create
     mygenre = Mygenre.find(params[:mygenre_id])
-    @post = mygenre.posts.build(webpage_params) if params[:type] == 'webpage'
+    post = mygenre.posts.build(webpage_params) if params[:type] == 'webpage'
 
-    @post = mygenre.posts.build(post_params) if params[:type] == 'twitter'
-
-    if @post.save
-      render json: @post
+    post = mygenre.posts.build(post_params) if params[:type] == 'twitter'
+    if post.save
+      render json: post
     else
-      render json: @post.errors, status: :bad_request
+      raise ActiveRecord::RecordNotFound, post.errors.full_messages
     end
   end
 

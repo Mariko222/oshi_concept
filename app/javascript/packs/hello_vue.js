@@ -10,6 +10,9 @@ import App from '../app.vue'
 import router from '../router'
 import axios from '../plugins/axios'
 import store from '../store'
+import veeValidate from '../plugins/veevalidate'
+
+Vue.mixin(veeValidate);
 
 Vue.prototype.$axios = axios
 
