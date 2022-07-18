@@ -31,14 +31,21 @@
                   for="icon"
                   class="d-block"
                 >アイコン：</label>
-                <img
-                  :src="user.icon_url"
-                  class="rounded-full my-3"
-                  width="150px"
-                >
+                <div class="icon" v-if="url">
+                  <img :src="url"
+                    class="my-3"
+                  >
+                </div>
+                <div class="icon" v-else>
+                  <img
+                    :src="user.icon_url"
+                    class="my-3"
+                  >
+                </div>
                 <input
                   id="icon"
                   type="file"
+                  ref="preview"
                   class="form-control-file"
                   @change="handleChange"
                 >
@@ -76,6 +83,7 @@ export default {
         mypage_name: "",
         icon_url: ""
       },
+      url: "",
       uploadIcon: "",
       errorMessage: "",
     }
@@ -91,6 +99,8 @@ export default {
     async handleChange(event) {
       const { valid } = await this.$refs.provider.validate(event)
       if (valid) this.uploadIcon = event.target.files[0]
+      const file = this.$refs.preview.files[0];
+      this.url = URL.createObjectURL(file)
     },
     update() {
       const formData = new FormData()
@@ -117,3 +127,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.icon img {
+  width:  150px;
+  height: 150px;
+  border-radius: 50%;
+  background-position: center center;
+  object-fit:cover;
+}
+</style>
