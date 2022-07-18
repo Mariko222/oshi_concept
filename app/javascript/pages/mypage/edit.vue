@@ -91,9 +91,6 @@ export default {
   computed: {
     ...mapGetters("users", ["authUser"]),
   },
-  mounted() {
-    console.log(this.$refs.preview)
-  },
   created() {
     this.user = Object.assign({}, this.authUser)
   },
