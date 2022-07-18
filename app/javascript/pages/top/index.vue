@@ -9,7 +9,7 @@
             <div class="bg-gray-100 rounded-lg shadow-lg grid md:grid-cols-2 gap-8 lg:gap-12 mt-10 mb-10">
               <div>
                 <div class="h-80 md:h-auto overflow-hidden rounded-lg">
-                  <img src="https://images.unsplash.com/photo-1610465299996-30f240ac2b1c?auto=format&q=75&fit=crop&w=600&h=750" loading="lazy" alt="Photo by Martin Sanchez" />
+                  <img img src="../../../../public/img/mypage.jpg" loading="lazy" alt="mypage-top" class="ml-2 pr-2 my-10" />
                 </div>
               </div>
               <div class="md:pt-10 pr-8">
@@ -31,9 +31,9 @@
 
         <div class="mb-4 sm:mb-10">
           <div class="w-full flex flex-col sm:flex-row sm:justify-center gap-2.5">
-            <router-link :to="{ name: 'LoginIndex' }" button class="btn btn-outline mr-5">ログイン</router-link>
-            <router-link :to="{ name: 'RegisterIndex' }" button class="btn btn-outline mr-5">新規作成</router-link>
-            <button class="btn btn-outline">ゲストログイン</button>
+            <router-link :to="{ name: 'LoginIndex' }" button class="bg-white hover:bg-pink-700 active:bg-pink-600 btn btn-outline mr-5">ログイン</router-link>
+            <router-link :to="{ name: 'RegisterIndex' }" button class="bg-white hover:bg-purple-700 active:bg-purple-600 btn btn-outline mr-5">新規作成</router-link>
+            <button class="bg-white hover:bg-yellow-500 active:bg-yellow-400 btn btn-outline">ゲストログイン</button>
           </div>
         </div>
       </div>
