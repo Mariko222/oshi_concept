@@ -4,9 +4,16 @@
       <p>© 2022. Oshi-Concept - All right reserved</p>
     </div>
     <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-      <a href="#">利用規約</a>
-      <a href="#">プライバシーポリシー</a>
-      <a href="#">お問合わせ</a>
+      <a class="page-font" href="#">利用規約</a>
+      <a class="page-font" href="#">プライバシーポリシー</a>
+      <a class="page-font" href="#">お問合わせ</a>
     </div>
   </footer>
 </template>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+.page-font {
+  font-family: 'Yusei Magic', sans-serif;
+}
+</style>

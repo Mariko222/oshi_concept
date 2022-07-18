@@ -1,14 +1,11 @@
 <template>
   <div>
-    <MypageHeader v-if="authUser" class="mb-auto" />
+    <MypageHeader v-if="authUser" class="mb-auto -mt-64" />
     <div class="container mx-auto">
       <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
         <div class="grid grid-cols-3">
-          <div class="flex justify-center items-center bg-gray-700 text-white rounded-lg">
+          <div class="page-font lg:flex flex-col sm:flex-row gap-2.5 ml-8 flex justify-center items-center bg-lime-500 hover:bg-lime-400 active:bg-lime-600 text-white rounded-lg py-3">
             <router-link :to="{ name: 'PostIndex' }">概念リスト</router-link>
-          </div>
-          <div class="lg:flex flex-col sm:flex-row items-center gap-2.5 ml-8">
-            <router-link :to="{ name: 'PostNew' }" button class="btn bg-indigo-800 text-white btn-outline mr-5">概念を追加</router-link>
           </div>
         </div>
       </div>
@@ -33,3 +30,10 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+.page-font {
+  font-family: 'Yusei Magic', sans-serif;
+}
+</style>
