@@ -1,11 +1,11 @@
 <template>
   <div class="navbar bg-neutral h-20 mx-auto flex justify-between items-center text-neutral-content sticky top-0 z-20">
     <div class="navbar-start">
-      <p>推し概念集めてみた</p>
+      <p class="page-font">推し概念集めてみた</p>
     </div>
     <template v-if="authUser">
       <div class="navbar-center">
-        <p class="font-semibold text-2xl"><router-link :to="{ name: 'MypageIndex' }">{{ authUser.mypage_name }}</router-link></p>
+        <p class="page-font text-2xl"><router-link :to="{ name: 'MypageIndex' }">{{ authUser.mypage_name }}</router-link></p>
       </div>
     </template>
     <div class="navbar-end">
@@ -18,21 +18,21 @@
           </button>
           <ul tabindex="0" class="dropdown-content menu p-2 drop-shadow-md bg-base-200 box w-52 text-neutral z-30">
             <template v-if="!authUser">
-              <li><router-link :to="{ name: 'LoginIndex' }">ログイン</router-link></li>
-              <li><router-link :to="{ name: 'RegisterIndex' }">新規登録</router-link></li>
-              <li><a>ゲストログイン</a></li>
+              <li class="page-font"><router-link :to="{ name: 'LoginIndex' }">ログイン</router-link></li>
+              <li class="page-font"><router-link :to="{ name: 'RegisterIndex' }">新規登録</router-link></li>
+              <li class="page-font"><a>ゲストログイン</a></li>
             </template>
             <template v-else>
-              <li>
+              <li class="page-font">
                 <router-link :to="{ name: 'MypageEdit' }" class="nav-link">マイページ編集</router-link>
               </li>
-              <li>
+              <li class="page-font">
                 <router-link :to="{ name: 'MygenresEdit' }" class="nav-link">推しを変更</router-link>
               </li>
-              <li>
+              <li class="page-font">
                 <router-link :to="{ name: 'PostNew' }" class="nav-link">概念を追加</router-link>
               </li>
-              <li>
+              <li class="page-font">
                 <router-link to="#" class="nav-link" @click.native="handleLogout">ログアウト</router-link>
               </li>
             </template>
@@ -64,3 +64,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+.page-font {
+  font-family: 'Yusei Magic', sans-serif;
+}
+</style>

@@ -10,7 +10,7 @@
         <div
           class="modal-header flex flex-shrink-0 items-center p-2 justify-between border-b border-gray-200 rounded-t-md bg-gray-700"
         >
-          <p class="text-white">
+          <p class="page-font text-white">
             推しを選択
           </p>
           <button
@@ -32,7 +32,7 @@
                 name="mygenre[character_id]"
                 v-model="selectedCharacters"
               >
-              <label :for="'character' + i">{{character.name}}</label>
+              <label :for="'character' + i" class="page-font">{{character.name}}</label>
             </div>
           </section>
           <hr class="my-2" />
@@ -42,7 +42,7 @@
         >
           <button
             type="button"
-            class="bg-red-500 hover:bg-red-600 disabled:bg-red-400 active:bg-red-400 focus-visible:ring ring-red-300 text-black-600 text-center rounded-lg outline-none transition duration-100 px-4 py-2 mx-3"
+            class="page-font bg-red-500 hover:bg-red-600 disabled:bg-red-400 active:bg-red-400 focus-visible:ring ring-red-300 text-black-600 text-center rounded-lg outline-none transition duration-100 px-4 py-2 mx-3"
             @click="handleChoiceCharacters"
             :disabled="!selectedCharacters"
           >
@@ -50,7 +50,7 @@
           </button>
           <button
             type="button"
-            class="bg-indigo-800 hover:bg-indigo-700 active:bg-indigo-600 focus-visible:ring ring-indigo-300 text-white text-center rounded-lg outline-none transition duration-100 px-4 py-2 mx-3"
+            class="page-font bg-indigo-800 hover:bg-indigo-700 active:bg-indigo-600 focus-visible:ring ring-indigo-300 text-white text-center rounded-lg outline-none transition duration-100 px-4 py-2 mx-3"
             @click="handleCloseModal"
           >
             閉じる
@@ -96,5 +96,12 @@ export default {
 <style scoped>
   .modal {
   display: block;
+}
+</style>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+.page-font {
+  font-family: 'Yusei Magic', sans-serif;
 }
 </style>

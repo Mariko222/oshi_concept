@@ -4,13 +4,13 @@
       <div class="grid grid-cols-3">
         <div class="icon mr-5 flex jflex flex-col flex justify-center items-center">
             <img :src="authUser.icon_url" class="rounded-full icon-image "/>
-            <p class="font-semibold mt-5 mb-2 text-2xl">{{ user.name }}</p>
+            <p class="page-font mt-5 mb-2 text-2xl">{{ user.name }}</p>
         </div>
         <div class="bg-violet-200 rounded-lg gap-2 md:p-5 mb-3">
-          <p class="font-semibold mb-1">推し：</p>
+          <p class="page-font mb-1">推し：</p>
           <div class="flex flex-wrap justify-between">
             <ul v-for="mygenreFavoriteCharacter in mygenreFavoriteCharacters" class="rounded p-2">
-              <li>{{ mygenreFavoriteCharacter.character.name }}</li>
+              <li class="page-font">{{ mygenreFavoriteCharacter.character.name }}</li>
             </ul>
           </div>
         </div>
@@ -18,17 +18,17 @@
           <div class="flex jflex flex-col gap-2.5 flex justify-between items-center">
             <div class="flex flex-col gap-2">
               <div v-for="mygenre in mygenres" :key=" mygenre.id" class="bg-violet-300">
-                <p class="bg-violet-200 border rounded p-2">{{ mygenre.name }}</p>
+                <p class="page-font bg-violet-200 border rounded p-2">{{ mygenre.name }}</p>
               </div>
             </div>
           </div>
             <ul class="flex flex-row justify-center items-center">
               <li>
-                <router-link :to="{ name: 'MypageNew' }" button class="btn bg-rose-500 hover:bg-rose-400 active:bg-rose-600 rounded-lg outline-none transition duration-100 gap-2 mt-8 mr-3">ジャンルを追加</router-link>
+                <router-link :to="{ name: 'MypageNew' }" class="page-font btn bg-rose-500 hover:bg-rose-400 active:bg-rose-600 rounded-lg transition duration-100 mt-8 mr-3">ジャンルを追加</router-link>
               </li>
               <li>
                 <button
-                  class="flex justify-center bg-twitter hover:bg-sky-400 active:bg-sky-500 text-white font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 mt-8 px-2 py-3"
+                  class="page-font flex justify-center bg-twitter hover:bg-sky-400 active:bg-sky-500 text-white font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 mt-8 px-2 py-3"
                 >
                   <svg class="w-5 h-5 shrink-0" width="24" height="24" viewBox="328 355 335 276" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="
@@ -118,6 +118,10 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+.page-font {
+  font-family: 'Yusei Magic', sans-serif;
+}
 .icon img {
   width:  120px;
   height: 120px;
