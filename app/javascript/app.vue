@@ -1,6 +1,6 @@
 <template>
   <div>
-    <body class="flex flex-col min-h-screen">
+    <body class="flex flex-col min-h-screen bg-purple-100">
       <TheHeader class="mb-auto" />
       <TheFlashMessage v-if="isFlash" />
       <router-view />

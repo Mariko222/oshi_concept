@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
       <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">マイページ編集</h2>
       <ValidationObserver v-slot="ObserverProps">
-        <form class="max-w-lg border rounded-lg mx-auto">
+        <form class="bg-white max-w-lg border rounded-lg mx-auto">
           <div class="flex flex-col gap-4 p-4 md:p-8">
             <ValidationProvider name="ユーザーネーム" rules="required|max:50">
               <div slot-scope="ProviderProps">
@@ -57,7 +57,7 @@
 
             <button
               type="button"
-              class="block bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+              class="bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 text-white font-semibold text-center rounded-lg outline-none transition duration-100 mx-20 py-3"
               :disabled="ObserverProps.invalid"
               @click="update"
             >
