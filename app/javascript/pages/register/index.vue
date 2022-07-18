@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
       <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">新規登録</h2>
       <ValidationObserver v-slot="ObserverProps">
@@ -56,7 +56,7 @@
             <span class="text-red-500 text-center">{{ errorMessage }}</span>
             <div class="flex justify-center items-center relative">
               <span class="h-px bg-gray-300 absolute inset-x-0"></span>
-              <span class="bg-white text-gray-400 text-sm relative px-4">or</span>
+              <span class="bg-purple-100 text-gray-400 text-sm relative px-4">or</span>
             </div>
             <button
               class="flex justify-center items-center bg-twitter hover:bg-sky-400 active:bg-sky-500 focus-visible:ring ring-blue-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3"

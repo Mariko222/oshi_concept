@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
       <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">推しを変更</h2>
       <ValidationObserver v-slot="ObserverProps">
-        <form class="max-w-lg border rounded-lg mx-auto">
+        <form class="bg-white max-w-lg border rounded-lg mx-auto">
           <div class="flex flex-col gap-4 p-4 md:p-8">
             <ValidationProvider name="ジャンル" rules="required" :skip-if-empty="false">
               <div slot-scope="ProviderProps">
@@ -36,22 +36,19 @@
               type="button"
               @click="handleOpenChoiceCharactersModal"
               :disabled="ObserverProps.invalid || !ObserverProps.validated"
-              class="block bg-indigo-800 hover:bg-indigo-700 disabled:bg-indigo-400 active:bg-indigo-600 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base  text-center rounded-lg outline-none transition duration-100 px-1 py-1"
+              class="block bg-indigo-800 hover:bg-indigo-700 disabled:bg-indigo-400 active:bg-indigo-600 text-white text-center rounded-lg outline-none transition duration-100 px-3 py-2"
               >
                 推しを追加
               </button>
             </div>
             <button
               type="button"
-              class="block bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+              class="bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 text-white font-semibold text-center rounded-lg outline-none transition duration-100 mx-20 py-3"
               :disabled="ObserverProps.invalid || !ObserverProps.validated"
               @click="register"
             >
               登録
             </button>
-            <div class="flex justify-center items-center relative">
-              <span class="h-px bg-gray-300 absolute inset-x-0"></span>
-            </div>
           </div>
         </form>
       </ValidationObserver>
