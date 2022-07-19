@@ -1,13 +1,13 @@
 <template>
-  <div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-8">マイページ編集</h2>
+      <h2 class="text-gray-800 text-2xl lg:text-3xl page-font text-center mb-4 md:mb-8">マイページ編集</h2>
       <ValidationObserver v-slot="ObserverProps">
-        <form class="max-w-lg border rounded-lg mx-auto">
+        <form class="bg-white max-w-lg border rounded-lg mx-auto">
           <div class="flex flex-col gap-4 p-4 md:p-8">
             <ValidationProvider name="ユーザーネーム" rules="required|max:50">
               <div slot-scope="ProviderProps">
-              <label for="name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">ユーザーネーム：</label>
+              <label for="name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">ユーザーネーム：</label>
               <input id="name" type="text" v-model="user.name" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
               <span class="text-red-500 text-center">{{
                   ProviderProps.errors[0]
@@ -17,7 +17,7 @@
 
             <ValidationProvider name="マイページ名" rules="max:50">
               <div slot-scope="ProviderProps">
-              <label for="mypage_name" class="inline-block text-gray-800 text-sm sm:text-base mb-2">マイページ名：</label>
+              <label for="mypage_name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">マイページ名：</label>
               <input id="mypage_name" type="text" v-model="user.mypage_name" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
               <span class="text-red-500 text-center">{{
                   ProviderProps.errors[0]
@@ -29,7 +29,7 @@
               <div slot-scope="ProviderProps">
                 <label
                   for="icon"
-                  class="d-block"
+                  class="page-font d-block"
                 >アイコン：</label>
                 <div class="icon" v-if="url">
                   <img :src="url"
@@ -46,7 +46,7 @@
                   id="icon"
                   type="file"
                   ref="preview"
-                  class="form-control-file"
+                  class="page-font form-control-file"
                   @change="handleChange"
                 >
                 <p class="text-red-500 text-center">{{
@@ -57,7 +57,7 @@
 
             <button
               type="button"
-              class="block bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+              class="page-font bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 text-white font-semibold text-center rounded-lg outline-none transition duration-100 mx-20 py-3"
               :disabled="ObserverProps.invalid"
               @click="update"
             >
@@ -129,6 +129,10 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+.page-font {
+  font-family: 'Yusei Magic', sans-serif;
+}
 .icon img {
   width:  150px;
   height: 150px;
