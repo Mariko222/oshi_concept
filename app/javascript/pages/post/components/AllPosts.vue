@@ -86,8 +86,8 @@ export default {
       this.$emit('delete-post', this.post)
     },
     handleDeleteWebpage(webpage) {
-      console.log(this.webpage)
-      this.$emit('delete-post', this.webpage)
+      this.post = webpage
+      this.$emit('delete-post', this.post)
     },
   },
 }

@@ -20,16 +20,23 @@
       <div class="flex flex-wrap justify-between gap-4 mb-6">
         <div class="grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 xl:gap-8">
           <div v-for="itemWebpage in itemWebpages">
-            <div class="bg-white border rounded-lg overflow-hidden">
-              <a :href="itemWebpage.url" class="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">
-                <img src="../../../../../public/img/webpage.jpg" v-if="!itemWebpage.image" loading="lazy" alt="NO_IMAGE" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
-                <img :src="itemWebpage.image" loading="lazy" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
-              </a>
-              <div class="flex flex-col flex-1 p-4 sm:p-6">
-                <h2 class="text-gray-800 text-lg font-semibold mb-2">
-                  <a :href="itemWebpage.url" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">{{itemWebpage.title}}</a>
-                </h2>
+            <div class="card bg-violet-400 px-2 py-2 -ml-2 mb-3">
+              <div class="bg-white border rounded-lg overflow-hidden">
+                <a :href="itemWebpage.url" class="group h-48 md:h-64 block bg-gray-100 overflow-hidden relative">
+                  <img src="../../../../../public/img/webpage.jpg" v-if="!itemWebpage.image" loading="lazy" alt="NO_IMAGE" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
+                  <img :src="itemWebpage.image" loading="lazy" class="w-full h-full object-cover object-center absolute inset-0 group-hover:scale-110 transition duration-200" />
+                </a>
+                <div class="flex flex-col flex-1 p-4 sm:p-6">
+                  <h2 class="text-gray-800 text-lg font-semibold mb-2">
+                    <a :href="itemWebpage.url" class="hover:text-indigo-500 active:text-indigo-600 transition duration-100">{{itemWebpage.title}}</a>
+                  </h2>
+                </div>
               </div>
+              <button type="button" @click="handleDeleteWebpage(itemWebpage)" class="mt-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-right" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -83,9 +90,9 @@ export default {
       this.post = itemTweet
       this.$emit('delete-post', this.post)
     },
-    handleDeleteWebpage(webpage) {
-      console.log(this.webpage)
-      this.$emit('delete-post', this.webpage)
+    handleDeleteWebpage(itemWebpage) {
+      this.post = itemWebpage
+      this.$emit('delete-post', this.post)
     },
   },
 }
