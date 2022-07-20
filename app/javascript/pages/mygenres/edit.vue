@@ -8,7 +8,7 @@
             <ValidationProvider name="ジャンル" rules="required" :skip-if-empty="false">
               <div slot-scope="ProviderProps">
               <label for="genre_name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
-              <select id="genre_id" name="genre" v-model="selectedGenre" class="page-font input-form-basic-block" @change="fetchCharacters(selectedGenre)" >
+              <select id="genre_id" name="genre" v-model="selectedGenre" class="page-font input-form-basic-block" @change="fetchBoth(selectedGenre)" >
                 <option disabled value="">ジャンルを選択</option>
                 <option v-for="mygenre in mygenres" :value="mygenre.id">{{ mygenre.name }}</option>
               </select>
@@ -20,10 +20,10 @@
             <div>
               <div v-if="isSelected">
                 <p class="page-font font-semibold mb-1">推し：</p>
-                <ul v-for="mygenreFavoriteCharacter in mygenreFavoriteCharacters" :value="mygenreFavoriteCharacter.id" class="mx-auto flex justify-between bg-white border shadow-sm rounded p-2">
-                  <li class="page-font">{{ mygenreFavoriteCharacter.character.name }}
+                <ul v-for="mygenreCharacter in mygenreCharacters" :value="mygenreCharacter.id" class="mx-auto flex justify-between bg-white border shadow-sm rounded p-2">
+                  <li class="page-font">{{ mygenreCharacter.character.name }}
                   </li>
-                  <button type="button" @click="handleDeleteCharacter(mygenreFavoriteCharacter)">
+                  <button type="button" @click="handleDeleteCharacter(mygenreCharacter)">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-right" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -31,7 +31,7 @@
                 </ul>
               </div>
               <label for="character.name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
-              <span v-if="!selectedCharacterNames.length == 0">{{ selectedCharacterNames }}</span>
+              <span class="page-font" v-if="!selectedCharacterNames.length == 0">{{ selectedCharacterNames }}</span>
               <button
               type="button"
               @click="handleOpenChoiceCharactersModal"
@@ -88,7 +88,6 @@ export default {
       selectedCharacters: [],
       selectedCharacterNames:[],
       mygenreFavoriteCharacters: [],
-      mygenreLists: [],
       errorMessage: ""
     }
   },
@@ -130,6 +129,10 @@ export default {
         })
         .catch(err => console.log(err.status));
     },
+    fetchBoth: function (selectedGenre) {
+      this.fetchCharacters(selectedGenre);
+      this.fetchFavoriteCharacters(selectedGenre);
+    },
     fetchCharacters(selectedGenre) {
       this.$axios.get("characters", {
         params:{ id:selectedGenre }
@@ -140,7 +143,7 @@ export default {
         })
         .catch(err => console.log(err.status));
     },
-    fetchFavoriteCharacters() {
+    fetchFavoriteCharacters(selectedGenre) {
       this.$axios.get("mypage")
         .then(res => {
           this.mygenreFavoriteCharacters = res.data
@@ -149,16 +152,28 @@ export default {
               i['mygenre_id'] === item['mygenre_id']
             ) === index
           })
+          this.mygenreCharacters = this.mygenreFavoriteCharacters.filter(c =>{
+            return c.mygenre['genre_id'] === selectedGenre
           })
+        })
         .catch(err => console.log(err.status));
     },
-    async handleDeleteCharacter(mygenreFavoriteCharacter) {
+    async handleDeleteCharacter(mygenreCharacter) {
       try {
         await
-        axios.delete(`mygenres/${mygenreFavoriteCharacter.id}`)
+        axios.delete(`mygenres/${mygenreCharacter.id}`)
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "推しから削除しました。",
+        });
         this.$router.push({ name: 'MypageIndex' });
-      } catch (err) {
-        console.log(err);
+      } catch (error) {
+        console.log(error);
+        this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "推しを削除できませんでした。",
+        })
       }
     },
     async register() {
@@ -174,7 +189,7 @@ export default {
           message: "推しを変更しました。",
         });
         this.$router.push({ name: 'MypageIndex' });
-      } catch (err) {
+      } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
         this.$store.dispatch("setFlash", {
