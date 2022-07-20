@@ -8,16 +8,16 @@
         <button class="page-font btn btn-secondary" @click="item">雑貨</button>
         <button class="page-font btn btn-accent" @click="place">場所（お店や建物）</button>
         <div v-if="isAll">
-          <AllPosts></AllPosts>
+          <AllPosts @delete-post="handleDeletePost"/>
         </div>
         <div v-if="isFashion">
-          <FashionPosts></FashionPosts>
+          <FashionPosts @delete-post="handleDeletePost"/>
         </div>
         <div v-if="isItem">
-          <ItemPosts></ItemPosts>
+          <ItemPosts @delete-post="handleDeletePost"/>
         </div>
         <div v-if="isPlace">
-          <PlacePosts></PlacePosts>
+          <PlacePosts @delete-post="handleDeletePost"/>
         </div>
       </div>
       </div>
@@ -79,7 +79,25 @@ export default {
       this.isFashion = false
       this.isItem = false
       this.isPlace = true
-    }
+    },
+    handleDeletePost(post) {
+      this.$axios.delete(`posts/${post.id}`)
+      .then(res => {
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "概念を削除しました。",
+        })
+        this.$router.push({ name: 'MypageIndex' });
+      })
+      .catch((error) => {
+        console.log(error);
+        this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "概念削除できませんでした。",
+        })
+      })
+    },
   },
 }
 </script>
