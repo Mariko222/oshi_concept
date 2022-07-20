@@ -1,21 +1,29 @@
 class Api::PostsController < ApplicationController
   before_action :authenticate!
+  before_action :set_post, only: %i[destroy]
 
   def index
-    posts = Post.all
-    render json: posts
+    mygenres = Mygenre.where(user_id: current_user.id)
+    mygenre = mygenres.first
+    posts = mygenre.posts.all
+    render json: posts, each_serializer: PostSerializer
   end
 
   def create
     mygenre = Mygenre.find(params[:mygenre_id])
     post = mygenre.posts.build(webpage_params) if params[:type] == 'webpage'
-
     post = mygenre.posts.build(post_params) if params[:type] == 'twitter'
+
     if post.save
       render json: post
     else
       raise ActiveRecord::RecordNotFound, post.errors.full_messages
     end
+  end
+
+  def destroy
+    @post.destroy!
+    render json: @post
   end
 
   private
@@ -29,5 +37,9 @@ class Api::PostsController < ApplicationController
     page = agent.get(params[:post][:url])
     ogp = page.at("meta[property='og:image']").try(:[], :content)
     params.require(:post).permit(:category, :type, :url, :mygenre_id).merge(title: page.title, image: ogp)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end
