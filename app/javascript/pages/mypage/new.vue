@@ -19,7 +19,7 @@
             </ValidationProvider>
             <div>
               <label for="character.name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
-              <span v-if="!selectedCharacterNames.length == 0">{{ selectedCharacterNames }}</span>
+              <span class="page-font" v-if="!selectedCharacterNames.length == 0">{{ selectedCharacterNames }}</span>
               <button
               type="button"
               @click="handleOpenChoiceCharactersModal"
