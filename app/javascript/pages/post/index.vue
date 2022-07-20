@@ -80,15 +80,23 @@ export default {
       this.isItem = false
       this.isPlace = true
     },
-    async handleDeletePost(post) {
-      try {
-        await
-
-        axios.delete(`posts/${post.id}`)
+    handleDeletePost(post) {
+      this.$axios.delete(`posts/${post.id}`)
+      .then(res => {
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "概念を削除しました。",
+        })
         this.$router.push({ name: 'MypageIndex' });
-      } catch (err) {
-        console.log(err);
-      }
+      })
+      .catch((error) => {
+        console.log(error);
+        this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "概念削除できませんでした。",
+        })
+      })
     },
   },
 }
