@@ -4,8 +4,15 @@
     <div class="w-full">
       <div class="flex flex-wrap justify-between gap-4 mb-6">
         <div class="columns-2 md:columns-3 lg:columns-4">
-          <div v-for="itemTweetUrl in itemTweetUrls">
-            <Tweet :id="itemTweetUrl" class="mb-4"></Tweet>
+          <div v-for="itemTweet in itemTweets">
+            <div class="card bg-violet-400 px-2 py-2 -ml-2 mb-3">
+              <Tweet :id="itemTweet.tweet_url"></Tweet>
+                <button type="button" @click="handleDeleteTweet(itemTweet)">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-right" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </button>
+            </div>
           </div>
         </div>
       </div>
@@ -32,6 +39,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 import axios from "../../../plugins/axios";
 import { Tweet } from 'vue-tweet-embed'
 
@@ -42,8 +50,8 @@ export default {
   data() {
     return {
       itemWebpages: [],
-      itemTweetUrls: [],
-      itemTweetUrl: ''
+      itemTweets: [],
+      itemTweet: ''
     }
   },
   created() {
@@ -70,6 +78,14 @@ export default {
           })
         })
         .catch(err => console.log(err.status));
+    },
+    handleDeleteTweet(itemTweet) {
+      this.post = itemTweet
+      this.$emit('delete-post', this.post)
+    },
+    handleDeleteWebpage(webpage) {
+      console.log(this.webpage)
+      this.$emit('delete-post', this.webpage)
     },
   },
 }
