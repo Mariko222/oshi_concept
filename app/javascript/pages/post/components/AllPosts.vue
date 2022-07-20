@@ -2,6 +2,9 @@
   <div>
     <h2 class="page-font text-gray-800 text-2xl lg:text-3xl font-bold mt-5 mb-5">ALL</h2>
     <div class="w-full">
+      <div v-if="posts.length == 0">
+        <p class="page-font">投稿がありません</p>
+      </div>
       <div class="flex flex-wrap justify-between gap-4 mb-6">
         <div class="columns-2 md:columns-3 lg:columns-4">
           <div v-for="tweet in tweets">
@@ -56,6 +59,7 @@ export default {
   },
   data() {
     return {
+      posts: [],
       webpages: [],
       tweets: [],
       tweet: ""
