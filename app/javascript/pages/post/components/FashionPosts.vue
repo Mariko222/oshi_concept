@@ -2,6 +2,9 @@
   <div>
     <h2 class="page-font text-gray-800 text-2xl lg:text-3xl font-bold mt-5 mb-5">ファッション</h2>
     <div class="w-full">
+      <div v-if="fashionPosts.length == 0">
+        <p class="page-font">ファッションカテゴリの投稿がありません</p>
+      </div>
       <div class="flex flex-wrap justify-between gap-4 mb-6">
         <div class="columns-2 md:columns-3 lg:columns-4">
           <div v-for="fashionTweet in fashionTweets">
@@ -56,6 +59,7 @@ export default {
   },
   data() {
     return {
+      fashionPosts: [],
       fashionWebpages: [],
       fashionTweets: [],
       fashionTweet: ''

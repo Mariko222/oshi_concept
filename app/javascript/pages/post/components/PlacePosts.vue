@@ -2,6 +2,9 @@
   <div>
     <h2 class="page-font text-gray-800 text-2xl lg:text-3xl font-bold mt-5 mb-5">場所（お店や建物）</h2>
     <div class="w-full">
+      <div v-if="placePosts.length == 0">
+        <p class="page-font">場所（お店や建物）カテゴリの投稿がありません</p>
+      </div>
       <div class="flex flex-wrap justify-between gap-4 mb-6">
         <div class="columns-2 md:columns-3 lg:columns-4">
           <div v-for="placeTweet in placeTweets">
@@ -56,6 +59,7 @@ export default {
   },
   data() {
     return {
+      placePosts: [],
       placeWebpages: [],
       placeTweets: [],
       placeTweet: ''
@@ -77,11 +81,6 @@ export default {
           })
           this.placeTweets = this.placePosts.filter(p =>{
             return p.type === "twitter"
-          })
-          this.placeTweetUrls = this.placeTweets.map(t =>{
-            this.u = t.url.split('/')
-            this.i = this.u[this.u.length - 1]
-            return this.i.substr(0, this.i.indexOf('?'))
           })
         })
         .catch(err => console.log(err.status));
