@@ -1,7 +1,7 @@
 <template>
   <div class="navbar bg-neutral h-20 mx-auto flex justify-between items-center text-neutral-content sticky top-0 z-20">
     <div class="navbar-start">
-      <p class="page-font">推し概念集めてみた</p>
+      <p class="page-font"><router-link :to="{ name: 'TopIndex' }">推し概念集めてみた</router-link></p>
     </div>
     <template v-if="authUser">
       <div class="navbar-center">
