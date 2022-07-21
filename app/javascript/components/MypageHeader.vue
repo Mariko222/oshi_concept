@@ -18,7 +18,7 @@
           <div class="flex jflex flex-col gap-2.5 flex justify-between items-center">
             <div class="flex flex-col gap-2">
               <div v-for="mygenre in mygenres" :key=" mygenre.id" class="bg-violet-300">
-                <p class="page-font bg-violet-200 border rounded p-2">{{ mygenre.name }}</p>
+                <p class="page-font bg-violet-200 border rounded p-2">{{ mygenre.genre.name }}</p>
               </div>
             </div>
           </div>

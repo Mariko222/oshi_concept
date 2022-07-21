@@ -123,7 +123,7 @@ export default {
       this.handleCloseChoiceCharactersModal();
     },
     fetchMygenres() {
-      this.$axios.get("mygenres")
+      this.$axios.get("mygenre_characters")
         .then(res => {
           this.mygenres = res.data
         })

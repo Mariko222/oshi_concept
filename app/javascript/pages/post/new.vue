@@ -13,7 +13,7 @@
                     <label for="genre_name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
                     <select id="genre_id" name="genre" v-model="post.mygenre_id" class="page-font input-form-basic-block" >
                       <option disabled value="">ジャンルを選択</option>
-                      <option v-for="mygenre in mygenres" :value="mygenre.id">{{ mygenre.name }}</option>
+                      <option v-for="mygenre in mygenres" :value="mygenre.id">{{ mygenre.genre.name }}</option>
                     </select>
                     <p class="text-red-500">{{
                       ProviderProps.errors[0]
@@ -120,6 +120,7 @@ export default {
       this.$axios.get("mygenres")
         .then(res => {
           this.mygenres = res.data
+          console.log(this.mygenres)
         })
         .catch(err => console.log(err.status));
     },
