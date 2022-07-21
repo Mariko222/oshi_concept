@@ -56,9 +56,18 @@ export default {
     async handleLogout() {
       try {
         await this.logoutUser()
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "ログアウトしました。",
+        });
         this.$router.push({name: 'TopIndex'})
       } catch (error) {
-        console.log(error)
+        console.log(error);
+        this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "ログアウトできませんでした。",
+        })
       }
     }
   }
