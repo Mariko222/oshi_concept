@@ -3,9 +3,7 @@ class Api::PostsController < ApplicationController
   before_action :set_post, only: %i[destroy]
 
   def index
-    mygenres = Mygenre.where(user_id: current_user.id)
-    mygenre = mygenres.first
-    posts = mygenre.posts.all
+    posts = current_user.posts.all
     render json: posts, each_serializer: PostSerializer
   end
 
