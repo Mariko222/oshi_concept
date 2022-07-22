@@ -3,14 +3,14 @@
     <div class="z-1000 sticky">
       <div v-if="flash.type === 'success'">
         <div
-          class="border border-green-400 bg-green-100 px-4 py-3 text-green-700"
+          class="page-font border border-green-400 bg-green-100 px-4 py-3 text-green-700"
         >
           {{ flash.message }}
         </div>
       </div>
       <div v-if="flash.type === 'error'">
         <div
-          class="border border-red-400 bg-red-100 px-4 py-3 text-red-700"
+          class="page-font border border-red-400 bg-red-100 px-4 py-3 text-red-700"
         >
           {{ flash.message }}
         </div>
@@ -37,6 +37,10 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
+.page-font {
+  font-family: 'Yomogi', cursive;
+}
 .fade-enter-active,
 .fade-leave-active {
   will-change: opacity;

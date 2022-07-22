@@ -12,7 +12,7 @@
                 <option disabled value="">ジャンルを選択</option>
                 <option v-for="mygenre in mygenres" :value="mygenre.id">{{ mygenre.name }}</option>
               </select>
-              <p class="text-red-500">{{
+              <p class="page-font text-red-500">{{
                   ProviderProps.errors[0]
                 }}</p>
               </div>
@@ -203,8 +203,8 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 .page-font {
-  font-family: 'Yusei Magic', sans-serif;
+  font-family: 'Yomogi', cursive;
 }
 </style>

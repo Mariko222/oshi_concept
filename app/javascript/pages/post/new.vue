@@ -15,7 +15,7 @@
                       <option disabled value="">ジャンルを選択</option>
                       <option v-for="mygenre in mygenres" :value="mygenre.id">{{ mygenre.genre.name }}</option>
                     </select>
-                    <p class="text-red-500">{{
+                    <p class="page-font text-red-500">{{
                       ProviderProps.errors[0]
                     }}</p>
                   </div>
@@ -36,7 +36,7 @@
                         場所（お店や建物）
                       </option>
                     </select>
-                    <p class="text-red-500">{{
+                    <p class="page-font text-red-500">{{
                       ProviderProps.errors[0]
                     }}</p>
                   </div>
@@ -54,7 +54,7 @@
                         WEBページ
                       </option>
                     </select>
-                    <p class="text-red-500">{{
+                    <p class="page-font text-red-500">{{
                       ProviderProps.errors[0]
                     }}</p>
                   </div>
@@ -63,8 +63,8 @@
                 <ValidationProvider name="URL" rules="required|url|max:300">
                   <div slot-scope="ProviderProps">
                     <label for="url" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">URL:</label>
-                    <input id="url" type="text" v-model="post.url" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
-                    <p class="text-red-500">{{
+                    <input id="url" type="text" v-model="post.url" class="w-full page-font bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+                    <p class="page-font text-red-500">{{
                       ProviderProps.errors[0]
                     }}</p>
                   </div>
@@ -78,7 +78,7 @@
                 >
                   登録
                 </button>
-                <span class="text-red-500 text-center">{{ errorMessage }}</span>
+                <span class="page-font text-red-500 text-center">{{ errorMessage }}</span>
               </div>
             </form>
           </ValidationObserver>
@@ -147,8 +147,8 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 .page-font {
-  font-family: 'Yusei Magic', sans-serif;
+  font-family: 'Yomogi', cursive;
 }
 </style>
