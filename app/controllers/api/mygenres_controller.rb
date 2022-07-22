@@ -4,8 +4,10 @@ class Api::MygenresController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @genres = current_user.mygenre_lists
-    render json: @genres
+    @mygenres = Mygenre.where(user_id: current_user.id)
+    respond_to do |f|
+      f.json { render json: @mygenres.to_json(include: [:genre]) }
+    end
   end
 
   def create

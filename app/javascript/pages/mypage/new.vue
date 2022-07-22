@@ -12,14 +12,14 @@
                   <option disabled value="">ジャンルを選択</option>
                   <option v-for="genre in genres" :value="genre.id">{{ genre.name }}</option>
                 </select>
-                <p class="text-red-500">{{
+                <p class="page-font text-red-500">{{
                   ProviderProps.errors[0]
                 }}</p>
               </div>
             </ValidationProvider>
             <div>
               <label for="character.name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
-              <span v-if="!selectedCharacterNames.length == 0">{{ selectedCharacterNames }}</span>
+              <span class="page-font" v-if="!selectedCharacterNames.length == 0">{{ selectedCharacterNames }}</span>
               <button
               type="button"
               @click="handleOpenChoiceCharactersModal"
@@ -38,7 +38,7 @@
             >
               登録
             </button>
-            <span class="text-red-500 text-center">{{ errorMessage }}</span>
+            <span class="page-font text-red-500 text-center">{{ errorMessage }}</span>
           </div>
         </form>
       </ValidationObserver>
@@ -145,8 +145,8 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 .page-font {
-  font-family: 'Yusei Magic', sans-serif;
+  font-family: 'Yomogi', cursive;
 }
 </style>

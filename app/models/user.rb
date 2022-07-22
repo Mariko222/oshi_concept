@@ -21,6 +21,7 @@ class User < ApplicationRecord
 
   has_many :mygenres, dependent: :destroy
   has_many :mygenre_lists, through: :mygenres, source: :genre
+  has_many :posts, through: :mygenres
 
   has_one_attached :icon
 

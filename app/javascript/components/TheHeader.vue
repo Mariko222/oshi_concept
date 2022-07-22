@@ -1,7 +1,7 @@
 <template>
   <div class="navbar bg-neutral h-20 mx-auto flex justify-between items-center text-neutral-content sticky top-0 z-20">
     <div class="navbar-start">
-      <p class="page-font">推し概念集めてみた</p>
+      <p class="page-font"><router-link :to="{ name: 'TopIndex' }">推し概念集めてみた</router-link></p>
     </div>
     <template v-if="authUser">
       <div class="navbar-center">
@@ -56,9 +56,18 @@ export default {
     async handleLogout() {
       try {
         await this.logoutUser()
+        this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "ログアウトしました。",
+        });
         this.$router.push({name: 'TopIndex'})
       } catch (error) {
-        console.log(error)
+        console.log(error);
+        this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "ログアウトできませんでした。",
+        })
       }
     }
   }
@@ -66,8 +75,8 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 .page-font {
-  font-family: 'Yusei Magic', sans-serif;
+  font-family: 'Yomogi', cursive;
 }
 </style>
