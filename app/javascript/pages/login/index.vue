@@ -10,7 +10,7 @@
               <div slot-scope="ProviderProps">
                 <label for="email" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">メールアドレス</label>
                 <input id="email" type="email" v-model="user.email" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
-                <span class="text-red-500 text-center">{{
+                <span class="page-font text-red-500 text-center">{{
                     ProviderProps.errors[0]
                 }}</span>
               </div>
@@ -20,7 +20,7 @@
               <div slot-scope="ProviderProps">
                   <label for="password" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">パスワード</label>
                   <input id="password" type="password" v-model="user.password" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
-                  <span class="text-red-500 text-center">{{
+                  <span class="page-font text-red-500 text-center">{{
                   ProviderProps.errors[0]
                 }}</span>
               </div>
@@ -34,7 +34,7 @@
             >
               ログイン
             </button>
-            <span class="text-red-500 text-center">{{ errorMessage }}</span>
+            <span class="page-font text-red-500 text-center">{{ errorMessage }}</span>
             <div class="flex justify-center items-center relative">
               <span class="h-px bg-gray-300 absolute inset-x-0"></span>
               <span class="page-font bg-purple-100 text-gray-400 text-sm relative px-4">or</span>
@@ -108,8 +108,8 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 .page-font {
-  font-family: 'Yusei Magic', sans-serif;
+  font-family: 'Yomogi', cursive;
 }
 </style>

@@ -8,8 +8,8 @@
             <ValidationProvider name="ユーザーネーム" rules="required|max:50">
               <div slot-scope="ProviderProps">
               <label for="name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">ユーザーネーム：</label>
-              <input id="name" type="text" v-model="user.name" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
-              <span class="text-red-500 text-center">{{
+              <input id="name" type="text" v-model="user.name" class="w-full page-font bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+              <span class="page-font text-red-500 text-center">{{
                   ProviderProps.errors[0]
                 }}</span>
               </div>
@@ -18,8 +18,8 @@
             <ValidationProvider name="マイページ名" rules="max:50">
               <div slot-scope="ProviderProps">
               <label for="mypage_name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">マイページ名：</label>
-              <input id="mypage_name" type="text" v-model="user.mypage_name" class="w-full bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
-              <span class="text-red-500 text-center">{{
+              <input id="mypage_name" type="text" v-model="user.mypage_name" class="w-full page-font bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
+              <span class="page-font text-red-500 text-center">{{
                   ProviderProps.errors[0]
                 }}</span>
               </div>
@@ -46,10 +46,10 @@
                   id="icon"
                   type="file"
                   ref="preview"
-                  class="page-font form-control-file"
+                  class="page-font w-full form-control-file"
                   @change="handleChange"
                 >
-                <p class="text-red-500 text-center">{{
+                <p class="page-font text-red-500 text-center">{{
                   ProviderProps.errors[0]
                 }}</p>
               </div>
@@ -63,7 +63,7 @@
             >
               登録
             </button>
-            <span class="text-red-500 text-center">{{ errorMessage }}</span>
+            <span class="page-font text-red-500 text-center">{{ errorMessage }}</span>
           </div>
         </form>
       </ValidationObserver>
@@ -129,9 +129,9 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 .page-font {
-  font-family: 'Yusei Magic', sans-serif;
+  font-family: 'Yomogi', cursive;
 }
 .icon img {
   width:  150px;

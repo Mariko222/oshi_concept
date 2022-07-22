@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :genres
     resources :characters
     resources :mygenres
+    resources :mygenre_characters
     resources :sessions
     resources :users do
       collection do
