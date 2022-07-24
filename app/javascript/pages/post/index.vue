@@ -11,13 +11,13 @@
           <AllPosts @delete-post="handleDeletePost" :mygenre="mygenre" />
         </div>
         <div v-if="isFashion">
-          <FashionPosts @delete-post="handleDeletePost"/>
+          <FashionPosts @delete-post="handleDeletePost" :mygenre="mygenre" />
         </div>
         <div v-if="isItem">
-          <ItemPosts @delete-post="handleDeletePost"/>
+          <ItemPosts @delete-post="handleDeletePost" :mygenre="mygenre" />
         </div>
         <div v-if="isPlace">
-          <PlacePosts @delete-post="handleDeletePost"/>
+          <PlacePosts @delete-post="handleDeletePost" :mygenre="mygenre" />
         </div>
       </div>
       </div>

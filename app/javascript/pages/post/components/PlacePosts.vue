@@ -65,22 +65,50 @@ export default {
       placeTweet: ''
     }
   },
+  props: {
+    mygenre: {
+      type: Object,
+      required: true
+    }
+  },
   created() {
-    this.fetchplacePosts()
+    this.fetchplaceBoth()
   },
   methods: {
-    fetchplacePosts() {
+    fetchPlaceBoth: function (mygenre) {
+      this.placeTweets = [];
+      this.placeWebpages = [];
+      this.fetchPlaceTweets(mygenre);
+      this.fetchPlaceWebpages(mygenre);
+    },
+    fetchPlaceTweets(mygenre) {
       this.$axios.get("posts")
         .then(res => {
           this.posts = res.data
           this.placePosts = this.posts.filter(p =>{
             return p.category === "place"
           })
-          this.placeWebpages = this.placePosts.filter(p =>{
-            return p.type === "webpage"
+          this.mygenrePlacePosts = this.placePosts.filter(p =>{
+            return p.mygenre_id === this.mygenre['id']
           })
-          this.placeTweets = this.placePosts.filter(p =>{
+          this.placeTweets = this.mygenrePlacePosts.filter(p =>{
             return p.type === "twitter"
+          })
+        })
+        .catch(err => console.log(err.status));
+    },
+    fetchPlaceWebpages(mygenre) {
+      this.$axios.get("posts")
+        .then(res => {
+          this.posts = res.data
+          this.placePosts = this.posts.filter(p =>{
+            return p.category === "place"
+          })
+          this.mygenrePlaceWabpages = this.placePosts.filter(p =>{
+            return p.mygenre_id === this.mygenre['id']
+          })
+          this.placeWebpages = this.mygenrePlaceWabpages.filter(p =>{
+            return p.type === "webpage"
           })
         })
         .catch(err => console.log(err.status));

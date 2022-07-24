@@ -65,25 +65,50 @@ export default {
       fashionTweet: ''
     }
   },
-  created() {
-    this.fetchFashionPosts()
+  props: {
+    mygenre: {
+      type: Object,
+      required: true
+    }
   },
-  mounted() {
-    this.fetchFashionPosts();
+  created() {
+    this.fetchFashionBoth()
   },
   methods: {
-    fetchFashionPosts() {
+    fetchFashionBoth: function (mygenre) {
+      this.fashionTweets = [];
+      this.fashionWebpages = [];
+      this.fetchFashionTweets(mygenre);
+      this.fetchFashionWebpages(mygenre);
+    },
+    fetchFashionTweets(mygenre) {
       this.$axios.get("posts")
         .then(res => {
           this.posts = res.data
           this.fashionPosts = this.posts.filter(p =>{
             return p.category === "fashion"
           })
-          this.fashionWebpages = this.fashionPosts.filter(p =>{
-            return p.type === "webpage"
+          this.mygenreFashionPosts = this.fashionPosts.filter(p =>{
+            return p.mygenre_id === this.mygenre['id']
           })
-          this.fashionTweets = this.fashionPosts.filter(p =>{
+          this.fashionTweets = this.mygenreFashionPosts.filter(p =>{
             return p.type === "twitter"
+          })
+        })
+        .catch(err => console.log(err.status));
+    },
+    fetchFashionWebpages(mygenre) {
+      this.$axios.get("posts")
+        .then(res => {
+          this.posts = res.data
+          this.fashionPosts = this.posts.filter(p =>{
+            return p.category === "fashion"
+          })
+          this.mygenreFashionWabpages = this.fashionPosts.filter(p =>{
+            return p.mygenre_id === this.mygenre['id']
+          })
+          this.fashionWebpages = this.mygenreFashionWabpages.filter(p =>{
+            return p.type === "webpage"
           })
         })
         .catch(err => console.log(err.status));
