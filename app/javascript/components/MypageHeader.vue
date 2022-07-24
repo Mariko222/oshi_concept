@@ -19,7 +19,7 @@
           <div class="flex jflex flex-col gap-2.5 flex justify-between items-center">
             <div class="flex flex-col gap-2">
               <div v-for="mygenre in mygenres" :key=" mygenre.id" class="bg-violet-300">
-                <button class="page-font text-white bg-violet-500 border rounded p-2" @click="displayCharacter(mygenre)">{{ mygenre.genre.name }}</button>
+                <button class="page-font text-white bg-violet-500 border rounded p-2" @click="fetchBoth(mygenre)">{{ mygenre.genre.name }}</button>
               </div>
             </div>
           </div>
@@ -97,7 +97,7 @@ export default {
               i['mygenre_id'] === item['mygenre_id']
             ) === index
           })
-          })
+        })
         .catch(err => console.log(err.status));
     },
     fetchMygenres() {
@@ -114,6 +114,10 @@ export default {
         })
         .catch(err => console.log(err.status));
     },
+    fetchBoth: function (mygenre) {
+      this.displayCharacter(mygenre);
+      this.handleMygenrePosts(mygenre);
+    },
     displayCharacter(mygenre) {
       this.$axios.get("mypage")
         .then(res => {
@@ -121,9 +125,12 @@ export default {
           this.mygenreCharacters = this.mygenreFavoriteCharacters.filter(c =>{
             return c.mygenre['id'] === mygenre.id
           })
-          console.log(this.mygenreCharacters)
         })
         .catch(err => console.log(err.status));
+    },
+    handleMygenrePosts(mygenre) {
+      this.mygenre = mygenre
+      this.$emit('mygenre-posts', this.mygenre)
     }
   }
 }
