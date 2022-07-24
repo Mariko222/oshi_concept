@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2 class="page-font text-gray-800 text-2xl lg:text-3xl font-bold mt-5 mb-5">ALL</h2>
+    <h2 class="page-font text-gray-800 text-2xl lg:text-3xl font-bold mt-5 mb-5" @click="fetchBoth(mygenre)">ALL</h2>
     <div class="w-full">
       <div v-if="posts.length == 0">
         <p class="page-font">投稿がありません</p>
@@ -65,29 +65,43 @@ export default {
       tweet: ""
     }
   },
+  props: {
+    mygenre: {
+      type: Object,
+      required: true
+    }
+  },
   created() {
     this.fetchBoth()
   },
   methods: {
-    fetchBoth: function () {
-      this.fetchTweets();
-      this.fetchWebpages();
+    fetchBoth: function (mygenre) {
+      this.tweets = [];
+      this.webpages = [];
+      this.fetchTweets(mygenre);
+      this.fetchWebpages(mygenre);
     },
-    fetchTweets() {
+    fetchTweets(mygenre) {
       this.$axios.get("posts")
         .then(res => {
           this.posts = res.data
-          this.tweets = this.posts.filter(p =>{
+          this.mygenrePosts = this.posts.filter(p =>{
+            return p.mygenre_id === this.mygenre['id']
+          })
+          this.tweets = this.mygenrePosts.filter(p =>{
             return p.type === "twitter"
           })
         })
         .catch(err => console.log(err.status));
     },
-    fetchWebpages() {
+    fetchWebpages(mygenre) {
       this.$axios.get("posts")
         .then(res => {
           this.posts = res.data
-          this.webpages = this.posts.filter(p =>{
+          this.mygenreWabpages = this.posts.filter(p =>{
+            return p.mygenre_id === this.mygenre['id']
+          })
+          this.webpages = this.mygenreWabpages.filter(p =>{
             return p.type === "webpage"
           })
         })

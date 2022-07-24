@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MypageHeader v-if="authUser" class="mb-auto" />
+    <MypageHeader v-if="authUser" class="mb-auto" @mygenre-posts="handleMygenre"/>
     <div class="container mx-auto">
       <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
         <button class="page-font btn btn" @click="all">ALL</button>
@@ -8,7 +8,7 @@
         <button class="page-font btn btn-secondary" @click="item">雑貨</button>
         <button class="page-font btn btn-accent" @click="place">場所（お店や建物）</button>
         <div v-if="isAll">
-          <AllPosts @delete-post="handleDeletePost"/>
+          <AllPosts @delete-post="handleDeletePost" :mygenre="mygenre" />
         </div>
         <div v-if="isFashion">
           <FashionPosts @delete-post="handleDeletePost"/>
@@ -49,7 +49,8 @@ export default {
       isAll: true,
       isFashion: false,
       isItem: false,
-      isPlace: false
+      isPlace: false,
+      mygenre: {}
     }
   },
   computed: {
@@ -79,6 +80,9 @@ export default {
       this.isFashion = false
       this.isItem = false
       this.isPlace = true
+    },
+    handleMygenre(mygenre) {
+      this.mygenre = mygenre
     },
     handleDeletePost(post) {
       this.$axios.delete(`posts/${post.id}`)
