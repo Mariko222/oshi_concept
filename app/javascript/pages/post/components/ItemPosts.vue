@@ -65,22 +65,50 @@ export default {
       itemTweet: ''
     }
   },
+  props: {
+    mygenre: {
+      type: Object,
+      required: true
+    }
+  },
   created() {
-    this.fetchItemPosts()
+    this.fetchItemBoth()
   },
   methods: {
-    fetchItemPosts() {
+    fetchItemBoth: function (mygenre) {
+      this.itemTweets = [];
+      this.itemWebpages = [];
+      this.fetchItemTweets(mygenre);
+      this.fetchItemWebpages(mygenre);
+    },
+    fetchItemTweets(mygenre) {
       this.$axios.get("posts")
         .then(res => {
           this.posts = res.data
           this.itemPosts = this.posts.filter(p =>{
             return p.category === "item"
           })
-          this.itemWebpages = this.itemPosts.filter(p =>{
-            return p.type === "webpage"
+          this.mygenreItemPosts = this.itemPosts.filter(p =>{
+            return p.mygenre_id === this.mygenre['id']
           })
-          this.itemTweets = this.itemPosts.filter(p =>{
+          this.itemTweets = this.mygenreItemPosts.filter(p =>{
             return p.type === "twitter"
+          })
+        })
+        .catch(err => console.log(err.status));
+    },
+    fetchItemWebpages(mygenre) {
+      this.$axios.get("posts")
+        .then(res => {
+          this.posts = res.data
+          this.itemPosts = this.posts.filter(p =>{
+            return p.category === "item"
+          })
+          this.mygenreItemWabpages = this.itemPosts.filter(p =>{
+            return p.mygenre_id === this.mygenre['id']
+          })
+          this.itemWebpages = this.mygenreItemWabpages.filter(p =>{
+            return p.type === "webpage"
           })
         })
         .catch(err => console.log(err.status));
