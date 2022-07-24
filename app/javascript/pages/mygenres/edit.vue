@@ -166,7 +166,7 @@ export default {
           type: "success",
           message: "推しから削除しました。",
         });
-        this.$router.push({ name: 'MypageIndex' });
+        this.$router.push({ name: 'PostIndex' });
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
@@ -188,7 +188,7 @@ export default {
           type: "success",
           message: "推しを変更しました。",
         });
-        this.$router.push({ name: 'MypageIndex' });
+        this.$router.push({ name: 'PostIndex' });
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
