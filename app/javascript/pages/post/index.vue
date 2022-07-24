@@ -91,7 +91,7 @@ export default {
           type: "success",
           message: "概念を削除しました。",
         })
-        this.$router.push({ name: 'MypageIndex' });
+        this.all()
       })
       .catch((error) => {
         console.log(error);

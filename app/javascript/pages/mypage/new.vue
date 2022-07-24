@@ -129,7 +129,7 @@ export default {
           type: "success",
           message: "ジャンルと推しを登録しました。",
         })
-        this.$router.push({ name: 'MypageIndex' });
+        this.$router.push({ name: 'PostIndex' });
       })
       .catch((error) => {
         console.log(error);

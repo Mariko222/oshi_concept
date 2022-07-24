@@ -130,7 +130,7 @@ export default {
           type: "success",
           message: "概念投稿しました。",
         })
-        this.$router.push({ name: 'MypageIndex' });
+        this.$router.push({ name: 'PostIndex' });
       })
       .catch((error) => {
         console.log(error);

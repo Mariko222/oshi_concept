@@ -114,7 +114,7 @@ export default {
           type: "success",
           message: "マイページ編集しました。",
         });
-        this.$router.push({ name: "MypageIndex" })
+        this.$router.push({ name: "PostIndex" })
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
