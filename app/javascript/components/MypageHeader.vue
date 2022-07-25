@@ -7,7 +7,7 @@
             <p class="page-font mt-5 mb-2 text-2xl">{{ user.name }}</p>
         </div>
         <div class="bg-violet-200 rounded-lg gap-2 md:p-5 mb-3">
-          <p class="page-font text-xl mb-1">推し：</p>
+          <p class="page-font text-xl mb-1" @click="fetchBoth(mygenre)">推し：</p>
           <div class="flex flex-wrap justify-between">
             <p class="page-font" v-if="mygenreCharacters.length === 0">登録済みのジャンルリストからジャンルを選んでください。</p>
             <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded p-2">
@@ -62,8 +62,10 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapState, mapGetters } from "vuex"
 import axios from "../plugins/axios";
+import { createNamespacedHelpers } from 'vuex';
+const { mapMutations } = createNamespacedHelpers('mygenre')
 export default {
   name: "MypageHeader",
   data() {
@@ -71,23 +73,30 @@ export default {
       mygenres: [],
       mygenreFavoriteCharacters: [],
       mygenreCharacters:[],
+      myCharacters: [],
       user: ""
     }
   },
   computed: {
-    ...mapGetters("users", ["authUser"])
+    ...mapGetters("users", ["authUser"]),
+    ...mapGetters("mygenre", ["mygenre"]),
+    ...mapState("mygenre", ["mygenre"])
   },
   created() {
     this.fetchFavoriteCharacters();
     this.fetchUser();
     this.fetchMygenres();
+    this.displayCharacter();
+    this.fetchBoth(this.mygenre)
   },
   mounted() {
     this.fetchFavoriteCharacters();
     this.fetchUser();
-    this.fetchMygenres();
   },
   methods: {
+    ...mapMutations([
+      "loadMygenre"
+    ]),
     fetchFavoriteCharacters() {
       this.$axios.get("mypage")
         .then(res => {
@@ -115,6 +124,7 @@ export default {
         .catch(err => console.log(err.status));
     },
     fetchBoth: function (mygenre) {
+      this.loadMygenre(mygenre);
       this.displayCharacter(mygenre);
       this.handleMygenrePosts(mygenre);
     },

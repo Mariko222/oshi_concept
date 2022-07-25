@@ -72,7 +72,7 @@ export default {
     }
   },
   created() {
-    this.fetchplaceBoth()
+    this.fetchPlaceBoth()
   },
   methods: {
     fetchPlaceBoth: function (mygenre) {

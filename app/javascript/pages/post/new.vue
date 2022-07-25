@@ -88,14 +88,10 @@
 </template>
 
 <script>
-import MypageHeader from "../../components/MypageHeader"
 import { mapGetters } from "vuex"
 import axios from "../../plugins/axios";
 export default {
   name: "PostNew",
-  components: {
-    MypageHeader
-  },
   data() {
     return {
       post: {
