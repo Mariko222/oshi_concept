@@ -3,10 +3,10 @@
     <MypageHeader v-if="authUser" class="mb-auto" @mygenre-posts="handleMygenre"/>
     <div class="container mx-auto">
       <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
-        <button class="page-font btn btn" @click="all">ALL</button>
-        <button class="page-font btn btn-primary" @click="fashion">ファッション</button>
-        <button class="page-font btn btn-secondary" @click="item">雑貨</button>
-        <button class="page-font btn btn-accent" @click="place">場所（お店や建物）</button>
+        <button class="page-font btn btn" v-bind:class="{'active': isActive === '1'}" v-on:click="isSelect('1')" @click="all">ALL</button>
+        <button class="page-font btn btn" v-bind:class="{'active': isActive === '2'}" v-on:click="isSelect('2')" @click="fashion">ファッション</button>
+        <button class="page-font btn btn" v-bind:class="{'active': isActive === '3'}" v-on:click="isSelect('3')" @click="item">雑貨</button>
+        <button class="page-font btn btn" v-bind:class="{'active': isActive === '4'}" v-on:click="isSelect('4')" @click="place">場所（お店や建物）</button>
         <div v-if="isAll">
           <AllPosts @delete-post="handleDeletePost" :mygenre="mygenre" />
         </div>
@@ -46,11 +46,12 @@ export default {
   },
   data() {
     return {
-      isAll: true,
+      isAll: false,
       isFashion: false,
       isItem: false,
       isPlace: false,
-      mygenre: {}
+      mygenre: {},
+      isActive: '1'
     }
   },
   computed: {
@@ -102,11 +103,17 @@ export default {
         })
       })
     },
+    isSelect: function (num) {
+      this.isActive = num;
+    }
   },
 }
 </script>
 
 <style scoped>
+.active {
+  background-color: purple;
+}
 @import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 .page-font {
   font-family: 'Yomogi', cursive;

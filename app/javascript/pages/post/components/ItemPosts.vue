@@ -2,7 +2,7 @@
   <div>
     <h2 class="page-font text-gray-800 text-2xl lg:text-3xl font-bold mt-5 mb-5">雑貨</h2>
     <div class="w-full">
-      <div v-if="itemPosts.length == 0">
+      <div v-if="itemTweets.length == 0  && itemWebpages.length == 0">
         <p class="page-font">雑貨カテゴリの投稿がありません</p>
       </div>
       <div class="flex flex-wrap justify-between gap-4 mb-6">
