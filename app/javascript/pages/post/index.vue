@@ -1,7 +1,7 @@
 <template>
   <div>
-    <MypageHeader v-if="authUser" class="mb-auto" @mygenre-posts="handleMygenre"/>
-    <div class="container mx-auto">
+    <MypageHeader v-if="authUser" class="-mt-16" @mygenre-posts="handleMygenre"/>
+    <div class="container mx-auto mt-56">
       <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
         <button class="page-font btn btn" v-bind:class="{'active': isActive === '1'}" v-on:click="isSelect('1')" @click="all">ALL</button>
         <button class="page-font btn btn" v-bind:class="{'active': isActive === '2'}" v-on:click="isSelect('2')" @click="fashion">ファッション</button>

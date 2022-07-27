@@ -2,7 +2,7 @@
   <div class="w-full lg:block bg-violet-300 border shadow-sm sticky top-20 z-10">
     <div class="max-w-auto gap-8 p-4 pb-1">
       <div class="grid grid-cols-3">
-        <div class="icon mr-5 flex jflex flex-col flex justify-center items-center">
+        <div class="icon mt-10 mr-5 flex jflex flex-col flex justify-center items-center">
             <img :src="authUser.icon_url" class="rounded-full icon-image "/>
             <p class="page-font mt-5 mb-2 text-2xl">{{ user.name }}</p>
         </div>

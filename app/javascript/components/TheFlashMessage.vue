@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div class="z-1000 sticky">
+    <div class="fixed top-20 right-10 max-w-xs z-20 sticky">
       <div v-if="flash.type === 'success'">
         <div
           class="page-font border border-green-400 bg-green-100 px-4 py-3 text-green-700"
