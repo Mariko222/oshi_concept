@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :category, :type, :url, :created_at, :title, :image, :tweet_url
+  attributes :id, :mygenre_id, :category, :type, :url, :created_at, :title, :image, :tweet_url
 
   def tweet_url
     if object.type == 'twitter'

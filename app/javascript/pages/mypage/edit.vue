@@ -114,7 +114,7 @@ export default {
           type: "success",
           message: "マイページ編集しました。",
         });
-        this.$router.push({ name: "MypageIndex" })
+        this.$router.push({ name: "PostIndex" })
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
@@ -129,10 +129,6 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
-.page-font {
-  font-family: 'Yomogi', cursive;
-}
 .icon img {
   width:  150px;
   height: 150px;
