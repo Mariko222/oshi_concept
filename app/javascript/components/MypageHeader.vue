@@ -7,7 +7,7 @@
             <p class="page-font mt-5 mb-2 text-2xl">{{ user.name }}</p>
         </div>
         <div class="bg-violet-200 rounded-lg gap-2 md:p-5 mb-3">
-          <p class="page-font text-xl mb-1" @click="fetchBoth(mygenre)">推し：</p>
+          <p class="page-font text-xl mb-1">推し：</p>
           <div class="flex flex-wrap justify-between">
             <p class="page-font" v-if="mygenreCharacters.length === 0">登録済みのジャンルリストからジャンルを選んでください。</p>
             <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded p-2">
@@ -25,7 +25,7 @@
           </div>
             <ul class="flex flex-row justify-center items-center">
               <li>
-                <router-link :to="{ name: 'MypageNew' }" class="page-font btn bg-rose-500 hover:bg-rose-400 active:bg-rose-600 rounded-lg transition duration-100 mt-8 mr-3">ジャンルを追加</router-link>
+                <router-link :to="{ name: 'MypageNew' }" class="page-font btn bg-fuchsia-500 hover:bg-fuchsia-400 active:bg-fuchsia-600 rounded-lg transition duration-100 mt-8 mr-3">ジャンルを追加</router-link>
               </li>
               <li>
                 <button
