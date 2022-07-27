@@ -92,7 +92,7 @@ export default {
           type: "success",
           message: "概念を削除しました。",
         })
-        this.all()
+        this.$router.go({path: this.$router.currentRoute.path, force: true})
       })
       .catch((error) => {
         console.log(error);
