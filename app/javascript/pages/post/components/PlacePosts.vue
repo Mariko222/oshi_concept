@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h2 class="page-font text-gray-800 text-2xl lg:text-3xl font-bold mt-5 mb-5">場所（お店や建物）</h2>
-    <div class="w-full">
+    <div class="w-full mt-5">
       <div v-if="placeTweets.length == 0  && placeWebpages.length == 0">
         <p class="page-font">場所（お店や建物）カテゴリの投稿がありません</p>
       </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
+  <div class="mt-8 bg-purple-100 py-6 sm:py-8 lg:py-12">
     <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
       <h2 class="text-gray-800 text-2xl lg:text-3xl page-font text-center mb-4 md:mb-8">ジャンルを追加</h2>
       <ValidationObserver v-slot="ObserverProps">
@@ -17,6 +17,7 @@
                 }}</p>
               </div>
             </ValidationProvider>
+
             <div>
               <label for="character.name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">推し（複数選択可）：</label>
               <span class="page-font" v-if="!selectedCharacterNames.length == 0">{{ selectedCharacterNames }}</span>

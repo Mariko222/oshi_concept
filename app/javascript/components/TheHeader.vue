@@ -16,7 +16,7 @@
               <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
             </svg>
           </button>
-          <ul tabindex="0" class="dropdown-content menu p-2 drop-shadow-md bg-base-200 box w-52 text-neutral z-30">
+          <ul tabindex="0" class="dropdown-content menu p-2 drop-shadow-md bg-base-200 box w-52 text-neutral">
             <template v-if="!authUser">
               <li class="page-font"><router-link :to="{ name: 'LoginIndex' }">ログイン</router-link></li>
               <li class="page-font"><router-link :to="{ name: 'RegisterIndex' }">新規登録</router-link></li>
