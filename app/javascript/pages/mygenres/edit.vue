@@ -162,11 +162,11 @@ export default {
       try {
         await
         axios.delete(`mygenres/${mygenreCharacter.id}`)
+        this.$router.go({path: this.$router.currentRoute.path, force: true})
         this.$store.dispatch("setFlash", {
           type: "success",
           message: "推しから削除しました。",
         });
-        this.$router.push({ name: 'PostIndex' });
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
