@@ -1,15 +1,14 @@
 <template>
   <div>
-    <h2 class="page-font text-gray-800 text-2xl lg:text-3xl font-bold mt-5 mb-5">ファッション</h2>
-    <div class="w-full">
-      <div v-if="fashionPosts.length == 0">
+    <div class="w-full mt-5">
+      <div v-if="fashionTweets.length == 0  && fashionWebpages.length == 0">
         <p class="page-font">ファッションカテゴリの投稿がありません</p>
       </div>
       <div class="flex flex-wrap justify-between gap-4 mb-6">
         <div class="columns-2 md:columns-3 lg:columns-4">
           <div v-for="fashionTweet in fashionTweets">
             <div class="card bg-violet-400 px-2 py-2 -ml-2 mb-3">
-              <Tweet :id="fashionTweet.tweet_url"></Tweet>
+              <Tweet :id="fashionTweet.tweet_url"><div class="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div></Tweet>
                 <button type="button" @click="handleDeleteTweet(fashionTweet)">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-right" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -65,25 +64,50 @@ export default {
       fashionTweet: ''
     }
   },
-  created() {
-    this.fetchFashionPosts()
+  props: {
+    mygenre: {
+      type: Object,
+      required: true
+    }
   },
-  mounted() {
-    this.fetchFashionPosts();
+  created() {
+    this.fetchFashionBoth()
   },
   methods: {
-    fetchFashionPosts() {
+    fetchFashionBoth: function (mygenre) {
+      this.fashionTweets = [];
+      this.fashionWebpages = [];
+      this.fetchFashionTweets(mygenre);
+      this.fetchFashionWebpages(mygenre);
+    },
+    fetchFashionTweets(mygenre) {
       this.$axios.get("posts")
         .then(res => {
           this.posts = res.data
           this.fashionPosts = this.posts.filter(p =>{
             return p.category === "fashion"
           })
-          this.fashionWebpages = this.fashionPosts.filter(p =>{
-            return p.type === "webpage"
+          this.mygenreFashionPosts = this.fashionPosts.filter(p =>{
+            return p.mygenre_id === this.mygenre['id']
           })
-          this.fashionTweets = this.fashionPosts.filter(p =>{
+          this.fashionTweets = this.mygenreFashionPosts.filter(p =>{
             return p.type === "twitter"
+          })
+        })
+        .catch(err => console.log(err.status));
+    },
+    fetchFashionWebpages(mygenre) {
+      this.$axios.get("posts")
+        .then(res => {
+          this.posts = res.data
+          this.fashionPosts = this.posts.filter(p =>{
+            return p.category === "fashion"
+          })
+          this.mygenreFashionWabpages = this.fashionPosts.filter(p =>{
+            return p.mygenre_id === this.mygenre['id']
+          })
+          this.fashionWebpages = this.mygenreFashionWabpages.filter(p =>{
+            return p.type === "webpage"
           })
         })
         .catch(err => console.log(err.status));
@@ -101,8 +125,5 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
-.page-font {
-  font-family: 'Yomogi', cursive;
-}
+
 </style>

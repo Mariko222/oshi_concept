@@ -162,11 +162,11 @@ export default {
       try {
         await
         axios.delete(`mygenres/${mygenreCharacter.id}`)
+        this.$router.go({path: this.$router.currentRoute.path, force: true})
         this.$store.dispatch("setFlash", {
           type: "success",
           message: "推しから削除しました。",
         });
-        this.$router.push({ name: 'MypageIndex' });
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
@@ -188,7 +188,7 @@ export default {
           type: "success",
           message: "推しを変更しました。",
         });
-        this.$router.push({ name: 'MypageIndex' });
+        this.$router.push({ name: 'PostIndex' });
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
@@ -203,8 +203,5 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
-.page-font {
-  font-family: 'Yomogi', cursive;
-}
+
 </style>

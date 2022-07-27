@@ -5,7 +5,7 @@
     </div>
     <template v-if="authUser">
       <div class="navbar-center">
-        <p class="page-font text-2xl"><router-link :to="{ name: 'MypageIndex' }">{{ authUser.mypage_name }}</router-link></p>
+        <p class="page-font text-2xl"><router-link :to="{ name: 'PostIndex' }">{{ authUser.mypage_name }}</router-link></p>
       </div>
     </template>
     <div class="navbar-end">
@@ -16,7 +16,7 @@
               <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
             </svg>
           </button>
-          <ul tabindex="0" class="dropdown-content menu p-2 drop-shadow-md bg-base-200 box w-52 text-neutral z-30">
+          <ul tabindex="0" class="dropdown-content menu p-2 drop-shadow-md bg-base-200 box w-52 text-neutral">
             <template v-if="!authUser">
               <li class="page-font"><router-link :to="{ name: 'LoginIndex' }">ログイン</router-link></li>
               <li class="page-font"><router-link :to="{ name: 'RegisterIndex' }">新規登録</router-link></li>
@@ -75,8 +75,5 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
-.page-font {
-  font-family: 'Yomogi', cursive;
-}
+
 </style>

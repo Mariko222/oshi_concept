@@ -1,6 +1,5 @@
 <template>
   <div>
-    <MypageHeader v-if="authUser" class="mb-auto" />
     <div class="container mx-auto">
       <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
         <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
@@ -89,14 +88,10 @@
 </template>
 
 <script>
-import MypageHeader from "../../components/MypageHeader"
 import { mapGetters } from "vuex"
 import axios from "../../plugins/axios";
 export default {
   name: "PostNew",
-  components: {
-    MypageHeader
-  },
   data() {
     return {
       post: {
@@ -131,7 +126,7 @@ export default {
           type: "success",
           message: "概念投稿しました。",
         })
-        this.$router.push({ name: 'MypageIndex' });
+        this.$router.push({ name: 'PostIndex' });
       })
       .catch((error) => {
         console.log(error);
@@ -147,8 +142,5 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
-.page-font {
-  font-family: 'Yomogi', cursive;
-}
+
 </style>

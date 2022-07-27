@@ -2,7 +2,7 @@
   <div class="w-full lg:block bg-violet-300 border shadow-sm sticky top-20 z-10">
     <div class="max-w-auto gap-8 p-4 pb-1">
       <div class="grid grid-cols-3">
-        <div class="icon mr-5 flex jflex flex-col flex justify-center items-center">
+        <div class="icon mt-10 mr-5 flex jflex flex-col flex justify-center items-center">
             <img :src="authUser.icon_url" class="rounded-full icon-image "/>
             <p class="page-font mt-5 mb-2 text-2xl">{{ user.name }}</p>
         </div>
@@ -19,13 +19,13 @@
           <div class="flex jflex flex-col gap-2.5 flex justify-between items-center">
             <div class="flex flex-col gap-2">
               <div v-for="mygenre in mygenres" :key=" mygenre.id" class="bg-violet-300">
-                <button class="page-font text-white bg-violet-500 border rounded p-2" @click="displayCharacter(mygenre)">{{ mygenre.genre.name }}</button>
+                <button class="page-font text-white bg-violet-500 border rounded p-2" @click="fetchBoth(mygenre)">{{ mygenre.genre.name }}</button>
               </div>
             </div>
           </div>
             <ul class="flex flex-row justify-center items-center">
               <li>
-                <router-link :to="{ name: 'MypageNew' }" class="page-font btn bg-rose-500 hover:bg-rose-400 active:bg-rose-600 rounded-lg transition duration-100 mt-8 mr-3">ジャンルを追加</router-link>
+                <router-link :to="{ name: 'MypageNew' }" class="page-font btn bg-fuchsia-500 hover:bg-fuchsia-400 active:bg-fuchsia-600 rounded-lg transition duration-100 mt-8 mr-3">ジャンルを追加</router-link>
               </li>
               <li>
                 <button
@@ -62,8 +62,10 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapState, mapGetters } from "vuex"
 import axios from "../plugins/axios";
+import { createNamespacedHelpers } from 'vuex';
+const { mapMutations } = createNamespacedHelpers('mygenre')
 export default {
   name: "MypageHeader",
   data() {
@@ -71,23 +73,30 @@ export default {
       mygenres: [],
       mygenreFavoriteCharacters: [],
       mygenreCharacters:[],
+      myCharacters: [],
       user: ""
     }
   },
   computed: {
-    ...mapGetters("users", ["authUser"])
+    ...mapGetters("users", ["authUser"]),
+    ...mapGetters("mygenre", ["mygenre"]),
+    ...mapState("mygenre", ["mygenre"])
   },
   created() {
     this.fetchFavoriteCharacters();
     this.fetchUser();
     this.fetchMygenres();
+    this.displayCharacter();
+    this.fetchBoth(this.mygenre)
   },
   mounted() {
     this.fetchFavoriteCharacters();
     this.fetchUser();
-    this.fetchMygenres();
   },
   methods: {
+    ...mapMutations([
+      "loadMygenre"
+    ]),
     fetchFavoriteCharacters() {
       this.$axios.get("mypage")
         .then(res => {
@@ -97,7 +106,7 @@ export default {
               i['mygenre_id'] === item['mygenre_id']
             ) === index
           })
-          })
+        })
         .catch(err => console.log(err.status));
     },
     fetchMygenres() {
@@ -114,6 +123,11 @@ export default {
         })
         .catch(err => console.log(err.status));
     },
+    fetchBoth: function (mygenre) {
+      this.loadMygenre(mygenre);
+      this.displayCharacter(mygenre);
+      this.handleMygenrePosts(mygenre);
+    },
     displayCharacter(mygenre) {
       this.$axios.get("mypage")
         .then(res => {
@@ -121,19 +135,18 @@ export default {
           this.mygenreCharacters = this.mygenreFavoriteCharacters.filter(c =>{
             return c.mygenre['id'] === mygenre.id
           })
-          console.log(this.mygenreCharacters)
         })
         .catch(err => console.log(err.status));
+    },
+    handleMygenrePosts(mygenre) {
+      this.mygenre = mygenre
+      this.$emit('mygenre-posts', this.mygenre)
     }
   }
 }
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
-.page-font {
-  font-family: 'Yomogi', cursive;
-}
 .icon img {
   width:  120px;
   height: 120px;
