@@ -51,7 +51,7 @@ export default {
       isItem: false,
       isPlace: false,
       mygenre: {},
-      isActive: '1'
+      isActive: ''
     }
   },
   computed: {
@@ -84,6 +84,7 @@ export default {
     },
     handleMygenre(mygenre) {
       this.mygenre = mygenre
+      this.isAll = false
     },
     handleDeletePost(post) {
       this.$axios.delete(`posts/${post.id}`)
