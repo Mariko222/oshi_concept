@@ -31,9 +31,9 @@
 
         <div class="mb-4 sm:mb-10">
           <div class="w-full flex flex-col sm:flex-row sm:justify-center gap-2.5">
-            <router-link :to="{ name: 'LoginIndex' }" button class="page-font bg-white hover:bg-pink-700 active:bg-pink-600 btn btn-outline mr-5">ログイン</router-link>
-            <router-link :to="{ name: 'RegisterIndex' }" button class="page-font bg-white hover:bg-purple-700 active:bg-purple-600 btn btn-outline mr-5">新規作成</router-link>
-            <button class="page-font bg-white hover:bg-yellow-500 active:bg-yellow-400 btn btn-outline">ゲストログイン</button>
+            <router-link :to="{ name: 'LoginIndex' }" button class="page-font text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline mr-5">ログイン</router-link>
+            <router-link :to="{ name: 'RegisterIndex' }" button class="page-font text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline mr-5">新規作成</router-link>
+            <button class="page-font text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">ゲストログイン</button>
           </div>
         </div>
       </div>
