@@ -23,6 +23,7 @@ module OshiConcept
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.api_only = true
     config.middleware.use ActionDispatch::Flash
 
     # Configuration for the application, engines, and railties goes here.
@@ -45,5 +46,9 @@ module OshiConcept
       g.helper false
       g.test_framework false
     end
+
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.use ActionDispatch::ContentSecurityPolicy::Middleware
   end
 end
