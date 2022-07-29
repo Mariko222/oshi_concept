@@ -4,7 +4,7 @@
       <div class="grid grid-cols-3">
         <div class="icon mt-10 mr-5 flex jflex flex-col flex justify-center items-center">
             <img :src="authUser.icon_url" class="rounded-full icon-image "/>
-            <p class="page-font mt-5 mb-2 text-2xl">{{ user.name }}</p>
+            <p class="page-font mt-5 mb-2 text-2xl">{{ authUser.name }}</p>
         </div>
         <div class="bg-violet-200 rounded-lg gap-2 md:p-5 mb-3">
           <p class="page-font text-xl mb-1">推し：</p>

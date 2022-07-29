@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include Api::UserAuthenticator
   include ActionController::Cookies
 
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
   private
 
