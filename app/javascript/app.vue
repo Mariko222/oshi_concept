@@ -22,8 +22,10 @@ export default {
     TheFlashMessage,
   },
   computed: {
-    ...mapGetters(["isFlash"]),
-    ...mapGetters("users", ["authUser"])
-  }
+    ...mapGetters(["isFlash"])
+  },
+  mounted() {
+    axios.get("sessions");
+  },
 }
 </script>
