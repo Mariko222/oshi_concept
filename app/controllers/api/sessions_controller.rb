@@ -1,8 +1,8 @@
 class Api::SessionsController < ApplicationController
 
   def index
-    set_csrf_token
-    render json: {}, status: :ok
+    @user = User.find(current_user.id)
+    render json: @user
   end
 
   def create
