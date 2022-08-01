@@ -91,6 +91,7 @@
 
 <script>
 import axios from "../../plugins/axios";
+import { mapActions } from "vuex"
 export default {
   name: "RegisterIndex",
   data() {
@@ -105,24 +106,26 @@ export default {
     };
   },
   methods: {
-    register() {
-      axios
-        .post('users', { user: this.user })
-        .then(res => {
+    ...mapActions("users", [
+      "createUser",
+    ]),
+    async register() {
+      try {
+        await
+          this.createUser(this.user)
           this.$store.dispatch("setFlash", {
             type: "success",
             message: "登録しました。",
           });
           this.$router.push({ name: 'LoginIndex' });
+      } catch (error) {
+        console.log(error.response);
+        this.errorMessage = error.response.data.errors.detail;
+        this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "登録できませんでした。",
         })
-        .catch((error) => {
-          console.log(error.response);
-          this.errorMessage = error.response.data.errors.detail;
-          this.$store.dispatch("setFlash", {
-            type: "error",
-            message: "登録できませんでした。",
-          })
-        })
+      }
     },
   }
 }
