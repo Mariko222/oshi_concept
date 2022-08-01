@@ -4,7 +4,8 @@ class Api::UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      render json: user
+      token = user.create_tokens
+      render json: { token: token }
     else
       raise ActiveRecord::RecordNotFound, user.errors.full_messages
     end
