@@ -43,6 +43,9 @@ gem 'jwt_sessions'
 #seedファイル
 gem 'seed-fu', '~> 2.3'
 
+#画像ファイル
+gem "aws-sdk-s3", require: false
+
 #スクレイピング
 gem 'mechanize'
 gem 'active_model_serializers'
