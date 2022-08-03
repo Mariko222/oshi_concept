@@ -3,7 +3,7 @@
     <div class="max-w-auto gap-8 p-4 pb-1">
       <div class="grid grid-cols-3">
         <div class="icon mt-10 mr-5 flex jflex flex-col flex justify-center items-center">
-            <img :src="authUser.icon_url" class="rounded-full icon-image "/>
+            <img :src="authUser.icon_url" class="rounded-full icon-image"/>
             <p class="page-font mt-5 mb-2 text-2xl">{{ authUser.name }}</p>
         </div>
         <div class="bg-violet-200 rounded-lg gap-2 md:p-5 mb-3">
@@ -147,11 +147,5 @@ export default {
 </script>
 
 <style scoped>
-.icon img {
-  width:  120px;
-  height: 120px;
-  border-radius: 50%;
-  background-position: center center;
-  object-fit:cover;
-}
+
 </style>

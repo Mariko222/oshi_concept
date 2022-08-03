@@ -129,11 +129,5 @@ export default {
 </script>
 
 <style scoped>
-.icon img {
-  width:  150px;
-  height: 150px;
-  border-radius: 50%;
-  background-position: center center;
-  object-fit:cover;
-}
+
 </style>
