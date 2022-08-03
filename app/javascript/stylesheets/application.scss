@@ -6,3 +6,10 @@
 .page-font {
   font-family: 'Yomogi', cursive;
 }
+.icon img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-position: center center;
+  object-fit: cover;
+}
