@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full bg-violet-300 sticky top-20 z-10">
+  <div class="w-full h-50 bg-violet-300 sticky top-20 z-10">
     <div class="max-w-auto p-4 pb-1">
       <div class="grid grid-cols-3">
         <div class="icon sm:-pt-6 lg:-mt-8 pb-5 mr-5 flex jflex flex-col flex justify-center items-center">
