@@ -3,10 +3,12 @@
     <MypageHeader v-if="authUser" class="-mt-16" @mygenre-posts="handleMygenre"/>
     <div class="container mx-auto mt-56">
       <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
-        <button class="page-font btn btn" v-bind:class="{'active': isActive === '1'}" v-on:click="isSelect('1')" @click="all">ALL</button>
-        <button class="page-font btn btn" v-bind:class="{'active': isActive === '2'}" v-on:click="isSelect('2')" @click="fashion">ファッション</button>
-        <button class="page-font btn btn" v-bind:class="{'active': isActive === '3'}" v-on:click="isSelect('3')" @click="item">雑貨</button>
-        <button class="page-font btn btn" v-bind:class="{'active': isActive === '4'}" v-on:click="isSelect('4')" @click="place">場所（お店や建物）</button>
+        <div class="md:flex">
+          <div class="button page-font btn btn m-1" v-bind:class="{'active': isActive === '1'}" v-on:click="isSelect('1')" @click="all">ALL</div>
+          <div class="button page-font btn btn m-1" v-bind:class="{'active': isActive === '2'}" v-on:click="isSelect('2')" @click="fashion">ファッション</div>
+          <div class="button page-font btn btn m-1" v-bind:class="{'active': isActive === '3'}" v-on:click="isSelect('3')" @click="item">雑貨</div>
+          <div class="button page-font btn btn m-1" v-bind:class="{'active': isActive === '4'}" v-on:click="isSelect('4')" @click="place">場所（お店や建物）</div>
+        </div>
         <div v-if="isAll">
           <AllPosts @delete-post="handleDeletePost" :mygenre="mygenre" />
         </div>
@@ -19,7 +21,6 @@
         <div v-if="isPlace">
           <PlacePosts @delete-post="handleDeletePost" :mygenre="mygenre" />
         </div>
-      </div>
       </div>
     </div>
   </div>
