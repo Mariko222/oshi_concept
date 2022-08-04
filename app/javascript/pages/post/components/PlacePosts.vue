@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="w-full mt-5">
+    <div class="mt-5">
       <div v-if="placeTweets.length == 0  && placeWebpages.length == 0">
         <p class="page-font">場所（お店や建物）カテゴリの投稿がありません</p>
       </div>
       <div class="flex flex-wrap justify-between mx-12 my-3 lg:mx-3 lg:my-3">
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <div v-for="placeTweet in placeTweets">
             <div class="card bg-neutral px-2 py-2 m-3">
               <Tweet :id="placeTweet.tweet_url"><div class="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div></Tweet>

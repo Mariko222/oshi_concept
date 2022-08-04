@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="w-full mt-5">
+    <div class="mt-5">
       <div v-if="tweets.length == 0 && webpages.length == 0">
         <p class="page-font">投稿がありません</p>
       </div>
       <div class="flex flex-wrap justify-between mb-6">
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <div v-for="tweet in tweets">
             <div class="card bg-neutral px-2 py-2 mx-12 my-3 lg:mx-3 lg:my-3">
               <Tweet :id="tweet.tweet_url"><div class="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div></Tweet>
