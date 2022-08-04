@@ -6,7 +6,7 @@
           <img alt="icon" v-if="!authUser.icon_url" class="icon-image lg:mt-12 rounded-full" src="../../../public/img/default_icon.jpg">
           <img :src="authUser.icon_url" v-if="authUser.icon_url" class="rounded-full icon-image lg:mt-12"/>
           <router-link :to="{ name: 'MypageEdit' }" class="nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
               <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
               <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
             </svg>
@@ -41,10 +41,10 @@
           </ul>
         </div>
         <div>
-          <div class="bg-violet-200 my-auto -mt-2 mr-3 px-2 py-3 rounded-lg">
+          <div class="bg-violet-200 h-full -mt-3 mr-1 px-2 py-3 rounded-lg">
             <p class="page-font mb-1 text-sm"><span class="page-font">{{ authUser.name }}</span>の推し：</p>
             <router-link :to="{ name: 'MygenresEdit' }" class="nav-link">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                 <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
               </svg>
@@ -61,7 +61,7 @@
           <div class="flex">
             <p class="page-font text-sm mb-3 -mt-6"><span class="page-font text-sm">{{ authUser.name }}</span>のジャンルリスト:</p>
             <router-link :to="{ name: 'MypageNew' }" class="nav-link">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                 <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
               </svg>
