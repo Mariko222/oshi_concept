@@ -1,59 +1,77 @@
 <template>
-  <div class="w-full lg:block bg-violet-300 border shadow-sm sticky top-20 z-10">
-    <div class="max-w-auto gap-8 p-4 pb-1">
+  <div class="w-full h-48 bg-violet-300 sticky top-20 z-10">
+    <div class="max-w-auto h-auto p-4 pb-1">
       <div class="grid grid-cols-3">
-        <div class="icon mt-10 mr-5 flex jflex flex-col flex justify-center items-center">
-            <img :src="authUser.icon_url" class="rounded-full icon-image"/>
-            <p class="page-font mt-5 mb-2 text-2xl">{{ authUser.name }}</p>
+        <div class="icon sm:-pt-6 lg:-mt-12 pb-5 flex jflex flex-col flex justify-center items-center">
+          <img alt="icon" v-if="!authUser.icon_url" class="icon-image lg:mt-12 rounded-full" src="../../../public/img/default_icon.jpg">
+          <img :src="authUser.icon_url" v-if="authUser.icon_url" class="rounded-full icon-image lg:mt-12"/>
+          <router-link :to="{ name: 'MypageEdit' }" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+              <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+            </svg>
+          </router-link>
+          <ul class="justify-center items-center md:flex">
+            <li>
+              <button
+                class="page-font text-sm flex justify-center bg-twitter hover:bg-sky-400 active:bg-sky-500 text-white font-semibold text-center rounded-full transition duration-100 gap-2 mt-3 px-2 py-2"
+              >
+                <svg class="w-5 h-5 shrink-0" width="24" height="24" viewBox="328 355 335 276" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="
+                    M 630, 425
+                    A 195, 195 0 0 1 331, 600
+                    A 142, 142 0 0 0 428, 570
+                    A  70,  70 0 0 1 370, 523
+                    A  70,  70 0 0 0 401, 521
+                    A  70,  70 0 0 1 344, 455
+                    A  70,  70 0 0 0 372, 460
+                    A  70,  70 0 0 1 354, 370
+                    A 195, 195 0 0 0 495, 442
+                    A  67,  67 0 0 1 611, 380
+                    A 117, 117 0 0 0 654, 363
+                    A  65,  65 0 0 1 623, 401
+                    A 117, 117 0 0 0 662, 390
+                    A  65,  65 0 0 1 630, 425
+                    Z"
+                    fill="white" />
+                </svg>
+                共有する
+              </button>
+            </li>
+          </ul>
         </div>
-        <div class="bg-violet-200 rounded-lg gap-2 md:p-5 mb-3">
-          <p class="page-font text-xl mb-1">推し：</p>
-          <div class="flex flex-wrap justify-between">
-            <p class="page-font" v-if="mygenreCharacters.length === 0">登録済みのジャンルリストからジャンルを選んでください。</p>
-            <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded p-2">
-              <li class="page-font">{{ mygenreCharacter.character.name }}</li>
-            </ul>
-          </div>
-        </div>
-        <div class="border-l-2 ml-5 mb-3 border-violet-500 ...">
-          <div class="flex jflex flex-col gap-2.5 flex justify-between items-center">
-            <div class="flex flex-col gap-2">
-              <div v-for="mygenre in mygenres" :key=" mygenre.id" class="bg-violet-300">
-                <button class="page-font text-white bg-violet-500 border rounded p-2" @click="fetchBoth(mygenre)">{{ mygenre.genre.name }}</button>
-              </div>
+        <div>
+          <div class="bg-violet-200 h-full -mt-3 mr-1 px-2 py-3 rounded-lg">
+            <p class="page-font mb-1 text-sm lg:text-base"><span class="page-font">{{ authUser.name }}</span>の推し：</p>
+            <router-link :to="{ name: 'MygenresEdit' }" class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+              </svg>
+            </router-link>
+            <div class="flex flex-wrap justify-between">
+              <p class="page-font text-sm lg:text-base" v-if="mygenreCharacters.length === 0">登録したジャンルを選んでください。</p>
+              <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded p-2">
+                <li class="page-font text-sm lg:text-xl">{{ mygenreCharacter.character.name }}</li>
+              </ul>
             </div>
           </div>
-            <ul class="flex flex-row justify-center items-center">
-              <li>
-                <router-link :to="{ name: 'MypageNew' }" class="page-font btn bg-fuchsia-500 hover:bg-fuchsia-400 active:bg-fuchsia-600 rounded-lg transition duration-100 mt-8 mr-3">ジャンルを追加</router-link>
-              </li>
-              <li>
-                <button
-                  class="page-font flex justify-center bg-twitter hover:bg-sky-400 active:bg-sky-500 text-white font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 mt-8 px-2 py-3"
-                >
-                  <svg class="w-5 h-5 shrink-0" width="24" height="24" viewBox="328 355 335 276" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="
-                      M 630, 425
-                      A 195, 195 0 0 1 331, 600
-                      A 142, 142 0 0 0 428, 570
-                      A  70,  70 0 0 1 370, 523
-                      A  70,  70 0 0 0 401, 521
-                      A  70,  70 0 0 1 344, 455
-                      A  70,  70 0 0 0 372, 460
-                      A  70,  70 0 0 1 354, 370
-                      A 195, 195 0 0 0 495, 442
-                      A  67,  67 0 0 1 611, 380
-                      A 117, 117 0 0 0 654, 363
-                      A  65,  65 0 0 1 623, 401
-                      A 117, 117 0 0 0 662, 390
-                      A  65,  65 0 0 1 630, 425
-                      Z"
-                      fill="white" />
-                  </svg>
-                  Twitterで共有
-                </button>
-              </li>
-            </ul>
+        </div>
+        <div class="flex flex-col my-auto items-center">
+          <div class="flex">
+            <p class="page-font text-sm lg:text-base mb-3 -mt-6"><span class="page-font text-sm lg:text-base">{{ authUser.name }}</span>のジャンルリスト:</p>
+            <router-link :to="{ name: 'MypageNew' }" class="nav-link">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+              </svg>
+            </router-link>
+          </div>
+          <p class="page-font text-sm lg:text-base" v-if="mygenres.length === 0">ジャンルを追加してください</p>
+          <div class="flex flex-col flex justify-between items-center">
+            <div v-for="mygenre in mygenres" :key="mygenre.id">
+              <button class="page-font text-white text-sm lg:text-base bg-indigo-500 border rounded-full p-2" @click="fetchBoth(mygenre)">{{ mygenre.genre.name }}</button>
+            </div>
           </div>
         </div>
       </div>

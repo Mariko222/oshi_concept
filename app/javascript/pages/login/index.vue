@@ -28,7 +28,7 @@
 
             <button
               type="button"
-              class="page-font block bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"
+              class="page-font block bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-full outline-none transition duration-100 px-8 py-3"
               :disabled="ObserverProps.invalid || !ObserverProps.validated"
               @click="login"
             >
@@ -40,7 +40,7 @@
               <span class="page-font bg-purple-100 text-gray-400 text-sm relative px-4">or</span>
             </div>
             <button
-              class="page-font flex justify-center items-center bg-twitter hover:bg-sky-400 active:bg-sky-500 focus-visible:ring ring-blue-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 gap-2 px-8 py-3"
+              class="page-font flex justify-center items-center bg-twitter hover:bg-sky-400 active:bg-sky-500 focus-visible:ring ring-blue-300 text-white text-sm md:text-base font-semibold text-center rounded-full outline-none transition duration-100 gap-2 px-8 py-3"
             >
               <svg class="w-5 h-5 shrink-0" width="24" height="24" viewBox="328 355 335 276" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="
