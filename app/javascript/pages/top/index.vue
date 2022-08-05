@@ -9,12 +9,12 @@
             <div class="bg-gray-100 rounded-lg shadow-lg grid md:grid-cols-2 gap-8 lg:gap-12 mt-10 mb-10">
               <div>
                 <div class="h-80 md:h-auto overflow-hidden rounded-lg">
-                  <img img src="../../../../public/img/mypage.jpg" loading="lazy" alt="mypage-top" class="ml-2 pr-2 my-10" />
+                  <img img src="../../../../public/img/mypage.jpg" loading="lazy" alt="mypage-top" class="pl-2 pr-2 my-10" />
                 </div>
               </div>
-              <div class="md:pt-10 pr-8">
-                <h2 class="page-font text-gray-800 text-1xl sm:text-2xl md:text-3xl text-center mb-4 md:mb-6">“推し概念集めてみた”を使うと、</h2>
-                <p class="page-font text-gray-800 text-center mb-4 md:mb-6">ジャンルと推しを選んで概念ツイートやサイトのURLを保存して、自分が”概念”と思ったものをひたすら集めてオリジナルのマイページを作成できる</p>
+              <div class="text-center md:pt-10 pr-8">
+                <h2 class="page-font text-gray-800 mb-4">“推し概念集めてみた”を使うと、</h2>
+                <p class="page-font text-gray-800 mb-4 ml-3">ジャンルと推しを選んで概念ツイートやサイトのURLを保存して、自分が”概念”と思ったものをひたすら集めてオリジナルのマイページを作成できる</p>
               </div>
             </div>
             <div class="text-gray-500 xl:text-lg leading-relaxed mb-8 md:mb-12">
@@ -31,9 +31,9 @@
 
         <div class="mb-4 sm:mb-10">
           <div class="w-full flex flex-col sm:flex-row sm:justify-center gap-2.5">
-            <router-link :to="{ name: 'LoginIndex' }" button class="page-font text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline mr-5">ログイン</router-link>
-            <router-link :to="{ name: 'RegisterIndex' }" button class="page-font text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline mr-5">新規作成</router-link>
-            <button class="page-font text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">ゲストログイン</button>
+            <router-link :to="{ name: 'LoginIndex' }" button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">ログイン</router-link>
+            <router-link :to="{ name: 'RegisterIndex' }" button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">新規作成</router-link>
+            <button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">ゲストログイン</button>
           </div>
         </div>
       </div>
