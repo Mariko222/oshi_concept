@@ -4,10 +4,10 @@
     <div class="container mx-auto mt-56">
       <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
         <div class="md:flex">
-          <div class="button page-font btn btn m-1" v-bind:class="{'active': isActive === '1'}" v-on:click="isSelect('1')" @click="all">ALL</div>
-          <div class="button page-font btn btn m-1" v-bind:class="{'active': isActive === '2'}" v-on:click="isSelect('2')" @click="fashion">ファッション</div>
-          <div class="button page-font btn btn m-1" v-bind:class="{'active': isActive === '3'}" v-on:click="isSelect('3')" @click="item">雑貨</div>
-          <div class="button page-font btn btn m-1" v-bind:class="{'active': isActive === '4'}" v-on:click="isSelect('4')" @click="place">場所（お店や建物）</div>
+          <div class="page-font btn m-1 rounded-full" v-bind:class="{'active': isActive === '1'}" v-on:click="isSelect('1')" @click="all">ALL</div>
+          <div class="page-font btn m-1 rounded-full" v-bind:class="{'active': isActive === '2'}" v-on:click="isSelect('2')" @click="fashion">ファッション</div>
+          <div class="page-font btn m-1 rounded-full" v-bind:class="{'active': isActive === '3'}" v-on:click="isSelect('3')" @click="item">雑貨</div>
+          <div class="page-font btn m-1 rounded-full" v-bind:class="{'active': isActive === '4'}" v-on:click="isSelect('4')" @click="place">場所（お店や建物）</div>
         </div>
         <div v-if="isAll">
           <AllPosts @delete-post="handleDeletePost" :mygenre="mygenre" />
