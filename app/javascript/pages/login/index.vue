@@ -28,7 +28,7 @@
 
             <button
               type="button"
-              class="page-font block bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-full outline-none transition duration-100 px-8 py-3"
+              class="page-font block bg-yellow-700 hover:bg-yellow-800 disabled:bg-gray-300 active:bg-yellow-900 focus-visible:ring ring-gray-300 text-white text-sm md:text-base font-semibold text-center rounded-full outline-none transition duration-100 px-8 py-3"
               :disabled="ObserverProps.invalid || !ObserverProps.validated"
               @click="login"
             >

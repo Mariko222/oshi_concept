@@ -71,7 +71,7 @@
 
                 <button
                   type="button"
-                  class="page-font bg-gray-800 hover:bg-gray-700 disabled:bg-gray-400 active:bg-gray-600 text-white font-semibold text-center rounded-full outline-none transition duration-100 py-3 mx-20"
+                  class="page-font bg-yellow-700 hover:bg-yellow-800 disabled:bg-gray-300 active:bg-yellow-900 text-white font-semibold text-center rounded-full outline-none transition duration-100 py-3 mx-20"
                   :disabled="ObserverProps.invalid || !ObserverProps.validated"
                   @click="handleCreatePost"
                 >

@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer items-center p-4 bg-neutral text-neutral-content">
+  <footer class="footer items-center p-4 bg-yellow-900 text-neutral-content">
     <div class="items-center grid-flow-col">
       <p>© 2022. Oshi-Concept - All right reserved</p>
     </div>
