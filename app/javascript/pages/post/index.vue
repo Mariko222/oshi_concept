@@ -2,12 +2,19 @@
   <div>
     <MypageHeader v-if="authUser" class="-mt-16" @mygenre-posts="handleMygenre"/>
     <div class="container mx-auto mt-56">
+      <router-link :to="{ name: 'PostNew' }" class="btn px-2 py-1 bg-purple-100 text-indigo-500 border border-indigo-500 font-semibold hover:bg-indigo-200 rounded-full ">
+        <span>投稿する</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
+          <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+          <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+        </svg>
+      </router-link>
       <div class="bg-purple-100 py-6 sm:py-8 lg:py-12">
         <div class="md:flex">
-          <div class="page-font btn m-1 rounded-full" v-bind:class="{'active': isActive === '1'}" v-on:click="isSelect('1')" @click="all">ALL</div>
-          <div class="page-font btn m-1 rounded-full" v-bind:class="{'active': isActive === '2'}" v-on:click="isSelect('2')" @click="fashion">ファッション</div>
-          <div class="page-font btn m-1 rounded-full" v-bind:class="{'active': isActive === '3'}" v-on:click="isSelect('3')" @click="item">雑貨</div>
-          <div class="page-font btn m-1 rounded-full" v-bind:class="{'active': isActive === '4'}" v-on:click="isSelect('4')" @click="place">場所（お店や建物）</div>
+          <div class="page-font btn m-1 bg-purple-500 hover:bg-purple-600 rounded-full" v-bind:class="{'active': isActive === '1'}" v-on:click="isSelect('1')" @click="all">ALL</div>
+          <div class="page-font btn m-1 bg-purple-500 hover:bg-purple-600 rounded-full" v-bind:class="{'active': isActive === '2'}" v-on:click="isSelect('2')" @click="fashion">ファッション</div>
+          <div class="page-font btn m-1 bg-purple-500 hover:bg-purple-600 rounded-full" v-bind:class="{'active': isActive === '3'}" v-on:click="isSelect('3')" @click="item">雑貨</div>
+          <div class="page-font btn m-1 bg-purple-500 hover:bg-purple-600 rounded-full" v-bind:class="{'active': isActive === '4'}" v-on:click="isSelect('4')" @click="place">場所（お店や建物）</div>
         </div>
         <div v-if="isAll">
           <AllPosts @delete-post="handleDeletePost" :mygenre="mygenre" />
