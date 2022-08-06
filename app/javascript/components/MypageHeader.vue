@@ -58,20 +58,16 @@
           </div>
         </div>
         <div class="flex flex-col my-auto items-center">
+          <p class="page-font text-xs lg:text-base mb-3 -mt-6"><span class="page-font text-xs lg:text-base">{{ authUser.name }}</span>のジャンルリスト:</p>
           <div class="flex">
-            <p class="page-font text-xs lg:text-base mb-3 -mt-6"><span class="page-font text-xs lg:text-base">{{ authUser.name }}</span>のジャンルリスト:</p>
+            <p class="page-font text-xs lg:text-base mr-3 -mt-1" v-if="mygenres.length === 0">ジャンルを追加してください</p>
             <router-link :to="{ name: 'MypageNew' }" class="nav-link">
-              <button
-                class="w-5 h-5 bg-purple-700 rounded-full hover:bg-purple-800 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none">
-                <svg viewBox="0 0 20 30" enable-background="new 0 0 20 20" class="w-5 h-5 inline-block">
-                  <path fill="#FFFFFF" d="M16,10c0,0.553-0.048,1-0.601,1H11v4.399C11,15.951,10.553,16,10,16c-0.553,0-1-0.049-1-0.601V11H4.601
-                                          C4.049,11,4,10.553,4,10c0-0.553,0.049-1,0.601-1H9V4.601C9,4.048,9.447,4,10,4c0.553,0,1,0.048,1,0.601V9h4.399
-                                          C15.952,9,16,9.447,16,10z" />
-                </svg>
-              </button>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+              </svg>
             </router-link>
           </div>
-          <p class="page-font text-xs lg:text-base" v-if="mygenres.length === 0">ジャンルを追加してください</p>
           <div class="flex flex-col flex justify-between items-center">
             <div v-for="mygenre in mygenres" :key="mygenre.id">
               <button class="page-font text-white text-xs lg:text-base bg-indigo-500 border rounded-full p-2" @click="fetchBoth(mygenre)">{{ mygenre.genre.name }}</button>
