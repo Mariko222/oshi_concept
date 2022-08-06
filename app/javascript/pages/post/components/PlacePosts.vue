@@ -4,10 +4,10 @@
       <div v-if="placeTweets.length == 0  && placeWebpages.length == 0">
         <p class="page-font">場所（お店や建物）カテゴリの投稿がありません</p>
       </div>
-      <div class="flex flex-wrap justify-between mx-12 my-3 lg:mx-3 lg:my-3">
+      <div class="flex flex-wrap justify-between mb-6">
         <div class="w-full grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           <div v-for="placeTweet in placeTweets">
-            <div class="card bg-neutral px-2 py-2 m-3">
+            <div class="card bg-neutral px-2 py-2 mx-12 my-3 lg:mx-3 lg:my-3">
               <Tweet :id="placeTweet.tweet_url"><div class="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div></Tweet>
                 <button type="button" @click="handleDeleteTweet(placeTweet)">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-right text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
