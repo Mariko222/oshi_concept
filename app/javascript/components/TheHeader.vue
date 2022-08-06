@@ -10,33 +10,8 @@
     </template>
     <div class="navbar-end">
       <div class="flex-none">
-        <div class="dropdown dropdown-end">
-          <button class="btn btn-square btn-ghost" tabindex="0">
-            <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
-              <path d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z"/>
-            </svg>
-          </button>
-          <ul tabindex="0" class="dropdown-content menu p-2 drop-shadow-md bg-base-200 box w-52 text-neutral">
-            <template v-if="!authUser">
-              <li class="page-font"><router-link :to="{ name: 'LoginIndex' }">ログイン</router-link></li>
-              <li class="page-font"><router-link :to="{ name: 'RegisterIndex' }">新規登録</router-link></li>
-              <li class="page-font"><a>ゲストログイン</a></li>
-            </template>
-            <template v-else>
-              <li class="page-font">
-                <router-link :to="{ name: 'MypageEdit' }" class="nav-link">マイページ編集</router-link>
-              </li>
-              <li class="page-font">
-                <router-link :to="{ name: 'MygenresEdit' }" class="nav-link">推しを変更</router-link>
-              </li>
-              <li class="page-font">
-                <router-link :to="{ name: 'PostNew' }" class="nav-link">概念を追加</router-link>
-              </li>
-              <li class="page-font">
-                <router-link to="#" class="nav-link" @click.native="handleLogout">ログアウト</router-link>
-              </li>
-            </template>
-          </ul>
+        <div v-if="authUser" class="dropdown dropdown-end">
+          <router-link to="#" class="nav-link page-font" @click.native="handleLogout">ログアウト</router-link>
         </div>
       </div>
     </div>
