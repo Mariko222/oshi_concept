@@ -1,7 +1,7 @@
 <template>
   <div class="navbar bg-yellow-900 h-20 mx-auto flex justify-between items-center text-neutral-content sticky top-0 z-20">
     <div class="navbar-start">
-      <p class="page-font"><router-link :to="{ name: 'TopIndex' }">推し概念集めてみた</router-link></p>
+      <p class="page-font text-xs lg:text-base"><router-link :to="{ name: 'TopIndex' }">推し概念集めてみた</router-link></p>
     </div>
     <template v-if="authUser">
       <div class="navbar-center">
@@ -11,10 +11,10 @@
     <div class="navbar-end">
       <div class="flex-none">
         <div v-if="authUser" class="dropdown dropdown-end">
-          <router-link to="#" class="nav-link page-font" @click.native="handleLogout">ログアウト</router-link>
+          <router-link to="#" class="nav-link page-font text-xs lg:text-base" @click.native="handleLogout">ログアウト</router-link>
         </div>
         <div v-else>
-          <router-link :to="{ name: 'LoginIndex' }">ログイン</router-link>
+          <router-link :to="{ name: 'LoginIndex' }" class="page-font text-xs lg:text-base">ログイン</router-link>
         </div>
       </div>
     </div>
