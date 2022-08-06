@@ -8,7 +8,7 @@
             <ValidationProvider name="ジャンル" rules="required" :skip-if-empty="false">
               <div slot-scope="ProviderProps">
                 <label for="genre_name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
-                <select id="genre_id" name="genre" v-model="selectedGenre" class="page-font input-form-basic-block" @change="fetchCharacters(selectedGenre)" >
+                <select id="genre_id" name="genre" v-model="selectedGenre" class="page-font input-form-basic-block w-full" @change="fetchCharacters(selectedGenre)" >
                   <option disabled value="">ジャンルを選択</option>
                   <option v-for="genre in genres" :value="genre.id">{{ genre.name }}</option>
                 </select>
@@ -51,8 +51,8 @@
             </svg>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </span>
-          <span class="page-font absolute flex items-center justify-center text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">マイページ</span>
-          <span class="page-font relative invisible">マイページ</span>
+          <span class="page-font absolute flex items-center justify-center text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">マイページへ</span>
+          <span class="page-font relative invisible">マイページへ</span>
         </div>
       </router-link>
     </div>
