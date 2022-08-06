@@ -120,7 +120,5 @@ export default {
 </script>
 
 <style scoped>
-.active {
-  background-color: purple;
-}
+
 </style>
