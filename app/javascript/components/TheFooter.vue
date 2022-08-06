@@ -1,9 +1,9 @@
 <template>
-  <footer class="footer items-center p-4 bg-yellow-900 text-neutral-content">
-    <div class="items-center grid-flow-col">
-      <p>© 2022. Oshi-Concept - All right reserved</p>
+  <footer class="footer flex justify-between items-center p-4 bg-yellow-900 text-neutral-content">
+    <div class="page-font text-xs lg:text-base">
+      <p>© 2022. Oshi-Concept</p>
     </div>
-    <div class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+    <div class="text-xs lg:text-base grid-flow-col gap-4 md:place-self-center md:justify-self-end lg:justify-self-end">
       <a class="page-font" href="#">利用規約</a>
       <a class="page-font" href="#">プライバシーポリシー</a>
       <a class="page-font" href="#">お問合わせ</a>
