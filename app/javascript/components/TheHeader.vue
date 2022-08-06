@@ -13,6 +13,9 @@
         <div v-if="authUser" class="dropdown dropdown-end">
           <router-link to="#" class="nav-link page-font" @click.native="handleLogout">ログアウト</router-link>
         </div>
+        <div v-else>
+          <router-link :to="{ name: 'LoginIndex' }">ログイン</router-link>
+        </div>
       </div>
     </div>
   </div>
