@@ -10,7 +10,7 @@
                 <ValidationProvider name="ジャンル" rules="required" :skip-if-empty="false">
                   <div slot-scope="ProviderProps">
                     <label for="genre_name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">ジャンル：</label>
-                    <select id="genre_id" name="genre" v-model="post.mygenre_id" class="page-font input-form-basic-block" >
+                    <select id="genre_id" name="genre" v-model="post.mygenre_id" class="page-font input-form-basic-block w-full" >
                       <option disabled value="">ジャンルを選択</option>
                       <option v-for="mygenre in mygenres" :value="mygenre.id">{{ mygenre.genre.name }}</option>
                     </select>
