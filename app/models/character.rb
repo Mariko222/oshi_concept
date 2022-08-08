@@ -20,6 +20,7 @@
 class Character < ApplicationRecord
   belongs_to :genre
   has_many :mygenre_favorite_characters
+  has_many :mygenres, through: :mygenre_favorite_characters
 
   validates :name, presence: true, uniqueness: { scope: :genre }
 end

@@ -27,4 +27,5 @@ class Mygenre < ApplicationRecord
   has_many :posts, dependent: :destroy
 
   validates :user_id, uniqueness: { scope: :genre_id }
+  validates :mygenre_favorite_characters, length: { maximum: 4 }
 end
