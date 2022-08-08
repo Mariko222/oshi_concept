@@ -49,6 +49,7 @@
             >
               登録
             </button>
+            <p class="page-font text-indigo-500 font-semibold mb-1">※推しは4人まで登録できます。</p>
           </div>
         </form>
       </ValidationObserver>
