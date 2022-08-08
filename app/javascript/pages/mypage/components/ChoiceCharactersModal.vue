@@ -38,8 +38,9 @@
           <hr class="my-2" />
         </div>
         <div
-          class="modal-footer flex justify-end mb-2"
+          class="modal-footer flex justify-between mb-2"
         >
+          <p class="page-font text-indigo-500 font-semibold mb-1">※推しは4人まで登録できます。</p>
           <button
             type="button"
             class="page-font bg-purple-500 hover:bg-purple-600 disabled:bg-purple-400 active:bg-purple-400 focus-visible:ring ring-purple-300 text-white text-center rounded-full outline-none transition duration-100 px-4 py-2 mx-3"
