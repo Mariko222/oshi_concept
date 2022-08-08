@@ -44,7 +44,7 @@
             type="button"
             class="page-font bg-purple-500 hover:bg-purple-600 disabled:bg-purple-400 active:bg-purple-400 focus-visible:ring ring-purple-300 text-white text-center rounded-full outline-none transition duration-100 px-4 py-2 mx-3"
             @click="handleChoiceCharacters"
-            :disabled="!selectedCharacters"
+            :disabled="selectedCharacters.length > 4 || selectedCharacters.length == 0"
           >
             追加
           </button>
@@ -72,7 +72,7 @@ export default {
   },
   computed: {
     selectedCharactersLists: function () {
-      return this.selectedCharacters;
+      if(this.selectedCharacters.length < 5) return this.selectedCharacters;
     }
   },
   methods: {

@@ -35,7 +35,7 @@
               <button
               type="button"
               @click="handleOpenChoiceCharactersModal"
-              :disabled="ObserverProps.invalid || !ObserverProps.validated"
+              :disabled="ObserverProps.invalid || !ObserverProps.validated || mygenreCharacters.length == 4"
               class="page-font block bg-indigo-800 hover:bg-indigo-700 disabled:bg-indigo-400 active:bg-indigo-600 text-white text-center rounded-full outline-none transition duration-100 px-3 py-2"
               >
                 推しを追加
@@ -195,12 +195,18 @@ export default {
           genre_id: this.selectedGenre,
           character_ids: this.selectedCharacters,
         }
-        this.$axios.post("mygenres", params)
+        if(this.selectedCharacters.length + this.mygenreCharacters.length < 5) {
+          this.$axios.post("mygenres", params)
+          this.$store.dispatch("setFlash", {
+            type: "success",
+            message: "推しを変更しました。",
+          });
+          this.$router.push({ name: 'PostIndex' });
+        }else{
         this.$store.dispatch("setFlash", {
-          type: "success",
-          message: "推しを変更しました。",
-        });
-        this.$router.push({ name: 'PostIndex' });
+          type: "error",
+          message: "推しの登録は４人以下にしてください。",
+        })}
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
