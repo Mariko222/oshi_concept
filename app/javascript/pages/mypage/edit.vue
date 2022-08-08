@@ -5,7 +5,7 @@
       <ValidationObserver v-slot="ObserverProps">
         <form class="bg-white max-w-lg border rounded-lg mx-auto">
           <div class="flex flex-col gap-4 p-4 md:p-8">
-            <ValidationProvider name="ユーザーネーム" rules="required|max:50">
+            <ValidationProvider name="ユーザーネーム" rules="required|max:10">
               <div slot-scope="ProviderProps">
               <label for="name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">ユーザーネーム：</label>
               <input id="name" type="text" v-model="user.name" class="w-full page-font bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
@@ -15,7 +15,7 @@
               </div>
             </ValidationProvider>
 
-            <ValidationProvider name="マイページ名" rules="max:50">
+            <ValidationProvider name="マイページ名" rules="max:10">
               <div slot-scope="ProviderProps">
               <label for="mypage_name" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">マイページ名：</label>
               <input id="mypage_name" type="text" v-model="user.mypage_name" class="w-full page-font bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
