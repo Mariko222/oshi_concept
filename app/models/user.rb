@@ -30,8 +30,8 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
   validates :email, presence: true, uniqueness: true
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :mypage_name, length: { maximum: 50 }
+  validates :name, presence: true, length: { maximum: 10 }
+  validates :mypage_name, length: { maximum: 10 }
 
   def icon_url
     icon.attached? ? Rails.application.routes.url_helpers.rails_blob_path(icon, only_path: true) : nil

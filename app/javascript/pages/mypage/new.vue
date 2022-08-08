@@ -40,6 +40,7 @@
               登録
             </button>
             <span class="page-font text-red-500 text-center">{{ errorMessage }}</span>
+            <p class="page-font text-indigo-500 font-semibold mb-1">※推しは4人まで登録できます。</p>
           </div>
         </form>
       </ValidationObserver>
