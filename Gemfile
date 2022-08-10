@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'dotenv-rails'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+gem 'config'
 
 #mail
 gem 'net-smtp'
