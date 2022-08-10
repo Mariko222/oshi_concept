@@ -10,6 +10,7 @@
 #  salt             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  twitter_id       :string
 #
 # Indexes
 #
@@ -22,6 +23,8 @@ class User < ApplicationRecord
   has_many :mygenres, dependent: :destroy
   has_many :mygenre_lists, through: :mygenres, source: :genre
   has_many :posts, through: :mygenres
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
 
   has_one_attached :icon
 
