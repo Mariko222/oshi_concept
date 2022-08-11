@@ -4,7 +4,7 @@
 #
 #  id               :bigint           not null, primary key
 #  crypted_password :string
-#  email            :string           not null
+#  email            :string
 #  mypage_name      :string
 #  name             :string           not null
 #  salt             :string
@@ -32,7 +32,7 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
-  validates :email, presence: true, uniqueness: true
+  validates :email, uniqueness: true
   validates :name, presence: true, length: { maximum: 10 }
   validates :mypage_name, length: { maximum: 10 }
 
