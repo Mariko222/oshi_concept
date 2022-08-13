@@ -10,7 +10,6 @@ class Api::OauthsController < ApplicationController
 
   def callback
     user_hash = TwitterApiClient.new(auth_params[:oauth_token], auth_params[:oauth_verifier]).access_token
-    binding.pry
     if @user = User.find_by(twitter_id: user_hash["user_id"])
       token = @user.authentications.find_by(provider: auth_params[:provider])
       auto_login(@user) if token.decrypt_access_token_and_login?(user_hash)
