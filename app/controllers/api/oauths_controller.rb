@@ -9,7 +9,6 @@ class Api::OauthsController < ApplicationController
   end
 
   def callback
-    binding.pry
     user_hash = TwitterApiClient.new(auth_params[:oauth_token], auth_params[:oauth_verifier]).access_token
     binding.pry
     if @user = User.find_by(twitter_id: user_hash["user_id"])
