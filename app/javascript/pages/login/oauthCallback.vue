@@ -21,6 +21,7 @@ export default {
         message: "ログインしました",
       });
     } catch (error) {
+      console.log(error)
       this.$store.dispatch("setFlash", {
         type: "error",
         message: "ログインに失敗しました。",
