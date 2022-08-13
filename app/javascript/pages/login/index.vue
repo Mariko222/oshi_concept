@@ -72,6 +72,7 @@
 </template>
 
 <script>
+import axios from "../../plugins/axios";
 import { mapActions } from "vuex";
 
 export default {
@@ -82,7 +83,7 @@ export default {
         email: "",
         password: "",
       },
-      errorMessage: "",
+      errorMessage: ""
     };
   },
   methods: {
