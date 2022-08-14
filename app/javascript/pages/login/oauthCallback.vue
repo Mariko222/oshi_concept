@@ -15,8 +15,8 @@ export default {
         oauth_token: this.$route.query.oauth_token,
         oauth_verifier: this.$route.query.oauth_verifier,
       });
-      debugger;
-      this.$store.dispatch("loginUser", userResponse.data);
+      this.$store.dispatch("users/loginUser", userResponse.data);
+      this.$router.push({ name: "TopIndex" });
       this.$store.dispatch("setFlash", {
         type: "success",
         message: "ログインしました",
@@ -27,7 +27,6 @@ export default {
         message: "ログインに失敗しました。",
       });
     }
-    this.$router.push({ name: "TopIndex" });
   }
 };
 </script>
