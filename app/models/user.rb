@@ -4,12 +4,13 @@
 #
 #  id               :bigint           not null, primary key
 #  crypted_password :string
-#  email            :string           not null
+#  email            :string
 #  mypage_name      :string
 #  name             :string           not null
 #  salt             :string
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  twitter_id       :string
 #
 # Indexes
 #
@@ -22,14 +23,18 @@ class User < ApplicationRecord
   has_many :mygenres, dependent: :destroy
   has_many :mygenre_lists, through: :mygenres, source: :genre
   has_many :posts, through: :mygenres
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
 
   has_one_attached :icon
 
-  validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }, allow_nil: true
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
-  validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
+  validates :password_confirmation, presence: true, if: lambda {
+                                                          new_record? || changes[:crypted_password]
+                                                        }, allow_nil: true
 
-  validates :email, presence: true, uniqueness: true
+  validates :email, uniqueness: true, allow_nil: true
   validates :name, presence: true, length: { maximum: 10 }
   validates :mypage_name, length: { maximum: 10 }
 

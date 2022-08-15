@@ -6,14 +6,15 @@ class Api::SessionsController < ApplicationController
   end
 
   def create
-    user = User.authenticate(params[:email], params[:password])
-    if user
-      token = user.create_tokens
-
-      render json: { token: token }
+    if params[:email]
+      user = User.authenticate(params[:email], params[:password])
     else
-      raise ActiveRecord::RecordNotFound unless user
-      head :unauthorized
+      user = User.find(params[:id])
+      auto_login(user)
     end
+    raise ActiveRecord::RecordNotFound unless user
+
+    token = user.create_tokens
+    render json: { token: token }
   end
 end

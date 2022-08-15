@@ -24,6 +24,7 @@ module OshiConcept
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
     config.api_only = true
+    config.paths.add 'lib', eager_load: true
     config.middleware.use ActionDispatch::Flash
 
     # Configuration for the application, engines, and railties goes here.

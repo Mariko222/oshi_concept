@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_12_133752) do
+ActiveRecord::Schema.define(version: 2022_08_13_093737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,18 @@ ActiveRecord::Schema.define(version: 2022_07_12_133752) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "authentications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "access_token"
+    t.string "access_token_secret"
+    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
+    t.index ["user_id"], name: "index_authentications_on_user_id"
   end
 
   create_table "characters", force: :cascade do |t|
@@ -92,13 +104,14 @@ ActiveRecord::Schema.define(version: 2022_07_12_133752) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", null: false
+    t.string "email"
     t.string "crypted_password"
     t.string "salt"
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "mypage_name"
+    t.string "twitter_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

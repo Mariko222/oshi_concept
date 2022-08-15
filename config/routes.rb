@@ -7,14 +7,17 @@ Rails.application.routes.draw do
     resources :characters
     resources :mygenres
     resources :mygenre_characters
+    resources :mypage
+    resources :posts
     resources :sessions
     resources :users do
       collection do
         get 'me'
       end
     end
-    resources :mypage
-    resources :posts
+
+    post "oauth/callback", to: "oauths#callback"
+    get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
   end
 
   get '*path', to: 'static_pages#top', constraints: lambda { |req|
