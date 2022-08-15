@@ -12,6 +12,7 @@ import MygenresEdit from "../pages/mygenres/edit";
 import PostIndex from "../pages/post/index";
 import PostNew from "../pages/post/new";
 import oauthCallback from "../pages/login/oauthCallback.vue";
+import TheTerms from "../pages/static/TheTerm.vue";
 
 Vue.use(VueRouter)
 
@@ -75,6 +76,11 @@ const router = new VueRouter({
       name: "oauthCallback",
       component: oauthCallback,
     },
+    {
+      path: "/terms",
+      name: "TheTerms",
+      component: TheTerms,
+    }
   ]
 })
 

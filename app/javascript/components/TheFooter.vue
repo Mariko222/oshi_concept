@@ -4,7 +4,7 @@
       <p>© 2022. Oshi-Concept</p>
     </div>
     <div class="text-xs lg:text-base grid-flow-col gap-4 md:place-self-center md:justify-self-end lg:justify-self-end">
-      <a class="page-font" href="#">利用規約</a>
+      <router-link :to="{ name: 'TheTerms' }" class="page-font text-xs lg:text-base">利用規約</router-link>
       <a class="page-font" href="#">プライバシーポリシー</a>
       <a class="page-font" href="#">お問合わせ</a>
     </div>
