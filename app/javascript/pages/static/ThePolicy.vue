@@ -71,7 +71,7 @@
           アクセス解析ツール
         </div>
         <p>当サービスは、お客様のアクセス解析のために、「Googleアナリティクス」を利用しています。Googleアナリティクスは、トラフィックデータの収集のためにCookieを使用しています。トラフィックデータは匿名で収集されており、個人を特定するものではありません。Cookieを無効にすれば、これらの情報の収集を拒否することができます。詳しくはお使いのブラウザの設定をご確認ください。Googleアナリティクスについて、詳しくは以下からご確認ください。</p>
-        <a href="https://marketingplatform.google.com/about/analytics/terms/jp/" class="text-blue-500">https://marketingplatform.google.com/about/analytics/terms/jp/</a>
+        <a href="https://marketingplatform.google.com/about/analytics/terms/jp/" class="text-blue-500">Googleアナリティクス</a>
       </div>
       <div class="mb-4 md:text-base text-xs">
         <div class="md:text-xl text-base font-bold">
