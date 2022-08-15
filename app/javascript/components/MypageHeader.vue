@@ -69,8 +69,12 @@
             </router-link>
           </div>
           <div class="flex flex-col flex justify-between items-center">
-            <div v-for="mygenre in mygenres" :key="mygenre.id">
-              <button class="page-font text-white text-xs lg:text-base bg-indigo-500 border rounded-full p-2" @click="fetchBoth(mygenre)">{{ mygenre.genre.name }}</button>
+            <div v-for="(mygenre, index) in mygenres" :key="mygenre.id">
+              <button
+                class="page-font text-white text-xs lg:text-base bg-indigo-500 hover:bg-indigo-800 border rounded-full p-2"
+                @click="fetchBoth(mygenre)"
+                v-bind:class="{'active': isActive === index}" v-on:click="isSelect(index)"
+              >{{ mygenre.genre.name }}</button>
             </div>
           </div>
         </div>
@@ -92,7 +96,8 @@ export default {
       mygenreFavoriteCharacters: [],
       mygenreCharacters:[],
       myCharacters: [],
-      user: ""
+      user: "",
+      isActive: ''
     }
   },
   computed: {
@@ -159,6 +164,10 @@ export default {
     handleMygenrePosts(mygenre) {
       this.mygenre = mygenre
       this.$emit('mygenre-posts', this.mygenre)
+    },
+    isSelect: function (index) {
+      console.log(index)
+      this.isActive = index;
     }
   }
 }
