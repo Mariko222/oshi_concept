@@ -11,6 +11,7 @@ import MypageEdit from "../pages/mypage/edit";
 import MygenresEdit from "../pages/mygenres/edit";
 import PostIndex from "../pages/post/index";
 import PostNew from "../pages/post/new";
+import oauthCallback from "../pages/login/oauthCallback.vue";
 
 Vue.use(VueRouter)
 
@@ -68,6 +69,11 @@ const router = new VueRouter({
       component: PostNew,
       name: "PostNew",
       meta: { requiredAuth: true },
+    },
+    {
+      path: "/oauth/callback",
+      name: "oauthCallback",
+      component: oauthCallback,
     },
   ]
 })
