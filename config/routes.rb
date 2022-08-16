@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
     post "oauth/callback", to: "oauths#callback"
     get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
+
+    resources :password_resets, only: %i(create edit update)
   end
 
   get '*path', to: 'static_pages#top', constraints: lambda { |req|
