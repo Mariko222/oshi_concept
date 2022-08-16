@@ -43,6 +43,8 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 10 }
   validates :mypage_name, length: { maximum: 10 }
 
+  validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
+
   def icon_url
     icon.attached? ? Rails.application.routes.url_helpers.rails_blob_path(icon, only_path: true) : nil
   end

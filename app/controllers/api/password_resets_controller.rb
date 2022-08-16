@@ -2,7 +2,7 @@ class Api::PasswordResetsController < ApplicationController
   def create
     @user = User.find_by_email(params[:email])
     @user.deliver_reset_password_instructions! if @user
-    redirect_to(root_path, :notice => 'メールアドレス宛にメールを送信しました。')
+    redirect_to(root_path, :notice => '入力されたアドレス宛にメールを送信しました。')
   end
 
   def edit
