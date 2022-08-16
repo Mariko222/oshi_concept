@@ -1,35 +1,24 @@
 class Api::PasswordResetsController < ApplicationController
   def create
     @user = User.find_by_email(params[:email])
-    @user.deliver_reset_password_instructions! if @user
-    redirect_to(root_path, :notice => '入力されたアドレス宛にメールを送信しました。')
+    @user&.deliver_reset_password_instructions!
+    head :ok
   end
 
   def edit
-    @token = params[:id]
-    @user = User.load_from_reset_password_token(@token)
-
-    if @user.blank?
-      not_authenticated
-      return
-    end
+    user = User.load_from_reset_password_token(params[:id])
+    render json: user
   end
 
   def update
-    @token = params[:id]
-    @user = User.load_from_reset_password_token(@token)
+    @user = User.load_from_reset_password_token(params[:id])
+    return not_authenticated if @user.blank?
 
-    if @user.blank?
-      not_authenticated
-      return
-    end
-
-    @user.password_confirmation = params[:user][:password_confirmation]
-
-    if @user.change_password(params[:user][:password])
-      redirect_to(root_path, :notice => 'パスワードを更新しました')
+    @user.password_confirmation = params[:password_reset][:password_confirmation]
+    if @user.change_password(params[:password_reset][:password])
+      head :ok
     else
-      render :action => "edit"
+      render json: @user.errors, status: :bad_request
     end
   end
 end
