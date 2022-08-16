@@ -1,4 +1,6 @@
 default_url_options:
   host: '127.0.0.1:3000'
+site:
+  top_url: "http://127.0.0.1:3000/"
 sorcery:
   callback_url: "http://127.0.0.1:3000/oauth/callback"
