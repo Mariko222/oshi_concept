@@ -1,2 +1,5 @@
+default_url_options:
+  protcol: "https"
+  host: "www.oshi-concept.com"
 sorcery:
   callback_url: "https://www.oshi-concept.com/oauth/callback"
