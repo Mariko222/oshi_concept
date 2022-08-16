@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex"
 import { extend, ValidationProvider, ValidationObserver } from "vee-validate";
 import { required, email } from "vee-validate/dist/rules";
 import axios from "../../plugins/axios";
@@ -56,6 +57,10 @@ export default {
         email: this.email,
       });
       this.$router.push({ name: "TopIndex" });
+      this.$store.dispatch("setFlash", {
+          type: "success",
+          message: "メールを送信しました。",
+        })
     },
   },
 };
