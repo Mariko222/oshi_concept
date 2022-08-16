@@ -62,6 +62,7 @@ group :development, :test do
   #テスト用
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'letter_opener_web'
 end
 
 group :development do
