@@ -11,11 +11,12 @@ class Api::PasswordResetsController < ApplicationController
   end
 
   def update
+    binding.pry
     @user = User.load_from_reset_password_token(params[:id])
     return not_authenticated if @user.blank?
 
-    @user.password_confirmation = params[:password_reset][:password_confirmation]
-    if @user.change_password(params[:password_reset][:password])
+    @user.password_confirmation = params[:user][:password_confirmation]
+    if @user.change_password(params[:user][:password])
       head :ok
     else
       render json: @user.errors, status: :bad_request

@@ -15,6 +15,7 @@ import oauthCallback from "../pages/login/oauthCallback.vue";
 import TheTerms from "../pages/static/TheTerm.vue";
 import ThePolicy from "../pages/static/ThePolicy.vue";
 import ResetPasswordNew from "../pages/reset_password/ResetPasswordNew.vue";
+import ResetPasswordEdit from "../pages/reset_password/ResetPasswordEdit.vue";
 
 
 
@@ -94,6 +95,11 @@ const router = new VueRouter({
       path: "/password_resets",
       name: "ResetPasswordNew",
       component: ResetPasswordNew,
+    },
+    {
+    path: "/password/edit",
+    name: "ResetPasswordEdit",
+    component: ResetPasswordEdit,
     },
   ]
 })
