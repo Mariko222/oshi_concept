@@ -65,11 +65,9 @@ export default {
   },
   methods: {
     async changePassword() {
-      console.log(this.$route.query.token)
       await axios.patch(`password_resets/${this.$route.query.token}`, {
         user: this.user,
       });
-      console.log(this.$route.query.token)
       this.$router.push({ name: "TopIndex" });
       this.$store.dispatch("setFlash", {
           type: "success",

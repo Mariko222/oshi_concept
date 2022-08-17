@@ -11,7 +11,6 @@ class Api::PasswordResetsController < ApplicationController
   end
 
   def update
-    binding.pry
     @user = User.load_from_reset_password_token(params[:id])
     return not_authenticated if @user.blank?
 
