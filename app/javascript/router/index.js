@@ -5,7 +5,6 @@ import store from '../store'
 import TopIndex from "../pages/top/index";
 import RegisterIndex from "../pages/register/index";
 import LoginIndex from "../pages/login/index";
-import MypageIndex from "../pages/mypage/index";
 import MypageNew from "../pages/mypage/new";
 import MypageEdit from "../pages/mypage/edit";
 import MygenresEdit from "../pages/mygenres/edit";
@@ -39,12 +38,6 @@ const router = new VueRouter({
       path: '/login',
       component: LoginIndex,
       name: "LoginIndex"
-    },
-    {
-      path: '/mypage',
-      component: MypageIndex,
-      name: "MypageIndex",
-      meta: { requiredAuth: true }
     },
     {
       path: '/mypage/new',
