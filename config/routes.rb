@@ -20,9 +20,9 @@ Rails.application.routes.draw do
     post "oauth/callback", to: "oauths#callback"
     get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
 
-    resources :password_resets, only: %i[create edit update]
+    resources :password_resets, only: %i[create edit update], params: :token
   end
-  get '/password_resets/:id/edit' , to: 'static_pages#top', as: :edit_password_reset
+
   get '*path', to: 'static_pages#top', constraints: lambda { |req|
     req.path.exclude? 'rails/active_storage'
   }
