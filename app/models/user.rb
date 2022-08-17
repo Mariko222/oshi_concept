@@ -2,19 +2,24 @@
 #
 # Table name: users
 #
-#  id               :bigint           not null, primary key
-#  crypted_password :string
-#  email            :string
-#  mypage_name      :string
-#  name             :string           not null
-#  salt             :string
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
-#  twitter_id       :string
+#  id                                  :bigint           not null, primary key
+#  access_count_to_reset_password_page :integer          default(0)
+#  crypted_password                    :string
+#  email                               :string
+#  mypage_name                         :string
+#  name                                :string           not null
+#  reset_password_email_sent_at        :datetime
+#  reset_password_token                :string
+#  reset_password_token_expires_at     :datetime
+#  salt                                :string
+#  created_at                          :datetime         not null
+#  updated_at                          :datetime         not null
+#  twitter_id                          :string
 #
 # Indexes
 #
-#  index_users_on_email  (email) UNIQUE
+#  index_users_on_email                 (email) UNIQUE
+#  index_users_on_reset_password_token  (reset_password_token)
 #
 class User < ApplicationRecord
   include JwtToken
@@ -37,6 +42,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, allow_nil: true
   validates :name, presence: true, length: { maximum: 10 }
   validates :mypage_name, length: { maximum: 10 }
+
+  validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
 
   def icon_url
     icon.attached? ? Rails.application.routes.url_helpers.rails_blob_path(icon, only_path: true) : nil
