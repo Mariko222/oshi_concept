@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root 'static_pages#top'
 
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
 
     post "oauth/callback", to: "oauths#callback"
     get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
+
+    resources :password_resets, only: %i[create edit update], params: :token
   end
 
   get '*path', to: 'static_pages#top', constraints: lambda { |req|
