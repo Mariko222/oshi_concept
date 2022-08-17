@@ -1,6 +1,6 @@
 <template>
-  <div class="container mx-auto">
-    <div class="bg-purple-100 pb-6 sm:pb-8 lg:pb-12">
+  <div class="top-bg container mx-auto">
+    <div class="pb-6 sm:pb-8 lg:pb-12">
       <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
         <section class="flex flex-col items-center">
           <div class="max-w-xl flex flex-col items-center text-center pt-8 lg:pt-32 pb-0 sm:pb-16 lg:pb-32">
@@ -27,7 +27,7 @@
               </div>
 
             </div>
-            <div class="text-gray-500 xl:text-lg leading-relaxed mb-8 md:mb-12">
+            <div class="text-purple-500 xl:text-lg leading-relaxed mb-8 md:mb-12">
               <p class="page-font text-xl mb-8">このピアス推しっぽい</p>
               <p class="page-font text-xl mb-8">このカフェ推しのイメージ</p>
               <p class="page-font text-xl mb-8">このポーチの色味推しじゃん！</p>
