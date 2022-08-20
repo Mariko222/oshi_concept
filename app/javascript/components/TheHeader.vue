@@ -9,7 +9,7 @@
     </div>
     <template v-if="authUser">
       <div class="navbar-center">
-        <p class="page-font text-2xl"><router-link :to="{ name: 'PostIndex' }">{{ authUser.mypage_name }}</router-link></p>
+        <p class="page-font text-2xl"><router-link :to="'/mypage/'+authUser.uuid">{{ authUser.mypage_name }}</router-link></p>
       </div>
     </template>
     <div class="navbar-end">
