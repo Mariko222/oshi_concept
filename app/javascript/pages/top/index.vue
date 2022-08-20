@@ -46,7 +46,7 @@
             <button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">ゲストログイン</button>
           </div>
           <div v-else class="w-full flex flex-col sm:flex-row sm:justify-center gap-2.5">
-            <router-link :to="{ name: 'PostIndex' }" button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">マイページへ</router-link>
+            <router-link :to="'/mypage/'+authUser.uuid" button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">マイページへ</router-link>
           </div>
         </div>
       </div>
@@ -58,7 +58,14 @@
 import { mapGetters } from "vuex"
 
 export default {
-  name: "TopIndexr",
+  name: "TopIndex",
+  data() {
+    return {
+      user: {
+        uuid: ""
+      },
+    };
+  },
   computed: {
     ...mapGetters("users", ["authUser"])
   }

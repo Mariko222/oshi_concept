@@ -166,7 +166,6 @@ export default {
       this.$emit('mygenre-posts', this.mygenre)
     },
     isSelect: function (index) {
-      console.log(index)
       this.isActive = index;
     }
   }
