@@ -20,8 +20,7 @@ Twitterで検索したときにいいなと思うツイートがあっても、�
     - ファッション
     - 雑貨
     - 場所（お店や建物）
-  - 他のユーザーのマイページ検索
-  - 他のユーザーのマイページ検索
+  - 他のユーザーのマイページ検索(実装するか検討中)
   - マイページをTwitterで共有
 
 - 管理ユーザー
@@ -42,6 +41,17 @@ README〜ER図作成：6/2 〆切
 メイン機能実装：6/2 - 7/31
 β版をRUNTEQ内リリース（MVP）：8/7〆切
 本番リリース：8/31
+
+## 使用技術
+< バックエンド >
+・Ruby 3.1.2
+・Rails 6.1.6
+< フロントエンド >
+・Vue.js 2.6.14
+・tailwindcss(+daisyui)
+< インフラ >
+・heroku
+・AWS S3
 
 ## 画面遷移図
 https://www.figma.com/file/KHw0qZ9Wad6BvZIRUyAjBc/oshi-concept?node-id=0%3A1
