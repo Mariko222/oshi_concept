@@ -139,7 +139,9 @@ export default {
       this.handleCloseChoiceCharactersModal();
     },
     fetchMygenres() {
-      this.$axios.get("mygenre_characters")
+      this.$axios.get("mygenre_characters", {
+        params: this.user
+      })
         .then(res => {
           this.mygenres = res.data
         })
@@ -160,7 +162,9 @@ export default {
         .catch(err => console.log(err.status));
     },
     fetchFavoriteCharacters(selectedGenre) {
-      this.$axios.get("mypage")
+      this.$axios.get("mypage", {
+        params: this.user
+      })
         .then(res => {
           this.mygenreFavoriteCharacters = res.data
           this.mygenreLists = this.mygenreFavoriteCharacters.filter((item, index, self) => {

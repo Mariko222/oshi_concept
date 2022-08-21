@@ -129,7 +129,10 @@ export default {
   },
   methods: {
     fetchMygenres() {
-      this.$axios.get("mygenres")
+      console.log(this.authUser)
+      this.$axios.get("mygenres", {
+        params: this.authUser
+      })
         .then(res => {
           this.mygenres = res.data
           console.log(this.mygenres)

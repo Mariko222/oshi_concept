@@ -24,7 +24,6 @@
                 }}</span>
               </div>
             </ValidationProvider>
-
             <ValidationProvider ref="provider" name="アイコン" rules="image">
               <div slot-scope="ProviderProps">
                 <label
