@@ -9,7 +9,7 @@
           <div v-for="tweet in tweets">
             <div class="card bg-neutral px-2 py-2 mx-12 my-3 lg:mx-3 lg:my-3">
               <Tweet :id="tweet.tweet_url"><div class="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div></Tweet>
-                <button type="button" @click="handleDeleteTweet(tweet)">
+                <button type="button" v-if="loginUser" @click="handleDeleteTweet(tweet)">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-right text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
@@ -34,7 +34,7 @@
                   </h2>
                 </div>
               </div>
-              <button type="button" @click="handleDeleteWebpage(webpage)" class="mt-2">
+              <button type="button" v-if="loginUser" @click="handleDeleteWebpage(webpage)" class="mt-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-right text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -61,7 +61,8 @@ export default {
       posts: [],
       webpages: [],
       tweets: [],
-      tweet: ""
+      tweet: "",
+      loginUser: ""
     }
   },
   props: {
@@ -72,6 +73,7 @@ export default {
   },
   created() {
     this.fetchBoth()
+    this.fetchUser()
   },
   methods: {
     fetchBoth: function (mygenre) {
@@ -81,7 +83,10 @@ export default {
       this.fetchWebpages(mygenre);
     },
     fetchTweets(mygenre) {
-      this.$axios.get("posts")
+      console.log(this.$route.params)
+      this.$axios.get("posts", {
+        params: this.$route.params
+      })
         .then(res => {
           this.posts = res.data
           this.mygenrePosts = this.posts.filter(p =>{
@@ -94,7 +99,9 @@ export default {
         .catch(err => console.log(err.status));
     },
     fetchWebpages(mygenre) {
-      this.$axios.get("posts")
+      this.$axios.get("posts", {
+        params: this.$route.params
+      })
         .then(res => {
           this.posts = res.data
           this.mygenreWabpages = this.posts.filter(p =>{
@@ -113,6 +120,18 @@ export default {
     handleDeleteWebpage(webpage) {
       this.post = webpage
       this.$emit('delete-post', this.post)
+    },
+    fetchUser() {
+      this.$axios.get("users", {
+        params: this.$route.params
+      })
+      .then(res => {
+        this.user = res.data
+        if (this.user.uuid === this.authUser.uuid) {
+          this.loginUser = this.user
+        }
+      })
+      .catch(err => console.log(err.status));
     },
   },
 }

@@ -61,7 +61,6 @@ const router = new VueRouter({
       path: '/mypage/:uuid',
       component: PostIndex,
       name: "PostIndex",
-      meta: { requiredAuth: true },
       props: true
     },
     {

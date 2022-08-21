@@ -1,8 +1,8 @@
 <template>
   <div>
-    <MypageHeader v-if="authUser" class="-mt-16" @mygenre-posts="handleMygenre"/>
+    <MypageHeader class="-mt-16" @mygenre-posts="handleMygenre"/>
     <div class="container mx-auto mt-56">
-      <router-link :to="{ name: 'PostNew' }" class="btn px-2 py-1 bg-purple-100 text-indigo-500 border border-indigo-500 font-semibold hover:bg-indigo-200 rounded-full ">
+      <router-link v-if="loginUser" :to="{ name: 'PostNew' }" class="btn px-2 py-1 bg-purple-100 text-indigo-500 border border-indigo-500 font-semibold hover:bg-indigo-200 rounded-full ">
         <span>投稿する</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
           <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
@@ -59,8 +59,12 @@ export default {
       isItem: false,
       isPlace: false,
       mygenre: {},
-      isActive: ''
+      isActive: '',
+      loginUser: ""
     }
+  },
+  created() {
+    this.fetchUser()
   },
   computed: {
     ...mapGetters("users", ["authUser"])
@@ -114,7 +118,19 @@ export default {
     },
     isSelect: function (num) {
       this.isActive = num;
-    }
+    },
+    fetchUser() {
+      this.$axios.get("users", {
+        params: this.$route.params
+      })
+      .then(res => {
+        this.user = res.data
+        if (this.user.uuid === this.authUser.uuid) {
+          this.loginUser = this.user
+        }
+      })
+      .catch(err => console.log(err.status));
+    },
   },
 }
 </script>
