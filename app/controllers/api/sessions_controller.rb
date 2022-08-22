@@ -6,6 +6,7 @@ class Api::SessionsController < ApplicationController
   end
 
   def create
+    binding.pry
     if params[:email]
       user = User.authenticate(params[:email], params[:password])
     else
@@ -13,6 +14,10 @@ class Api::SessionsController < ApplicationController
       auto_login(user)
     end
     raise ActiveRecord::RecordNotFound unless user
+
+    if user.uuid == nil
+      user.update(uuid: SecureRandom.uuid)
+    end
 
     token = user.create_tokens
     render json: { token: token }
