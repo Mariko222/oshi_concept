@@ -1,6 +1,11 @@
 class Api::UsersController < ApplicationController
   before_action :authenticate!, only: %i[me]
 
+  def index
+    user = User.find_by(uuid: params[:uuid])
+    render json: user, methods: [:icon_url]
+  end
+
   def create
     user = User.new(user_params)
     if user.save

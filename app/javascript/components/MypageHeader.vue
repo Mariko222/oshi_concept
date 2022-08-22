@@ -3,9 +3,9 @@
     <div class="max-w-auto h-auto p-4 pb-1">
       <div class="grid grid-cols-3">
         <div class="icon sm:-pt-6 lg:-mt-12 pb-5 flex jflex flex-col flex justify-center items-center">
-          <img alt="icon" v-if="!authUser.icon_url" class="icon-image lg:mt-12 rounded-full" src="../../../public/img/default_icon.jpg">
-          <img :src="authUser.icon_url" v-if="authUser.icon_url" class="rounded-full icon-image lg:mt-12"/>
-          <router-link :to="{ name: 'MypageEdit' }" class="nav-link">
+          <img alt="icon" v-if="!user.icon_url" class="icon-image lg:mt-12 rounded-full" src="../../../public/img/default_icon.jpg">
+          <img :src="user.icon_url" v-if="user.icon_url" class="rounded-full icon-image lg:mt-12"/>
+          <router-link v-if="loginUser" :to="{ name: 'MypageEdit' }" class="nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
               <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
               <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
@@ -42,8 +42,8 @@
         </div>
         <div>
           <div class="bg-violet-200 h-full -mt-3 mr-1 px-2 py-3 rounded-lg">
-            <p class="page-font mb-1 text-xs lg:text-base"><span class="page-font">{{ authUser.name }}</span>の推し：</p>
-            <router-link :to="{ name: 'MygenresEdit' }" class="nav-link">
+            <p class="page-font mb-1 text-xs lg:text-base"><span class="page-font">{{ user.name }}</span>の推し：</p>
+            <router-link v-if="loginUser" :to="{ name: 'MygenresEdit' }" class="nav-link">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                 <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
@@ -51,17 +51,17 @@
             </router-link>
             <div class="flex flex-wrap justify-between">
               <p class="page-font text-xs lg:text-base" v-if="mygenreCharacters.length === 0">登録したジャンルを選んでください。</p>
-              <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded p-2">
+              <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded">
                 <li class="page-font text-xs lg:text-xl">{{ mygenreCharacter.character.name }}</li>
               </ul>
             </div>
           </div>
         </div>
         <div class="flex flex-col my-auto items-center">
-          <p class="page-font text-xs lg:text-base mb-3 -mt-6"><span class="page-font text-xs lg:text-base">{{ authUser.name }}</span>のジャンルリスト:</p>
+          <p class="page-font text-xs lg:text-base mb-3 -mt-6"><span class="page-font text-xs lg:text-base">{{ user.name }}</span>のジャンルリスト:</p>
           <div class="flex">
             <p class="page-font text-xs lg:text-base mr-3 -mt-1" v-if="mygenres.length === 0">ジャンルを追加してください</p>
-            <router-link :to="{ name: 'MypageNew' }" class="nav-link">
+            <router-link v-if="loginUser" :to="{ name: 'MypageNew' }" class="nav-link">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                 <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
@@ -97,7 +97,8 @@ export default {
       mygenreCharacters:[],
       myCharacters: [],
       user: "",
-      isActive: ''
+      isActive: '',
+      loginUser: ""
     }
   },
   computed: {
@@ -107,21 +108,22 @@ export default {
   },
   created() {
     this.fetchFavoriteCharacters();
-    this.fetchUser();
     this.fetchMygenres();
     this.displayCharacter();
     this.fetchBoth(this.mygenre)
+    this.fetchUser();
   },
   mounted() {
     this.fetchFavoriteCharacters();
-    this.fetchUser();
   },
   methods: {
     ...mapMutations([
       "loadMygenre"
     ]),
     fetchFavoriteCharacters() {
-      this.$axios.get("mypage")
+      this.$axios.get("mypage", {
+        params: this.$route.params
+      })
         .then(res => {
           this.mygenreFavoriteCharacters = res.data
           this.mygenreLists = this.mygenreFavoriteCharacters.filter((item, index, self) => {
@@ -133,16 +135,11 @@ export default {
         .catch(err => console.log(err.status));
     },
     fetchMygenres() {
-      this.$axios.get("mygenres")
+      this.$axios.get("mygenres", {
+        params: this.$route.params
+      })
         .then(res => {
           this.mygenres = res.data
-        })
-        .catch(err => console.log(err.status));
-    },
-    fetchUser() {
-      this.$axios.get("sessions")
-        .then(res => {
-          this.user = res.data
         })
         .catch(err => console.log(err.status));
     },
@@ -152,7 +149,9 @@ export default {
       this.handleMygenrePosts(mygenre);
     },
     displayCharacter(mygenre) {
-      this.$axios.get("mypage")
+      this.$axios.get("mypage", {
+        params: this.$route.params
+      })
         .then(res => {
           this.mygenreFavoriteCharacters = res.data
           this.mygenreCharacters = this.mygenreFavoriteCharacters.filter(c =>{
@@ -166,10 +165,21 @@ export default {
       this.$emit('mygenre-posts', this.mygenre)
     },
     isSelect: function (index) {
-      console.log(index)
       this.isActive = index;
-    }
-  }
+    },
+    fetchUser() {
+      this.$axios.get("users", {
+        params: this.$route.params
+      })
+      .then(res => {
+        this.user = res.data
+        if (this.user.uuid === this.authUser.uuid) {
+          this.loginUser = this.user
+        }
+      })
+      .catch(err => console.log(err.status));
+    },
+  },
 }
 </script>
 

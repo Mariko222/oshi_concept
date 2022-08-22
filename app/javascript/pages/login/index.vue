@@ -70,6 +70,7 @@ export default {
       user: {
         email: "",
         password: "",
+        uuid: ""
       },
       errorMessage: ""
     };
@@ -83,7 +84,8 @@ export default {
           type: "success",
           message: "ログインしました。",
         });
-        this.$router.push({ name: "PostIndex" });
+        console.log(this.user)
+        this.$router.push({ name: "TopIndex" });
       } catch (error) {
         console.log(error)
         this.errorMessage = error.response.data.errors.detail;

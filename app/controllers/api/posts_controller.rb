@@ -1,9 +1,10 @@
 class Api::PostsController < ApplicationController
-  before_action :authenticate!
+  before_action :authenticate!, only: %i[create destroy]
   before_action :set_post, only: %i[destroy]
 
   def index
-    posts = current_user.posts.all
+    @user = User.find_by(uuid: params[:uuid])
+    posts = @user.posts.all
     render json: posts, each_serializer: PostSerializer
   end
 

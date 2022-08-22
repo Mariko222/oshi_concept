@@ -1,9 +1,10 @@
 class Api::MypageController < ApplicationController
-  before_action :authenticate!
+  before_action :authenticate!, only: %i[create update]
 
   def index
-    @mygenres = Mygenre.where(user_id: current_user.id)
-    @genres = current_user.mygenre_lists
+    @user = User.find_by(uuid: params[:uuid])
+    @mygenres = Mygenre.where(user_id: @user.id)
+    @genres = @user.mygenre_lists
     @mygenre_favorite_characters = MygenreFavoriteCharacter.where(mygenre_id: @mygenres.ids)
     respond_to do |f|
       f.json { render json: @mygenre_favorite_characters.to_json(include: [:character, { mygenre: {include: :genre}}]) }
