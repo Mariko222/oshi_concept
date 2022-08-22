@@ -14,6 +14,10 @@ class Api::SessionsController < ApplicationController
     end
     raise ActiveRecord::RecordNotFound unless user
 
+    if user.uuid == nil
+      user.update(uuid: SecureRandom.uuid)
+    end
+
     token = user.create_tokens
     render json: { token: token }
   end
