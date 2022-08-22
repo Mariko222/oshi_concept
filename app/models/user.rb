@@ -12,7 +12,7 @@
 #  reset_password_token                :string
 #  reset_password_token_expires_at     :datetime
 #  salt                                :string
-#  uuid                                :string           not null
+#  uuid                                :string
 #  created_at                          :datetime         not null
 #  updated_at                          :datetime         not null
 #  twitter_id                          :string
