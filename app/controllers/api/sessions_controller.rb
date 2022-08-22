@@ -6,7 +6,6 @@ class Api::SessionsController < ApplicationController
   end
 
   def create
-    binding.pry
     if params[:email]
       user = User.authenticate(params[:email], params[:password])
     else
