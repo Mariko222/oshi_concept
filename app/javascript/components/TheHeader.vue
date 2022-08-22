@@ -12,7 +12,7 @@
         <p class="page-font text-2xl">{{ authUser.mypage_name }}</p>
       </div>
     </template>
-    <template v-if="!authUser">
+    <template v-if="!authUser && $route.name == 'PostIndex'">
       <div class="navbar-center">
         <p class="page-font text-2xl">{{ user.mypage_name }}</p>
       </div>

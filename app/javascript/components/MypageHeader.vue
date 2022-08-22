@@ -51,7 +51,7 @@
             </router-link>
             <div class="flex flex-wrap justify-between">
               <p class="page-font text-xs lg:text-base" v-if="mygenreCharacters.length === 0">登録したジャンルを選んでください。</p>
-              <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded p-2">
+              <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded">
                 <li class="page-font text-xs lg:text-xl">{{ mygenreCharacter.character.name }}</li>
               </ul>
             </div>
