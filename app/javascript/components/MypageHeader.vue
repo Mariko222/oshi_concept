@@ -173,7 +173,6 @@ export default {
       })
       .then(res => {
         this.user = res.data
-        console.log(this.user.icon_url)
         if (this.user.uuid === this.authUser.uuid) {
           this.loginUser = this.user
         }
