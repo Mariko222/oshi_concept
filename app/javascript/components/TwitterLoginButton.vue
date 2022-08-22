@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex items-center justify-center space-x-2 mb-3">
-      <div
+      <button
         type="button"
         @click="twitterLogin"
         class="page-font flex justify-center w-full items-center bg-twitter hover:bg-sky-400 active:bg-sky-500 focus-visible:ring ring-blue-300 text-white text-sm md:text-base font-semibold text-center rounded-full outline-none transition duration-100 gap-2 px-8 py-3"
@@ -26,7 +26,7 @@
             fill="white" />
         </svg>
         Twitterでログイン
-      </div>
+      </button>
     </div>
   </div>
 </template>

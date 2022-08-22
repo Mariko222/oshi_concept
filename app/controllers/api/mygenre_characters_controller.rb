@@ -1,8 +1,7 @@
 class Api::MygenreCharactersController < ApplicationController
-  before_action :authenticate!
-
   def index
-    @genres = current_user.mygenre_lists
+    @user = User.find_by(uuid: params[:uuid])
+    @genres = @user.mygenre_lists
     render json: @genres
   end
 end

@@ -12,6 +12,7 @@
 #  reset_password_token                :string
 #  reset_password_token_expires_at     :datetime
 #  salt                                :string
+#  uuid                                :string           not null
 #  created_at                          :datetime         not null
 #  updated_at                          :datetime         not null
 #  twitter_id                          :string
@@ -44,6 +45,8 @@ class User < ApplicationRecord
   validates :mypage_name, length: { maximum: 10 }
 
   validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
+
+  before_create -> { self.uuid = SecureRandom.uuid }
 
   def icon_url
     icon.attached? ? Rails.application.routes.url_helpers.rails_blob_path(icon, only_path: true) : nil
