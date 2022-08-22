@@ -9,7 +9,12 @@
     </div>
     <template v-if="authUser">
       <div class="navbar-center">
-        <p class="page-font text-2xl"><router-link :to="'/mypage/'+authUser.uuid">{{ authUser.mypage_name }}</router-link></p>
+        <p class="page-font text-2xl">{{ authUser.mypage_name }}</p>
+      </div>
+    </template>
+    <template v-if="!authUser">
+      <div class="navbar-center">
+        <p class="page-font text-2xl">{{ user.mypage_name }}</p>
       </div>
     </template>
     <div class="navbar-end">
@@ -27,17 +32,28 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex"
-
+import axios from "../plugins/axios";
 export default {
   name: "TheHeader",
+  data() {
+    return {
+      user: {
+        uuid: ""
+      },
+    }
+  },
   computed: {
     ...mapGetters("users", ["authUser"])
+  },
+  created() {
+    this.fetchShareUser();
   },
   methods: {
     ...mapActions("users", ["logoutUser"]),
     async handleLogout() {
       try {
         await this.logoutUser()
+        this.user = ""
         this.$store.dispatch("setFlash", {
           type: "success",
           message: "ログアウトしました。",
@@ -51,8 +67,23 @@ export default {
           message: "ログアウトできませんでした。",
         })
       }
-    }
-  }
+    },
+    fetchShareUser() {
+      const dir = location.href.split("/");
+      const dir2 = dir[dir.length -1];
+      this.$axios.get("users", {
+        params:{ uuid:dir2 }
+        })
+      .then(res => {
+        this.user = res.data
+        console.log(res.data)
+        if (this.user.uuid === this.authUser.uuid) {
+          this.loginUser = this.user
+        }
+      })
+      .catch(err => console.log(err.status));
+    },
+  },
 }
 </script>
 
