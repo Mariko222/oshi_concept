@@ -11,10 +11,10 @@ import router from '../router'
 import axios from '../plugins/axios'
 import store from '../store'
 import veeValidate from '../plugins/veevalidate'
-import VueSocialSharing from 'vue-social-sharing'
+import SocialSharing from 'vue-social-sharing'
 
 Vue.mixin(veeValidate);
-Vue.use(VueSocialSharing);
+Vue.use(SocialSharing);
 
 Vue.prototype.$axios = axios
 
