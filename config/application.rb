@@ -51,5 +51,6 @@ module OshiConcept
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
     config.middleware.use ActionDispatch::ContentSecurityPolicy::Middleware
+    config.middleware.use Rack::MethodOverride
   end
 end
