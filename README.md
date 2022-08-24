@@ -43,15 +43,15 @@ README〜ER図作成：6/2 〆切
 本番リリース：8/31
 
 ## 使用技術
-< バックエンド >
-・Ruby 3.1.2
-・Rails 6.1.6
-< フロントエンド >
-・Vue.js 2.6.14
-・tailwindcss(+daisyui)
-< インフラ >
-・heroku
-・AWS S3
+< バックエンド ><br>
+・Ruby 3.1.2<br>
+・Rails 6.1.6<br>
+< フロントエンド ><br>
+・Vue.js 2.6.14<br>
+・tailwindcss(+daisyui)<br>
+< インフラ ><br>
+・heroku（デプロイ）<br>
+・AWS S3（画像保存）<br>
 
 ## 画面遷移図
 https://www.figma.com/file/KHw0qZ9Wad6BvZIRUyAjBc/oshi-concept?node-id=0%3A1
