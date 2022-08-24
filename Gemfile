@@ -54,6 +54,10 @@ gem 'active_model_serializers'
 #SEO
 gem 'meta-tags'
 
+#管理画面
+gem 'rails_admin', '~> 3.0'
+gem 'rails_admin-i18n'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
