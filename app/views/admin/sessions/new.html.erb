@@ -19,9 +19,12 @@
           <%= f.password_field :password, class:"block text-sm py-3 px-4 rounded-lg w-full border outline-none" %>
         </div>
         <div class="field">
-          <%= f.submit "Login", class:"button py-3 w-64 text-xl text-white bg-purple-400 rounded-2xl" %>
+          <%= f.submit "ログイン", class:"button py-3 w-64 text-xl text-white bg-purple-400 rounded-2xl" %>
         </div>
       <%end%>
     </div>
+  </div>
+  <div class="field mt-8">
+    <%= link_to "ログアウト", admin_logout_path, method: :delete, class: 'button p-3 w-64 text-xl text-white bg-red-400 rounded-2xl' %>
   </div>
 </div>

@@ -21,7 +21,7 @@ class Api::MypageController < ApplicationController
   end
 
   def update
-    user = User.find(current_user.id)
+    user = User.find(login_user.id)
     if user.update(user_params)
       render json: user, methods: [:icon_url]
     else
@@ -37,6 +37,6 @@ class Api::MypageController < ApplicationController
   end
 
   def set_params
-    params.permit(:current_user, :genre_id, character_ids:[]).merge(user_id: User.find(current_user.id).id)
+    params.permit(:login_user, :genre_id, character_ids:[]).merge(user_id: User.find(login_user.id).id)
   end
 end
