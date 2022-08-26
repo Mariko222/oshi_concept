@@ -1,4 +1,11 @@
 <div class="min-h-screen bg-purple-100 flex flex-col justify-center items-center">
+  <% if flash.present?  %>
+    <% flash.each do |type, message| %>
+      <div class="subtitle text-red-500">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
   <h1 class="text-3xl font-bold text-center mb-4">管理者用ログイン</h1>
 	<div class="py-12 px-12 bg-white rounded-2xl shadow-xl z-20">
 		<div>
