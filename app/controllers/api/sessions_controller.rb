@@ -1,7 +1,7 @@
 class Api::SessionsController < ApplicationController
 
   def index
-    @user = User.find(current_user.id)
+    @user = User.find(login_user.id)
     render json: @user
   end
 

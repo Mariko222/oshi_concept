@@ -12,7 +12,7 @@ class Api::MygenresController < ApplicationController
   end
 
   def create
-    mygenre = Mygenre.find_by(user_id: current_user.id, genre_id: params[:genre_id])
+    mygenre = Mygenre.find_by(user_id: login_user.id, genre_id: params[:genre_id])
     params[:character_ids].each do |character_id|
       mygenre_favorite_character = MygenreFavoriteCharacter.new(mygenre_id: mygenre.id, character_id: character_id)
       render json: mygenre_favorite_character.errors, status: :bad_request unless mygenre_favorite_character.valid?

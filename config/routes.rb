@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :mygenre_characters
     resources :mypage
     resources :posts
-    resources :sessions
+    resources :sessions, only: %i[create]
     resources :users do
       collection do
         get 'me'
