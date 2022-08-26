@@ -6,6 +6,7 @@ class Admin::SessionsController < ApplicationController
     if @user
       redirect_to rails_admin_path
     else
+      flash.now[:danger] = 'ログイン情報が正しくありません'
       render :new
     end
   end
