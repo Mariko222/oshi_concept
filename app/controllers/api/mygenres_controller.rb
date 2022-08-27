@@ -2,6 +2,7 @@ class Api::MygenresController < ApplicationController
   before_action :set_character, only: %i[destroy]
   before_action :authenticate!, only: %i[me]
   skip_before_action :verify_authenticity_token
+  skip_before_action :require_login
 
   def index
     @user = User.find_by(uuid: params[:uuid])

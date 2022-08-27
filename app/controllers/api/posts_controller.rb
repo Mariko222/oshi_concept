@@ -1,6 +1,7 @@
 class Api::PostsController < ApplicationController
   before_action :authenticate!, only: %i[create destroy]
   before_action :set_post, only: %i[destroy]
+  skip_before_action :require_login
 
   def index
     @user = User.find_by(uuid: params[:uuid])
