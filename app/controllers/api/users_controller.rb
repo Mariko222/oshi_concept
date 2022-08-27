@@ -1,5 +1,6 @@
 class Api::UsersController < ApplicationController
   before_action :authenticate!, only: %i[me]
+  skip_before_action :require_login, only: %i[index create]
 
   def index
     user = User.find_by(uuid: params[:uuid])
