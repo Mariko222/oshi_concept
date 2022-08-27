@@ -1,5 +1,6 @@
 class Api::MypageController < ApplicationController
   before_action :authenticate!, only: %i[create update]
+  skip_before_action :require_login
 
   def index
     @user = User.find_by(uuid: params[:uuid])

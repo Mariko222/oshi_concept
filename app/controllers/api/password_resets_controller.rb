@@ -1,5 +1,5 @@
 class Api::PasswordResetsController < ApplicationController
-  skip_before_action :require_login, only: %i[new create]
+  skip_before_action :require_login
   def create
     @user = User.find_by_email(params[:email])
     @user&.deliver_reset_password_instructions!
