@@ -3,8 +3,12 @@
     <div class="max-w-auto h-auto p-4 pb-1">
       <div class="grid grid-cols-3">
         <div class="icon sm:-pt-6 lg:-mt-12 pb-5 flex jflex flex-col flex justify-center items-center">
-          <img alt="icon" v-if="!user.icon_url" class="icon-image lg:mt-12 rounded-full" src="../../../public/img/default_icon.jpg">
-          <img :src="user.icon_url" v-if="user.icon_url" class="rounded-full icon-image lg:mt-12"/>
+          <div v-if="!user.icon_url">
+            <img alt="icon" class="icon-image lg:mt-12 rounded-full" src="../../../public/img/default_icon.jpg">
+          </div>
+          <div v-else>
+            <img :src="user.icon_url" class="rounded-full icon-image lg:mt-12"/>
+          </div>
           <router-link v-if="loginUser" :to="{ name: 'MypageEdit' }" class="nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-indigo-800" viewBox="0 0 20 20" fill="currentColor">
               <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
