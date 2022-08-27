@@ -4,8 +4,6 @@ RailsAdmin.config do |config|
 
   config.authenticate_with do
     require_login
-  end
-  config.authorize_with do
     redirect_to main_app.admin_login_path, notice: "権限がありません"  unless current_user.admin?
   end
 
@@ -17,7 +15,7 @@ RailsAdmin.config do |config|
   # end
 
   ## == CancanCan ==
-
+  config.authorize_with :cancancan
   ## == Pundit ==
   # config.authorize_with :pundit
 
@@ -30,6 +28,7 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
 
+  config.main_app_name = %w(推し概念集めてみた 管理画面)
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory

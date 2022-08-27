@@ -1,4 +1,5 @@
 class Api::OauthsController < ApplicationController
+  skip_before_action :require_login
 
   def oauth
     uri = URI::parse(sorcery_login_url(auth_params[:provider]))
