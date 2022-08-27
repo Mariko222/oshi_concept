@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :mygenre_characters
     resources :mypage
     resources :posts
-    resources :sessions
+    resources :sessions, only: %i[create]
     resources :users do
       collection do
         get 'me'
@@ -22,6 +22,13 @@ Rails.application.routes.draw do
 
     resources :password_resets, only: %i[create edit update], params: :token
   end
+
+  namespace :admin do
+    resources :sessions, only: %i[create]
+    get 'login', to: 'sessions#new'
+    delete 'logout', to: 'sessions#destroy'
+  end
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   get '*path', to: 'static_pages#top', constraints: lambda { |req|
     req.path.exclude? 'rails/active_storage'

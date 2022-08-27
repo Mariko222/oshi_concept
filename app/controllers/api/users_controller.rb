@@ -1,5 +1,6 @@
 class Api::UsersController < ApplicationController
   before_action :authenticate!, only: %i[me]
+  skip_before_action :require_login
 
   def index
     user = User.find_by(uuid: params[:uuid])
@@ -17,7 +18,7 @@ class Api::UsersController < ApplicationController
   end
 
   def me
-    render json: current_user, methods: [:icon_url]
+    render json: login_user, methods: [:icon_url]
   end
 
   private
