@@ -43,7 +43,7 @@
           <div v-if="!authUser" class="w-full flex flex-col sm:flex-row sm:justify-center gap-2.5">
             <router-link :to="{ name: 'LoginIndex' }" button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">ログイン</router-link>
             <router-link :to="{ name: 'RegisterIndex' }" button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">新規作成</router-link>
-            <button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">ゲストログイン</button>
+            <router-link :to="'/mypage/'+sample_uuid" button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">サンプルページ</router-link>
           </div>
           <div v-else class="w-full flex flex-col sm:flex-row sm:justify-center gap-2.5">
             <router-link :to="'/mypage/'+authUser.uuid" button class="page-font rounded-full text-white bg-purple-500 hover:bg-purple-400 active:bg-purple-600 btn btn-outline">マイページへ</router-link>
@@ -64,11 +64,12 @@ export default {
       user: {
         uuid: ""
       },
+      sample_uuid: "09aa26fd-d6a7-4ecd-8582-526199e67994"
     };
   },
   computed: {
     ...mapGetters("users", ["authUser"])
-  }
+  },
 }
 </script>
 
