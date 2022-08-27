@@ -1,7 +1,8 @@
 class Api::SessionsController < ApplicationController
+  skip_before_action :require_login
 
   def index
-    @user = User.find(current_user.id)
+    @user = User.find(login_user.id)
     render json: @user
   end
 

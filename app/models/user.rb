@@ -11,6 +11,7 @@
 #  reset_password_email_sent_at        :datetime
 #  reset_password_token                :string
 #  reset_password_token_expires_at     :datetime
+#  role                                :integer          default(0), not null
 #  salt                                :string
 #  uuid                                :string
 #  created_at                          :datetime         not null
@@ -33,6 +34,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :authentications
 
   has_one_attached :icon
+
+  enum role: { general: 0, admin: 1 }
 
   validates :password, length: { minimum: 5 }, if: -> { new_record? || changes[:crypted_password] }, allow_nil: true
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
