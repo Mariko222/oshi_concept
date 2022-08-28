@@ -75,6 +75,9 @@ export default {
     this.fetchPlaceBoth()
     this.fetchUser()
   },
+  computed: {
+    ...mapGetters("users", ["authUser"])
+  },
   methods: {
     fetchPlaceBoth: function (mygenre) {
       this.placeTweets = [];

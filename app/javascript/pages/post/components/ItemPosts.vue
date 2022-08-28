@@ -75,6 +75,9 @@ export default {
     this.fetchItemBoth()
     this.fetchUser()
   },
+  computed: {
+    ...mapGetters("users", ["authUser"])
+  },
   methods: {
     fetchItemBoth: function (mygenre) {
       this.itemTweets = [];
