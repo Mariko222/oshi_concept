@@ -75,6 +75,9 @@ export default {
     this.fetchBoth()
     this.fetchUser()
   },
+  computed: {
+    ...mapGetters("users", ["authUser"])
+  },
   methods: {
     fetchBoth: function (mygenre) {
       this.tweets = [];
