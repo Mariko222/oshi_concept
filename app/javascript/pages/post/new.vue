@@ -59,7 +59,7 @@
                   </div>
                 </ValidationProvider>
 
-                <ValidationProvider name="URL" rules="required|url|max:300">
+                <ValidationProvider name="URL" rules="required|url|max:800">
                   <div slot-scope="ProviderProps">
                     <label for="url" class="page-font inline-block text-gray-800 text-sm sm:text-base mb-2">URL:</label>
                     <input id="url" type="text" v-model="post.url" class="w-full page-font bg-gray-50 text-gray-800 border focus:ring ring-indigo-300 rounded outline-none transition duration-100 px-3 py-2" />
