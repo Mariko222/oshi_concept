@@ -34,6 +34,7 @@ class Api::PostsController < ApplicationController
 
   def webpage_params
     agent = Mechanize.new
+    agent.user_agent_alias = "Windows Mozilla"
     page = agent.get(params[:post][:url])
     ogp = page.at("meta[property='og:image']").try(:[], :content)
     params.require(:post).permit(:category, :type, :url, :mygenre_id).merge(title: page.title, image: ogp)
