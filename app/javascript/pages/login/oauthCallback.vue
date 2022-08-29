@@ -1,6 +1,16 @@
 <template>
-  <div>
-
+  <div class="container mx-auto">
+    <div class="max-w-screen-2x">
+      <section class="flex flex-col items-center">
+        <div class="max-w-xl items-center text-center">
+          <div class="flex justify-center">
+            <div class="animate-ping h-2 w-2 bg-purple-800 rounded-full"></div>
+            <div class="animate-ping h-2 w-2 bg-purple-800 rounded-full mx-4"></div>
+            <div class="animate-ping h-2 w-2 bg-purple-800 rounded-full"></div>
+          </div>
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
