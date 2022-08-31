@@ -84,23 +84,15 @@ export default {
       },
       isVisibleChoiceCharactersModal: false,
       isSelected: false,
-      genres: [],
-      genre: {
-      },
       mygenres: [],
       selectedGenre: '',
-      characters: [],
       character: {
       },
-      selectedCharacters: [],
       selectedCharacterNames:[],
-      mygenreFavoriteCharacters: [],
       errorMessage: ""
     }
   },
   created() {
-    this.fetchMygenres();
-    this.fetchFavoriteCharacters();
     this.user = Object.assign({}, this.authUser)
   },
   mounted() {
