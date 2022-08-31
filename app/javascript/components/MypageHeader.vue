@@ -146,13 +146,13 @@ export default {
       this.$axios.get("mypage", {
         params: this.$route.params
       })
-        .then(res => {
-          this.mygenreFavoriteCharacters = res.data
-          this.mygenreCharacters = this.mygenreFavoriteCharacters.filter(c =>{
-            return c.mygenre['id'] === mygenre.id
-          })
+      .then(res => {
+        this.mygenreFavoriteCharacters = res.data
+        this.mygenreCharacters = this.mygenreFavoriteCharacters.filter(c =>{
+          return c.mygenre['id'] === mygenre.id
         })
-        .catch(err => console.log(err.status));
+      })
+      .catch(err => console.log(err.status));
     },
     handleMygenrePosts(mygenre) {
       this.$emit('mygenre-posts', this.mygenre)
