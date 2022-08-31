@@ -86,7 +86,6 @@ export default {
       this.fetchWebpages(mygenre);
     },
     fetchTweets(mygenre) {
-      console.log(this.$route.params)
       this.$axios.get("posts", {
         params: this.$route.params
       })
