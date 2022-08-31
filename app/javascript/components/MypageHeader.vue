@@ -2,7 +2,7 @@
   <div class="w-full h-48 bg-violet-300 sticky top-20 z-10">
     <div class="max-w-auto h-auto p-4 pb-1">
       <div class="grid grid-cols-3">
-        <div class="icon sm:-pt-6 lg:-mt-12 pb-5 flex jflex flex-col flex justify-center items-center">
+        <div class="icon sm:-pt-6 lg:-mt-12 pb-5 flex flex-col justify-center items-center">
           <div v-if="!user.icon_url">
             <img alt="icon" class="icon-image lg:mt-12 rounded-full" src="../../../public/img/default_icon.jpg">
           </div>
@@ -82,7 +82,7 @@
               </svg>
             </router-link>
           </div>
-          <div class="flex flex-col flex justify-between items-center">
+          <div class="flex flex-col justify-between items-center">
             <div v-for="(mygenre, index) in mygenres" :key="mygenre.id">
               <button
                 class="page-font text-white text-xs lg:text-base bg-indigo-500 hover:bg-indigo-800 border rounded-full p-2"
@@ -107,9 +107,7 @@ export default {
   data() {
     return {
       mygenres: [],
-      mygenreFavoriteCharacters: [],
       mygenreCharacters:[],
-      myCharacters: [],
       user: "",
       isActive: '',
       loginUser: ""
@@ -121,33 +119,15 @@ export default {
     ...mapState("mygenre", ["mygenre"])
   },
   created() {
-    this.fetchFavoriteCharacters();
     this.fetchMygenres();
     this.displayCharacter();
     this.fetchBoth(this.mygenre)
     this.fetchUser();
   },
-  mounted() {
-    this.fetchFavoriteCharacters();
-  },
   methods: {
     ...mapMutations([
       "loadMygenre"
     ]),
-    fetchFavoriteCharacters() {
-      this.$axios.get("mypage", {
-        params: this.$route.params
-      })
-        .then(res => {
-          this.mygenreFavoriteCharacters = res.data
-          this.mygenreLists = this.mygenreFavoriteCharacters.filter((item, index, self) => {
-            return self.findIndex(i =>
-              i['mygenre_id'] === item['mygenre_id']
-            ) === index
-          })
-        })
-        .catch(err => console.log(err.status));
-    },
     fetchMygenres() {
       this.$axios.get("mygenres", {
         params: this.$route.params
@@ -175,7 +155,6 @@ export default {
         .catch(err => console.log(err.status));
     },
     handleMygenrePosts(mygenre) {
-      this.mygenre = mygenre
       this.$emit('mygenre-posts', this.mygenre)
     },
     isSelect: function (index) {
