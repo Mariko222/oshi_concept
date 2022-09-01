@@ -75,6 +75,9 @@ export default {
     this.fetchFashionBoth()
     this.fetchUser()
   },
+  computed: {
+    ...mapGetters("users", ["authUser"])
+  },
   methods: {
     fetchFashionBoth: function (mygenre) {
       this.fashionTweets = [];
