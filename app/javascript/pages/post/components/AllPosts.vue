@@ -75,6 +75,9 @@ export default {
     this.fetchBoth()
     this.fetchUser()
   },
+  computed: {
+    ...mapGetters("users", ["authUser"])
+  },
   methods: {
     fetchBoth: function (mygenre) {
       this.tweets = [];
@@ -83,7 +86,6 @@ export default {
       this.fetchWebpages(mygenre);
     },
     fetchTweets(mygenre) {
-      console.log(this.$route.params)
       this.$axios.get("posts", {
         params: this.$route.params
       })
