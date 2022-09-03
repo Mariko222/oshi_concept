@@ -44,7 +44,7 @@
         </form>
       </ValidationObserver>
       <p class="text-center my-3">
-        初めてご利用の方は
+        新規登録がまだの方は
         <router-link
           :to="{ name: 'RegisterIndex' }"
           class="text-indigo-800 hover:text-indigo-400"
