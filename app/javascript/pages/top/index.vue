@@ -11,7 +11,9 @@
             </div>
             <div class="text-center pb-12">
               <p class="page-font text-gray-800 text-xl font-bold mb-4">“推し概念集めてみた”を使うと、</p>
-              <p class="page-font text-gray-800 text-xl font-bold ml-3">ジャンルごとに推しっぽいと思ったツイートやWEBページを<br>保存して自分が”概念”と感じたものを好きなだけ集めて<br>オリジナルのマイページを作成できます。</p>
+              <p class="page-font text-gray-800 text-xl font-bold ml-3 mb-4">ジャンルごとに推しっぽいと思ったツイートやWEBページを<br>保存して、自分が”概念”と感じたものを好きなだけ集めて<br>オリジナルのマイページを作成できます。</p>
+              <p class="page-font text-gray-800 text-xl font-bold mb-4">誰にも見られないので気にせず好きなものを投稿しよう！</p>
+              <p class="page-font text-gray-800 text-xl font-bold mb-4">もちろん共有してもOK！</p>
             </div>
           </div>
           <div class="bg-gray-100 rounded-lg shadow-lg grid  gap-8 lg:gap-12 mt-10 mb-6">
