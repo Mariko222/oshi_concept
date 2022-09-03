@@ -44,6 +44,14 @@
         </form>
       </ValidationObserver>
       <p class="text-center my-3">
+        初めてご利用の方は
+        <router-link
+          :to="{ name: 'RegisterIndex' }"
+          class="text-indigo-800 hover:text-indigo-400"
+          >こちら</router-link
+        >
+      </p>
+      <p class="text-center my-3">
         パスワードをお忘れの方は
         <router-link
           :to="{ name: 'ResetPasswordNew' }"
