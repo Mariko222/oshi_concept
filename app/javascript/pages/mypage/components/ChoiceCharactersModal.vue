@@ -15,7 +15,7 @@
           </p>
           <button
             type="button"
-            class="btn-close box-content my-auto p-1 text-white hover:text-white active:text-white border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline md:text-4xl text-lg"
+            class="btn-close box-content my-auto p-1 text-white hover:text-white active:text-white border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:opacity-75 hover:no-underline md:text-4xl text-lg"
             @click="handleCloseModal"
           >
             ×
