@@ -14,7 +14,6 @@ class Api::PostsController < ApplicationController
     post = mygenre.posts.build(amazon_page_params) if params[:url].include?("amazon")
     post = mygenre.posts.build(webpage_params) if params[:type] == 'webpage' && params[:url].exclude?("amazon")
     post = mygenre.posts.build(post_params) if params[:type] == 'twitter'
-
     if post.save
       render json: post
     else
