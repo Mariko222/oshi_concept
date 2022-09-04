@@ -5,10 +5,10 @@
       <div class="grid grid-cols-3">
         <div class="icon sm:-pt-6 lg:-mt-12 pb-5 flex flex-col justify-center items-center -ml-8">
           <div v-if="!user.icon_url">
-            <img alt="icon" class="icon-image lg:mt-12 outline-white outline outline-3 outline-offset-1  rounded-full" src="../../../public/img/default_icon.jpg">
+            <img alt="icon" class="icon-image lg:mt-12 ring-white ring-2 rounded-full" src="../../../public/img/default_icon.jpg">
           </div>
           <div v-else>
-            <img :src="user.icon_url" class="rounded-full icon-image outline-white outline outline-3 outline-offset-1 lg:mt-12"/>
+            <img :src="user.icon_url" class="rounded-full icon-image ring-white ring-2 lg:mt-12"/>
           </div>
           <router-link v-if="loginUser" :to="{ name: 'MypageEdit' }" class="nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white mt-1" viewBox="0 0 20 20" fill="currentColor">
@@ -76,7 +76,7 @@
             </div>
           </div>
         </div>
-        <div class="outline-white outline outline-offset-1 h-max -mr-3 lg:mr-3 px-2 py-3 rounded-lg">
+        <div class="ring-white ring-1 h-max -mr-3 lg:mr-3 px-2 py-3 rounded-lg">
           <p class="page-font mb-1 text-xs lg:text-base text-white"><span class="page-font">{{ user.name }}</span>の推し：</p>
           <router-link v-if="loginUser" :to="{ name: 'MygenresEdit' }" class="nav-link">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
