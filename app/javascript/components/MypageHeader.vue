@@ -103,6 +103,7 @@
               </div>
             </div>
           </div>
+          <p v-if="mygenre" class="page-font text-white">{{genre}}</p>
           <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </div>
         <div class="ring-white ring-1 h-max -mr-3 lg:mr-3 px-2 py-3 rounded-lg">
@@ -136,6 +137,7 @@ export default {
   data() {
     return {
       mygenres: [],
+      genre: "",
       mygenreCharacters:[],
       user: "",
       isActive: '',
@@ -189,6 +191,8 @@ export default {
     },
     isSelect: function (index) {
       this.isActive = index;
+      this.genre = this.mygenre.genre.name
+      console.log(this.genre)
       this.showModal = !this.showModal;
     },
     fetchUser() {
