@@ -42,11 +42,11 @@ module Api::ExceptionHandler
           detail: 'URL形式が正しくありません。'
         }
       }, status: :not_found
-    else
+      elsif error.message == "[\"Urlはすでに存在します\"]"
       render json: {
         errors: {
           title: 'Record Not Found',
-          detail: 'メールアドレスもしくはパスワードが正しくありません。'
+          detail: 'このUrlはすでに登録されています。'
         }
       }, status: :not_found
     end
