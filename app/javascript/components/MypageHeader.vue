@@ -56,8 +56,8 @@
           </ul>
         </div>
         <div class="flex flex-col my-auto -ml-4 pr-2 items-center">
-          <p class="page-font text-xs lg:text-base text-white mb-3 -mt-6">選択したジャンル:</p>
-          <p v-if="mygenre" class="page-font text-bold text-sm lg:text-xl text-white">{{genre}}</p>
+          <p class="page-font text-xs sm:text-base lg:text-base text-white mb-3 -mt-6">選択したジャンル:</p>
+          <p v-if="mygenre" class="page-font text-bold text-sm sm:text-xl lg:text-2xl text-white">{{genre}}</p>
           <div class="flex">
             <router-link v-if="loginUser" :to="{ name: 'MypageNew' }" class="nav-link mt-6">
               <button class="page-font bg-indigo-500 text-white active:bg-indigo-600 uppercase text-xs lg:text-base px-1 py-1 rounded shadow hover:shadow-lg outline ease-linear transition-all duration-150" type="button">
@@ -104,16 +104,16 @@
         </div>
         <div class="h-max -mr-3 lg:mr-3 px-2 py-3 rounded-lg border border-white">
           <div class="flex justify-between">
-            <p class="page-font mb-1 text-xs lg:text-base text-white"><span class="page-font">{{ user.name }}</span>の推し：</p>
+            <p class="page-font mb-1 text-xs sm:text-base lg:text-base text-white"><span class="page-font">{{ user.name }}</span>の推し：</p>
             <button class="page-font bg-purple-500 text-white active:bg-purple-600 uppercase text-xs lg:text-base px-1 py-1 rounded shadow hover:shadow-lg outline ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
               ジャンルを選択
             </button>
           </div>
           <hr class="my-2" />
           <div class="flex flex-col justify-between">
-            <p class="text-center page-font text-xs lg:text-base text-white" v-if="mygenreCharacters.length === 0">ジャンルを選択してください。</p>
+            <p class="text-center page-font text-xs sm:text-base lg:text-xl text-white" v-if="mygenreCharacters.length === 0">ジャンルを選択してください。</p>
             <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded">
-              <li class="page-font text-xs lg:text-base text-white">{{ mygenreCharacter.character.name }}</li>
+              <li class="page-font text-xs sm:text-base lg:text-base text-white">{{ mygenreCharacter.character.name }}</li>
             </ul>
             <router-link v-if="loginUser" :to="{ name: 'MygenresEdit' }" class="nav-link flex justify-end">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
