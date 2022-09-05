@@ -60,7 +60,7 @@
           <p v-if="mygenre" class="page-font text-bold text-sm sm:text-xl lg:text-2xl text-white">{{genre}}</p>
           <div class="flex">
             <router-link v-if="loginUser" :to="{ name: 'MypageNew' }" class="nav-link mt-6">
-              <button class="page-font bg-indigo-500 text-white active:bg-indigo-600 uppercase text-xs lg:text-base px-1 py-1 rounded shadow hover:shadow-lg outline ease-linear transition-all duration-150" type="button">
+              <button class="page-font bg-indigo-500 text-white active:bg-indigo-600 uppercase text-xs lg:text-base px-1 py-1 rounded-lg border border-white hover:shadow-lg ease-linear transition-all duration-150" type="button">
                 ジャンルを追加
               </button>
             </router-link>
@@ -105,7 +105,7 @@
         <div class="h-max -mr-3 lg:mr-3 px-2 py-3 rounded-lg border border-white">
           <div class="flex justify-between">
             <p class="page-font mb-1 text-xs sm:text-base lg:text-base text-white"><span class="page-font">{{ user.name }}</span>の推し：</p>
-            <button class="page-font bg-purple-500 text-white active:bg-purple-600 uppercase text-xs lg:text-base px-1 py-1 rounded shadow hover:shadow-lg outline ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
+            <button class="page-font bg-purple-500 text-white active:bg-purple-600 uppercase text-xs lg:text-base px-1 py-1 rounded-lg border border-white hover:shadow-lg ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
               ジャンルを選択
             </button>
           </div>
