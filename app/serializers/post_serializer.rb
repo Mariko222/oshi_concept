@@ -14,7 +14,8 @@
 #
 # Indexes
 #
-#  index_posts_on_mygenre_id  (mygenre_id)
+#  index_posts_on_mygenre_id          (mygenre_id)
+#  index_posts_on_url_and_mygenre_id  (url,mygenre_id) UNIQUE
 #
 # Foreign Keys
 #
