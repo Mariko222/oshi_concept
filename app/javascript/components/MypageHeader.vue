@@ -56,19 +56,15 @@
           </ul>
         </div>
         <div class="flex flex-col my-auto -ml-4 pr-2 items-center">
-          <p class="page-font text-xs lg:text-xl text-white mb-3 -mt-6"><span class="page-font text-xs lg:text-xl">{{ user.name }}</span>のジャンルリスト:</p>
+          <p class="page-font text-xs lg:text-base text-white mb-3 -mt-6">選択したジャンル:</p>
+          <p v-if="mygenre" class="page-font text-bold text-sm lg:text-xl text-white">{{genre}}</p>
           <div class="flex">
-            <p class="page-font text-xs lg:text-xl text-white mr-3 -mt-1" v-if="mygenres.length === 0">ジャンルを追加してください</p>
-            <router-link v-if="loginUser" :to="{ name: 'MypageNew' }" class="nav-link mb-3">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
-                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-                <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-              </svg>
+            <router-link v-if="loginUser" :to="{ name: 'MypageNew' }" class="nav-link mt-6">
+              <button class="page-font bg-indigo-500 text-white active:bg-indigo-600 uppercase text-xs lg:text-base px-1 py-1 rounded shadow hover:shadow-lg outline ease-linear transition-all duration-150" type="button">
+                ジャンルを追加
+              </button>
             </router-link>
           </div>
-          <button class="page-font bg-purple-500 text-white active:bg-purple-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline mr-1 mb-1 ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
-            見たいジャンルを選ぶ
-          </button>
           <div v-if="showModal" class="overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center flex">
             <div class="relative w-auto my-6 mx-auto max-w-sm">
               <!--content-->
@@ -78,7 +74,7 @@
                   class="modal-header flex flex-shrink-0 items-center p-2 justify-between border-b border-gray-200 rounded-t-md bg-gray-700"
                 >
                   <p class="page-font text-white">
-                    ジャンルを選択
+                    {{ user.name }}</span>のジャンルリスト:
                   </p>
                   <button
                     type="button"
@@ -91,9 +87,10 @@
                 <!--body-->
                 <div class="relative p-6 flex-auto">
                   <div class="flex flex-col justify-between items-center">
+                    <p class="page-font text-xs lg:text-xl mr-3 -mt-1" v-if="mygenres.length === 0">追加済みのジャンルがありません。</p>
                     <div class="w-full my-1" v-for="(mygenre, index) in mygenres" :key="mygenre.id">
                       <button
-                        class="page-font text-white text-xs lg:text-base bg-purple-600 hover:bg-purple-900 border rounded-full p-2"
+                        class="page-font text-white text-sm lg:text-base bg-purple-600 hover:bg-purple-900 border rounded-full p-2"
                         @click="fetchBoth(mygenre)"
                         v-bind:class="{'active': isActive === index}" v-on:click="isSelect(index)"
                       >{{ mygenre.genre.name }}</button>
@@ -103,23 +100,27 @@
               </div>
             </div>
           </div>
-          <p v-if="mygenre" class="page-font text-white">{{genre}}</p>
           <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </div>
         <div class="ring-white ring-1 h-max -mr-3 lg:mr-3 px-2 py-3 rounded-lg">
-          <p class="page-font mb-1 text-xs lg:text-base text-white"><span class="page-font">{{ user.name }}</span>の推し：</p>
-          <router-link v-if="loginUser" :to="{ name: 'MygenresEdit' }" class="nav-link">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
-              <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
-            </svg>
-          </router-link>
+          <div class="flex justify-between">
+            <p class="page-font mb-1 text-xs lg:text-base text-white"><span class="page-font">{{ user.name }}</span>の推し：</p>
+            <button class="page-font bg-purple-500 text-white active:bg-purple-600 uppercase text-xs lg:text-base px-1 py-1 rounded shadow hover:shadow-lg outline ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
+              ジャンルを選択
+            </button>
+          </div>
           <hr class="my-2" />
           <div class="flex flex-col justify-between">
-            <p class="page-font text-xs lg:text-base text-white" v-if="mygenreCharacters.length === 0">登録したジャンルを選んでください。</p>
+            <p class="text-center page-font text-xs lg:text-base text-white" v-if="mygenreCharacters.length === 0">ジャンルを選択してください。</p>
             <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded">
               <li class="page-font text-xs lg:text-base text-white">{{ mygenreCharacter.character.name }}</li>
             </ul>
+            <router-link v-if="loginUser" :to="{ name: 'MygenresEdit' }" class="nav-link flex justify-end">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
+              </svg>
+            </router-link>
           </div>
         </div>
       </div>
@@ -142,7 +143,7 @@ export default {
       user: "",
       isActive: '',
       loginUser: "",
-      showModal: false
+      showModal: false,
     }
   },
   computed: {
@@ -155,6 +156,7 @@ export default {
     this.displayCharacter();
     this.fetchBoth(this.mygenre)
     this.fetchUser();
+    this.isSelect();
   },
   methods: {
     ...mapMutations([
@@ -192,8 +194,7 @@ export default {
     isSelect: function (index) {
       this.isActive = index;
       this.genre = this.mygenre.genre.name
-      console.log(this.genre)
-      this.showModal = !this.showModal;
+      this.showModal = false
     },
     fetchUser() {
       this.$axios.get("users", {
