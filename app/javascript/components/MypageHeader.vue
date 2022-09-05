@@ -155,8 +155,10 @@ export default {
     this.fetchMygenres();
     this.displayCharacter();
     this.fetchBoth(this.mygenre)
-    this.fetchUser();
     this.isSelect();
+  },
+  updated() {
+    this.fetchUser();
   },
   methods: {
     ...mapMutations([
