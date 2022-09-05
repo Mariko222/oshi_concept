@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_25_081143) do
+ActiveRecord::Schema.define(version: 2022_09_05_123933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2022_08_25_081143) do
     t.string "title"
     t.string "image"
     t.index ["mygenre_id"], name: "index_posts_on_mygenre_id"
+    t.index ["url", "mygenre_id"], name: "index_posts_on_url_and_mygenre_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
