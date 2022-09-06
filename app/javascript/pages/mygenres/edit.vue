@@ -88,6 +88,7 @@ export default {
       selectedGenre: '',
       character: {
       },
+      mygenreCharacters:[],
       selectedCharacterNames:[],
       errorMessage: ""
     }
@@ -98,6 +99,7 @@ export default {
   mounted() {
     this.fetchFavoriteCharacters();
     this.fetchMygenres();
+    this.fetchBoth();
   },
   computed: {
     ...mapGetters("users", ["authUser"])

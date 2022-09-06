@@ -105,7 +105,7 @@
           </div>
           <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </div>
-        <div class="h-max -mr-3 lg:mr-3 px-2 py-3 rounded-lg border border-white">
+        <div class="h-max -mr-3 lg:mr-3 lg:-mt-2 px-2 py-3 rounded-lg border border-white">
           <div class="flex justify-between">
             <p class="page-font mb-1 text-xs sm:text-base lg:text-base text-white">
               <span v-if="authUser" class="page-font">
