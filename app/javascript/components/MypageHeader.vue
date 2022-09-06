@@ -7,7 +7,7 @@
           <div v-if="!user.icon_url">
             <img alt="icon" class="icon-image lg:mt-12 border border-white rounded-full" src="../../../public/img/default_icon.jpg">
           </div>
-          <div v-if="authUser">
+          <div v-if="authUser && user.icon_url">
             <img :src="authUser.icon_url" class="rounded-full icon-image border border-white lg:mt-12"/>
           </div>
           <div v-if="!authUser">
