@@ -102,7 +102,7 @@ export default {
     this.fetchBoth();
   },
   computed: {
-    ...mapGetters("users", ["authUser"])
+    ...mapGetters("users", ["authUser"]),
   },
   methods: {
     handleOpenChoiceCharactersModal() {
@@ -165,9 +165,7 @@ export default {
     },
     async handleDeleteCharacter(mygenreCharacter) {
       try {
-        await
-        axios.delete(`mygenres/${mygenreCharacter.id}`)
-        this.$router.go({path: this.$router.currentRoute.path, force: true})
+        await axios.delete(`mygenres/${mygenreCharacter.id}`)
         this.$store.dispatch("setFlash", {
           type: "success",
           message: "推しから削除しました。",
@@ -180,6 +178,8 @@ export default {
           message: "推しを削除できませんでした。",
         })
       }
+      this.selectedGenre = ''
+      this.fetchFavoriteCharacters()
     },
     async register() {
       try {
