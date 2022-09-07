@@ -14,12 +14,18 @@ class Api::MygenresController < ApplicationController
 
   def create
     mygenre = Mygenre.find_by(user_id: login_user.id, genre_id: params[:genre_id])
+    mygenre_favorite_characters = []
     params[:character_ids].each do |character_id|
       mygenre_favorite_character = MygenreFavoriteCharacter.new(mygenre_id: mygenre.id, character_id: character_id)
-      render json: mygenre_favorite_character.errors, status: :bad_request unless mygenre_favorite_character.valid?
       if mygenre_favorite_character.save
-        render json: mygenre_favorite_character
+        mygenre_favorite_characters.push(mygenre_favorite_character)
       end
+    end
+
+    if mygenre_favorite_characters.all?
+      render json: mygenre_favorite_characters
+    else
+      render json: mygenre_favorite_characters.errors, status: :bad_request
     end
   end
 
