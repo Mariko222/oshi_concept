@@ -10,7 +10,7 @@
           <div v-if="authUser && user.icon_url">
             <img :src="authUser.icon_url" class="rounded-full icon-image border border-white lg:mt-12"/>
           </div>
-          <div v-if="!authUser">
+          <div v-if="!authUser && user.icon_url">
             <img :src="user.icon_url" class="rounded-full icon-image border border-white lg:mt-12"/>
           </div>
           <router-link v-if="authUser" :to="{ name: 'MypageEdit' }" class="nav-link">
