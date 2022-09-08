@@ -191,9 +191,8 @@ export default {
           message: "推しを削除できませんでした。",
         })
       }
-      this.$refs.observer.reset();
-      this.selectedGenre = ''
-      this.fetchFavoriteCharacters()
+      this.fetchFavoriteCharacters(this.selectedGenre)
+      this.ObserverProps.reset();
     },
     async register() {
       try {
