@@ -10,7 +10,7 @@
           <div v-if="authUser && user.icon_url">
             <img :src="authUser.icon_url" class="rounded-full icon-image border border-white lg:mt-12"/>
           </div>
-          <div v-if="!authUser">
+          <div v-if="!authUser && user.icon_url">
             <img :src="user.icon_url" class="rounded-full icon-image border border-white lg:mt-12"/>
           </div>
           <router-link v-if="authUser" :to="{ name: 'MypageEdit' }" class="nav-link">
@@ -105,15 +105,15 @@
           </div>
           <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </div>
-        <div class="h-max -mr-3 lg:mr-3 lg:-mt-2 px-2 py-3 rounded-lg border border-white">
+        <div class="h-max -mr-3 -mt-3 lg:mr-3 px-2 py-3 rounded-lg border border-white">
           <div class="flex justify-between">
-            <p class="page-font mb-1 text-xs sm:text-base lg:text-base text-white">
+            <p class="page-font mb-1 text-xs sm:text-sm lg:text-sm text-white">
               <span v-if="authUser" class="page-font">
                 {{ authUser.name }}
               </span>
               <span v-if="!authUser" class="page-font">
                 {{ user.name }}
-              </span>
+              </span><br>
               の推し：
             </p>
             <button class="page-font bg-purple-500 text-white active:bg-purple-600 uppercase text-xs lg:text-base px-1 py-1 rounded-lg border border-white hover:shadow-lg ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">

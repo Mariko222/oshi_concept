@@ -52,6 +52,7 @@
       @choice-characters="displayCharacters"
       :characters="characters"
       :character="character"
+      :checked-characters="checkedCharacters"
       :key="character.id"
     />
   </div>
@@ -84,6 +85,7 @@ export default {
       },
       selectedCharacters: [],
       selectedCharacterNames:[],
+      checkedCharacters:[],
       errorMessage: "",
     }
   },
@@ -122,6 +124,7 @@ export default {
         .catch(err => console.log(err.status));
     },
     fetchCharacters(selectedGenre) {
+      this.selectedCharacterNames = []
       this.$axios.get("characters", {
         params:{ id:selectedGenre }
       })

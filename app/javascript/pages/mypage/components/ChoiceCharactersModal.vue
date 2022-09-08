@@ -29,6 +29,7 @@
                 :id="'character' + i"
                 type="checkbox"
                 :value="character.id"
+                :disabled="character.id === checkedCharacters[0] || character.id === checkedCharacters[1] || character.id === checkedCharacters[2]"
                 name="mygenre[character_id]"
                 v-model="selectedCharacters"
               >
@@ -69,6 +70,9 @@ export default {
     characters: {
       type: Array,
       required: true
+    },
+    checkedCharacters: {
+      type: Array
     }
   },
   computed: {
