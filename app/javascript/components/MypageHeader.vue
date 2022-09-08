@@ -60,7 +60,7 @@
         </div>
         <div class="flex flex-col my-auto -ml-4 pr-2 items-center">
           <p class="page-font text-xs sm:text-base lg:text-base text-white mb-3 -mt-6">選択したジャンル:</p>
-          <p v-if="mygenre" class="page-font text-bold text-sm sm:text-xl lg:text-2xl text-white">{{genre}}</p>
+          <p v-if="mygenre && userSelect == user.id" class="page-font text-bold text-sm sm:text-xl lg:text-2xl text-white">{{genre}}</p>
           <div class="flex">
             <router-link v-if="authUser" :to="{ name: 'MypageNew' }" class="nav-link mt-6">
               <button class="page-font bg-indigo-500 text-white active:bg-indigo-600 uppercase text-xs lg:text-base px-1 py-1 rounded-lg border border-white hover:shadow-lg ease-linear transition-all duration-150" type="button">
@@ -206,6 +206,7 @@ export default {
     isSelect: function (index) {
       this.isActive = index;
       this.genre = this.mygenre.genre.name
+      this.userSelect = this.mygenre.user_id
       this.showModal = false
     },
     fetchUser() {
