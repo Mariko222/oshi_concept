@@ -23,7 +23,10 @@
                 <ul v-for="mygenreCharacter in mygenreCharacters" :value="mygenreCharacter.id" class="mx-auto flex justify-between bg-white border shadow-sm rounded p-2">
                   <li class="page-font">{{ mygenreCharacter.character.name }}
                   </li>
-                  <button type="button" @click="handleDeleteCharacter(mygenreCharacter)">
+                  <button
+                    type="button"
+                    @click="handleDeleteCharacter(mygenreCharacter)"
+                  >
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-right" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -61,6 +64,7 @@
       @choice-characters="displayCharacters"
       :characters="characters"
       :character="character"
+      :checked-characters="checkedCharacters"
       :key="character.id"
     />
   </div>
@@ -90,6 +94,7 @@ export default {
       },
       mygenreCharacters:[],
       selectedCharacterNames:[],
+      checkedCharacters:[],
       errorMessage: ""
     }
   },
@@ -108,6 +113,7 @@ export default {
     handleOpenChoiceCharactersModal() {
       this.isVisibleChoiceCharactersModal = true;
       this.selectedCharacterNames = []
+      this.checkedCharacters = this.mygenreCharacters.map(c => c.character_id)
     },
     handleCloseChoiceCharactersModal() {
       this.isVisibleChoiceCharactersModal = false;
@@ -133,6 +139,7 @@ export default {
         .catch(err => console.log(err.status));
     },
     fetchBoth: function (selectedGenre) {
+      this.selectedCharacterNames = []
       this.fetchCharacters(selectedGenre);
       this.fetchFavoriteCharacters(selectedGenre);
     },
@@ -165,11 +172,17 @@ export default {
     },
     async handleDeleteCharacter(mygenreCharacter) {
       try {
-        await axios.delete(`mygenres/${mygenreCharacter.id}`)
-        this.$store.dispatch("setFlash", {
-          type: "success",
-          message: "推しから削除しました。",
-        });
+        if(1 < this.mygenreCharacters.length) {
+          await axios.delete(`mygenres/${mygenreCharacter.id}`)
+          this.$store.dispatch("setFlash", {
+            type: "success",
+            message: "推しから削除しました。",
+          });
+        }else{
+          this.$store.dispatch("setFlash", {
+          type: "error",
+          message: "削除できません。推しの登録は1人以上にしてください。",
+        })}
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
@@ -178,6 +191,7 @@ export default {
           message: "推しを削除できませんでした。",
         })
       }
+      this.$refs.observer.reset();
       this.selectedGenre = ''
       this.fetchFavoriteCharacters()
     },
@@ -188,7 +202,7 @@ export default {
           genre_id: this.selectedGenre,
           character_ids: this.selectedCharacters,
         }
-        if(this.selectedCharacters.length + this.mygenreCharacters.length < 5) {
+        if(0 < this.selectedCharacters.length + this.mygenreCharacters.length < 5) {
           this.$axios.post("mygenres", params)
           this.$store.dispatch("setFlash", {
             type: "success",
