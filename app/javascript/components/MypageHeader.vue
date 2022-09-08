@@ -105,9 +105,9 @@
           </div>
           <div v-if="showModal" class="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </div>
-        <div class="h-max -mr-3 -mt-2 lg:mr-3 px-2 py-3 rounded-lg border border-white">
+        <div class="h-max -mr-3 -mt-3 lg:mr-3 px-2 py-3 rounded-lg border border-white">
           <div class="flex justify-between">
-            <p class="page-font mb-1 text-xs sm:text-base lg:text-base text-white">
+            <p class="page-font mb-1 text-xs sm:text-sm lg:text-sm text-white">
               <span v-if="authUser" class="page-font">
                 {{ authUser.name }}
               </span>
@@ -122,8 +122,7 @@
           </div>
           <hr class="my-2" />
           <div class="flex flex-col justify-between">
-            <p class="text-center page-font text-xs sm:text-base lg:text-xl text-white" v-if="!isActive && mygenreCharacters.length === 0">ジャンルを選択してください。</p>
-            <p class="text-center page-font text-xs sm:text-base lg:text-xl text-white" v-if="isActive && mygenreCharacters.length === 0">推しを登録してください。</p>
+            <p class="text-center page-font text-xs sm:text-base lg:text-xl text-white" v-if="mygenreCharacters.length === 0">ジャンルを選択してください。</p>
             <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded">
               <li class="page-font text-xs sm:text-base lg:text-base text-white">{{ mygenreCharacter.character.name }}</li>
             </ul>
