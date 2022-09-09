@@ -124,7 +124,6 @@ export default {
         .catch(err => console.log(err.status));
     },
     fetchCharacters(selectedGenre) {
-      this.errorMessage = ""
       this.selectedCharacterNames = []
       this.$axios.get("characters", {
         params:{ id:selectedGenre }
@@ -156,6 +155,9 @@ export default {
           message: "ジャンルと推しを登録できませんでした。",
         })
       })
+      setTimeout(() =>
+        this.errorMessage = ""
+      , 3000);
     },
   }
 }

@@ -147,6 +147,9 @@ export default {
           message: "概念投稿できませんでした。",
         })
       })
+      setTimeout(() =>
+        this.errorMessage = ""
+      , 3000);
     }
   },
 }
