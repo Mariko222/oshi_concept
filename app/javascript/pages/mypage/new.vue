@@ -124,14 +124,15 @@ export default {
         .catch(err => console.log(err.status));
     },
     fetchCharacters(selectedGenre) {
+      this.errorMessage = ""
       this.selectedCharacterNames = []
       this.$axios.get("characters", {
         params:{ id:selectedGenre }
       })
-        .then(res => {
-          this.characters = res.data
-        })
-        .catch(err => console.log(err.status));
+      .then(res => {
+        this.characters = res.data
+      })
+      .catch(err => console.log(err.status));
     },
     async register() {
       await this.fetchGenres()
