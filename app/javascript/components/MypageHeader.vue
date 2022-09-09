@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-52 bg-yellow-900 sticky top-20 z-10">
+  <div class="w-full h-58 bg-yellow-900 sticky top-20 z-10">
     <hr />
     <div class="max-w-auto h-auto p-4 pb-1">
       <div class="grid grid-cols-3">
@@ -113,7 +113,7 @@
               </span>
               <span v-if="!authUser" class="page-font">
                 {{ user.name }}
-              </span><br>
+              </span>
               の推し：
             </p>
             <button class="page-font bg-purple-500 text-white active:bg-purple-600 uppercase text-xs lg:text-base px-1 py-1 rounded-lg border border-white hover:shadow-lg ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
