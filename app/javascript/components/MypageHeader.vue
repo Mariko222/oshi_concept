@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-52 bg-yellow-900 sticky top-20 z-10">
+  <div class="w-full h-58 bg-yellow-900 sticky top-20 z-10">
     <hr />
     <div class="max-w-auto h-auto p-4 pb-1">
       <div class="grid grid-cols-3">
@@ -113,7 +113,7 @@
               </span>
               <span v-if="!authUser" class="page-font">
                 {{ user.name }}
-              </span><br>
+              </span>
               の推し：
             </p>
             <button class="page-font bg-purple-500 text-white active:bg-purple-600 uppercase text-xs lg:text-base px-1 py-1 rounded-lg border border-white hover:shadow-lg ease-linear transition-all duration-150" type="button" v-on:click="toggleModal()">
@@ -126,7 +126,7 @@
             <ul v-for="mygenreCharacter in mygenreCharacters" class="rounded">
               <li class="page-font text-xs sm:text-base lg:text-base text-white">{{ mygenreCharacter.character.name }}</li>
             </ul>
-            <router-link v-if="authUser" :to="{ name: 'MygenresEdit' }" class="nav-link flex justify-end">
+            <router-link v-if="authUser && mygenres.length != 0" :to="{ name: 'MygenresEdit' }" class="nav-link flex justify-end">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
                 <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                 <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
@@ -154,6 +154,7 @@ export default {
       user: "",
       isActive: '',
       showModal: false,
+      userSelect: ""
     }
   },
   computed: {
