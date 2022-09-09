@@ -154,6 +154,7 @@ export default {
       user: "",
       isActive: '',
       showModal: false,
+      userSelect: ""
     }
   },
   computed: {

@@ -192,7 +192,7 @@ export default {
         })
       }
       this.fetchFavoriteCharacters(this.selectedGenre)
-      this.ObserverProps.reset();
+      this.$refs.observer.reset();
     },
     async register() {
       try {
