@@ -192,7 +192,7 @@ export default {
         })
       }
       this.fetchFavoriteCharacters(this.selectedGenre)
-      this.ObserverProps.reset();
+      this.$refs.observer.reset();
     },
     async register() {
       try {
@@ -201,7 +201,7 @@ export default {
           genre_id: this.selectedGenre,
           character_ids: this.selectedCharacters,
         }
-        if(0 < this.selectedCharacters.length + this.mygenreCharacters.length < 5) {
+        if(this.selectedCharacters.length + this.mygenreCharacters.length < 5) {
           this.$axios.post("mygenres", params)
           this.$store.dispatch("setFlash", {
             type: "success",

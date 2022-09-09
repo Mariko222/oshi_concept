@@ -128,10 +128,10 @@ export default {
       this.$axios.get("characters", {
         params:{ id:selectedGenre }
       })
-        .then(res => {
-          this.characters = res.data
-        })
-        .catch(err => console.log(err.status));
+      .then(res => {
+        this.characters = res.data
+      })
+      .catch(err => console.log(err.status));
     },
     async register() {
       await this.fetchGenres()
@@ -155,6 +155,9 @@ export default {
           message: "ジャンルと推しを登録できませんでした。",
         })
       })
+      setTimeout(() =>
+        this.errorMessage = ""
+      , 3000);
     },
   }
 }
