@@ -44,7 +44,7 @@ class User < ApplicationRecord
                                                         }, allow_nil: true
 
   validates :email, uniqueness: true, allow_nil: true
-  validates :name, presence: true, length: { maximum: 10 }
+  validates :name, presence: true, length: { maximum: 15 }
   validates :mypage_name, length: { maximum: 10 }
 
   validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
