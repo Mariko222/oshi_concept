@@ -5,9 +5,5 @@ FactoryBot.define do
     password { 'password' }
     password_confirmation { 'password' }
     role { "general" }
-
-    after(:create) do |user|
-      create(:mygenre, user: user)
-    end
   end
 end
