@@ -14,19 +14,19 @@ class Api::MygenresController < ApplicationController
 
   def create
     mygenre = Mygenre.find_by(user_id: login_user.id, genre_id: params[:genre_id])
+
+    raise ActiveRecord::RecordNotFound if params[:character_ids].count > 4
+
     mygenre_favorite_characters = []
     params[:character_ids].each do |character_id|
       mygenre_favorite_character = MygenreFavoriteCharacter.new(mygenre_id: mygenre.id, character_id: character_id)
-      if mygenre_favorite_character.save
+      if mygenre_favorite_characters.count < 4
+        mygenre_favorite_character.save
         mygenre_favorite_characters.push(mygenre_favorite_character)
       end
     end
 
-    if mygenre_favorite_characters.all?
-      render json: mygenre_favorite_characters
-    else
-      render json: mygenre_favorite_characters.errors, status: :bad_request
-    end
+    render json: mygenre_favorite_characters
   end
 
   def destroy
@@ -37,6 +37,7 @@ class Api::MygenresController < ApplicationController
   private
 
   def set_character
+    binding.pry
     @mygenre_favorite_character = MygenreFavoriteCharacter.find(params[:id])
   end
 end
