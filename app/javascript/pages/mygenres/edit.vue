@@ -209,10 +209,12 @@ export default {
           });
           this.$router.push('/mypage/'+this.user.uuid);
         }else{
-        this.$store.dispatch("setFlash", {
-          type: "error",
-          message: "推しの登録は４人以下にしてください。",
-        })}
+          this.$store.dispatch("setFlash", {
+            type: "error",
+            message: "推しの登録は４人以下にしてください。",
+          })
+          this.selectedCharacters = ""
+        }
       } catch (error) {
         console.log(error);
         this.errorMessage = error.response.data.errors.detail;
