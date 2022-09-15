@@ -37,7 +37,6 @@ class Api::MygenresController < ApplicationController
   private
 
   def set_character
-    binding.pry
     @mygenre_favorite_character = MygenreFavoriteCharacter.find(params[:id])
   end
 end
