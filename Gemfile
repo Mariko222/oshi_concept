@@ -69,6 +69,7 @@ group :development, :test do
   gem 'binding_of_caller'
   #テスト用
   gem 'rspec-rails'
+  gem 'simplecov', require: false
   gem 'factory_bot_rails'
   gem 'letter_opener_web'
 end
