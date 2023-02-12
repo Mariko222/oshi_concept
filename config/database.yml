@@ -84,3 +84,4 @@ production:
   database: oshi_concept_production
   username: oshi_concept
   password: <%= ENV['OSHI_CONCEPT_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
