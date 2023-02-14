@@ -36,8 +36,8 @@ csv_3 = CSV.read('db/fixtures/csv_data/posts.csv', headers: true)
 csv_3.each do |post|
   Post.seed do |s|
     s.id = post[0]
-    s.category = post[1]
-    s.type = post[2]
+    s.category = post[1].to_i
+    s.type = post[2].to_i
     s.url = post[3]
     s.mygenre_id = post[4]
     s.created_at = post[5]
