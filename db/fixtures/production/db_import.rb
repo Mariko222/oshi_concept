@@ -21,8 +21,19 @@ csv_1.each do |user|
   end
 end
 
-csv_2 = CSV.read('db/fixtures/csv_data/posts.csv', headers: true)
-csv_2.each do |post|
+csv_2 = CSV.read('db/fixtures/csv_data/mygenres.csv', headers: true)
+csv_2.each do |mygenre|
+  Mygenre.seed do |s|
+    s.id = mygenre[0]
+    s.user_id = mygenre[1]
+    s.genre_id = mygenre[2]
+    s.created_at = mygenre[3]
+    s.updated_at = mygenre[4]
+  end
+end
+
+csv_3 = CSV.read('db/fixtures/csv_data/posts.csv', headers: true)
+csv_3.each do |post|
   Post.seed do |s|
     s.id = post[0]
     s.category = post[1]
@@ -33,17 +44,6 @@ csv_2.each do |post|
     s.updated_at = post[6]
     s.title = post[7]
     s.image = post[8]
-  end
-end
-
-csv_3 = CSV.read('db/fixtures/csv_data/mygenres.csv', headers: true)
-csv_3.each do |mygenre|
-  Mygenre.seed do |s|
-    s.id = mygenre[0]
-    s.user_id = mygenre[1]
-    s.genre_id = mygenre[2]
-    s.created_at = mygenre[3]
-    s.updated_at = mygenre[4]
   end
 end
 
