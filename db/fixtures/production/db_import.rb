@@ -71,30 +71,3 @@ csv_5.each do |authentication|
     s.access_token_secret = authentication[7]
   end
 end
-
-csv_6 = CSV.read('db/fixtures/csv_data/active_storage_blobs.csv', headers: true)
-csv_6.each do |active_storage_blob|
-  ActiveStorageBlobs.seed do |s|
-    s.id = active_storage_blob[0]
-    s.key = active_storage_blob[1]
-    s.filename = active_storage_blob[2]
-    s.content_type = active_storage_blob[3]
-    s.metadata = active_storage_blob[4]
-    s.service_name = active_storage_blob[5]
-    s.byte_size = active_storage_blob[6]
-    s.checksum = active_storage_blob[7]
-    s.created_at = active_storage_blob[8]
-  end
-end
-
-csv_7 = CSV.read('db/fixtures/csv_data/active_storage_attachments.csv', headers: true)
-csv_7.each do |active_storage_attachment|
-  ActiveStorageAttachments.seed do |s|
-    s.id = active_storage_attachment[0]
-    s.name = active_storage_attachment[1]
-    s.record_type = active_storage_attachment[2]
-    s.record_id = active_storage_attachment[3]
-    s.blob_id = active_storage_attachment[4]
-    s.created_at = active_storage_attachment[5]
-  end
-end
