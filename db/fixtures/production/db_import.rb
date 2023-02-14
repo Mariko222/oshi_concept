@@ -17,7 +17,7 @@ csv_1.each do |user|
     s.reset_password_email_sent_at = user[11]
     s.access_count_to_reset_password_page = user[12]
     s.uuid = user[13]
-    s.role = user[14]
+    s.role = user[14].to_i
   end
 end
 
