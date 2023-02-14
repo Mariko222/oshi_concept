@@ -44,4 +44,4 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 
 /latest.dump
-/db/fixtures/csv_data
+
